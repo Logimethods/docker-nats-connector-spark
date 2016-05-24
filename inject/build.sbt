@@ -20,12 +20,28 @@ resolvers += Resolver.mavenLocal
 
 enablePlugins(DockerPlugin)
 
+imageNames in docker := Seq(
+  // Sets the latest tag
+  ImageName(s"${organization.value}/${name.value}:latest"),
+
+  // Sets a name with a tag that contains the project version
+  ImageName(
+    namespace = Some(organization.value),
+    repository = name.value,
+    tag = Some("v" + version.value)
+  )
+)
+
 // Define a Dockerfile
 dockerfile in docker := {
-  new Dockerfile {
-    // Use a base image that contain Scala
-	from("denvazh/gatling:2.1.7")
+  val classpath = (managedClasspath in Compile).value
 
-	cmd("bash")
+  new Dockerfile {
+    // Use a base image that contain Gatling
+	from("denvazh/gatling:2.1.7")
+    // Add all files on the classpath
+    add(classpath.files, "./lib/")
+    // Add Gatling User Files
+    add(baseDirectory.value / "user-files", "./user-files")
   }
 }
