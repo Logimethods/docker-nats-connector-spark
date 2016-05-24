@@ -6,16 +6,15 @@ import sbt.Keys.{artifactPath, libraryDependencies, mainClass, managedClasspath,
 
 logLevel := Level.Debug
 
-name := "docker-nats-connector-spark"
+name := "docker-nats-connector-spark-app"
 
 organization := "logimethods"
 
 version := "0.1.0-SNAPSHOT"
 
-scalaVersion := "2.11.8"
+scalaVersion := "2.11.6"
 
 libraryDependencies ++= Seq("com.logimethods" % "nats-connector-spark" % version.value)
-libraryDependencies ++= Seq("com.logimethods" %% "nats-connector-gatling" % version.value)
 
 resolvers += Resolver.mavenLocal
 
