@@ -12,7 +12,10 @@ organization := "logimethods"
 
 version := "0.1.0-SNAPSHOT"
 
+scalaVersion := "2.11.8"
+
 libraryDependencies ++= Seq("com.logimethods" % "nats-connector-spark" % version.value)
+libraryDependencies ++= Seq("com.logimethods" %% "nats-connector-gatling" % version.value)
 
 resolvers += Resolver.mavenLocal
 
