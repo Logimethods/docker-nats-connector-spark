@@ -1,0 +1,13 @@
+version: '2'
+
+services:
+  inject: 
+    image: inject
+      
+  nats:
+    image: nats
+    #image: local-docker-cassandra
+    ports:
+      - 4222:4222
+      - 8222:8222
+      - 6222:6222

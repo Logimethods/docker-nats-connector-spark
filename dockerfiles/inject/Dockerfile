@@ -1,1 +1,0 @@
-from denvazh/gatling:2.1.7

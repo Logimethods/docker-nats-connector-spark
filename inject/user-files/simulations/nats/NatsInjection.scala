@@ -16,10 +16,12 @@ import com.logimethods.nats.connector.gatling._
 
 import scala.concurrent.duration._
 import java.util.Properties
+import io.nats.client.Constants.PROP_URL
 
 class NatsInjection extends Simulation {
   
   val properties = new Properties()
+  properties.setProperty(io.nats.client.Constants.PROP_URL, "nats://nats-main:4222")
   val natsProtocol = NatsProtocol(properties, "TestingSubject")
   
   val natsScn = scenario("NATS call").exec(NatsBuilder("Hello from Gatling!"))

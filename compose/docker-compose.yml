@@ -1,0 +1,15 @@
+version: '2'
+
+services:
+
+  nats-main: 
+    extends:
+      file: common-services.yml
+      service: nats
+      
+  inject:
+    extends:
+      file: common-services.yml
+      service: inject
+    links: 
+      - nats-main
