@@ -46,6 +46,6 @@ dockerfile in docker := {
     // Add Scripts
     add(baseDirectory.value / "scripts", "./bin")
     
-    cmd("start_nats_injection.sh")
+    cmd("-s com.logimethods.nats.demo.NatsInjection")
   }
 }
