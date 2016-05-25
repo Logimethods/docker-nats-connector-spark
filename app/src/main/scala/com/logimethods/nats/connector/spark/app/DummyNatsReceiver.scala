@@ -16,7 +16,11 @@ object DummyNatsReceiver extends App {
   Thread.sleep(2000)
   
   val properties = new Properties()
-  properties.setProperty(/*io.nats.client.Constants.PROP_URL*/ "io.nats.client.url", "nats://nats-main:4222")
+//  properties.setProperty(/*io.nats.client.Constants.PROP_URL*/ "io.nats.client.url", "nats://nats-main:4222")
+  //@see https://github.com/tyagihas/java_nats/blob/master/src/main/java/org/nats/Connection.java
+  properties.put("uri", "nats://nats-main:4222")
+  properties.put("servers", "nats://nats-main:4222")
+  properties.put("verbose", "true")
   var conn = Conn.connect(properties)
 
   conn.subscribe(args(0), (msg:Msg) => {println("Received update : " + msg.body)})
