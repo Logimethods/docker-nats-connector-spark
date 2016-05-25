@@ -1,0 +1,1 @@
+gatling.sh -s com.logimethods.nats.demo.NatsInjection

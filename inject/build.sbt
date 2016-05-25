@@ -43,7 +43,9 @@ dockerfile in docker := {
     add(classpath.files, "./lib/")
     // Add Gatling User Files
     add(baseDirectory.value / "user-files", "./user-files")
+    // Add Scripts
+    add(baseDirectory.value / "scripts", "./scripts")
     
-    cmd("gatling.sh -s com.logimethods.nats.demo.NatsInjection")
+    cmd("scripts/starts_nats_injection.sh")
   }
 }
