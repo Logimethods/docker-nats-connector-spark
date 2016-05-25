@@ -3,7 +3,6 @@ version: '2'
 services:
   gatling: 
     image: lmagnin/docker-nats-connector-spark:gatling
-    command: "-s com.logimethods.nats.demo.NatsInjection"
       
   nats:
     image: nats
