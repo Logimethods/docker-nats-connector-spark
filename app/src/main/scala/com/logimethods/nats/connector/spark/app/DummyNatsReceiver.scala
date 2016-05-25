@@ -13,8 +13,10 @@ import org.nats._
 
 // @see https://github.com/tyagihas/scala_nats
 object DummyNatsReceiver extends App {
+  Thread.sleep(2000)
+  
   val properties = new Properties()
-  properties.setProperty(io.nats.client.Constants.PROP_URL, "nats://nats-main:4222")
+  properties.setProperty(/*io.nats.client.Constants.PROP_URL*/ "io.nats.client.url", "nats://nats-main:4222")
   var conn = Conn.connect(properties)
 
   conn.subscribe(args(0), (msg:Msg) => {println("Received update : " + msg.body)})
