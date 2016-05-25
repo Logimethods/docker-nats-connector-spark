@@ -2,7 +2,7 @@ version: '2'
 
 services:
   gatling: 
-    image: inject
+    image: lmagnin/docker-nats-connector-spark:gatling
       
   nats:
     image: nats
@@ -11,3 +11,6 @@ services:
       - 4222:4222
       - 8222:8222
       - 6222:6222
+      
+  app: 
+    image: lmagnin/docker-nats-connector-spark:app
