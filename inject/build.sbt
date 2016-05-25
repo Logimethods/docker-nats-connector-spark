@@ -44,8 +44,8 @@ dockerfile in docker := {
     // Add Gatling User Files
     add(baseDirectory.value / "user-files", "./user-files")
     // Add Scripts
-    add(baseDirectory.value / "scripts", "./scripts")
+    add(baseDirectory.value / "scripts", "/scripts")
     
-    cmd("scripts/starts_nats_injection.sh")
+    cmd("/scripts/starts_nats_injection.sh")
   }
 }
