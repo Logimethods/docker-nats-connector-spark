@@ -7,9 +7,9 @@ services:
       file: common-services.yml
       service: nats
       
-  inject:
+  gatling:
     extends:
       file: common-services.yml
-      service: inject
+      service: gatling
     links: 
       - nats-main

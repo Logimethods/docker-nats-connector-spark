@@ -6,7 +6,19 @@
 .history
 .lib/
 dist/*
-target/
+
+target
+
+!app/target
+app/target/*
+# REMOVE generated docker files
+!app/target/docker
+
+!inject/target
+inject/target/*
+# REMOVE generated docker files
+!inject/target/docker
+
 lib_managed/
 src_managed/
 project/boot/
