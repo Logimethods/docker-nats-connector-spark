@@ -12,7 +12,7 @@ organization := "logimethods"
 
 version := "0.1.0-SNAPSHOT"
 
-scalaVersion := "2.11.6"
+scalaVersion := "2.10.4"
 
 libraryDependencies += "com.logimethods" % "nats-connector-spark" % "0.1.0-SNAPSHOT"
 //libraryDependencies += "io.nats" % "jnats" % "0.4.1"
@@ -34,7 +34,7 @@ dockerfile in docker := {
 
   new Dockerfile {
     // Use a base image that contain Scala
-	from("williamyeh/scala:2.11.6")
+	from("williamyeh/scala:2.10.4")
 	
     // Add all files on the classpath
     add(classpath.files, "/app/")
