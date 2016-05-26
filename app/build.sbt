@@ -16,7 +16,7 @@ scalaVersion := "2.10.4"
 
 libraryDependencies += "com.logimethods" % "nats-connector-spark" % "0.1.0-SNAPSHOT"
 //libraryDependencies += "io.nats" % "jnats" % "0.4.1"
-libraryDependencies += "com.github.tyagihas" % "scala_nats_2.10" % "0.1"
+//libraryDependencies += "com.github.tyagihas" % "scala_nats_2.10" % "0.1"
 
 resolvers += Resolver.mavenLocal
 
