@@ -3,6 +3,8 @@ version: '2'
 services:
   gatling: 
     image: lmagnin/docker-nats-connector-spark:gatling
+    environment:
+      - GATLING.TO_NATS.SUBJECT=INPUT
       
   nats:
     image: nats

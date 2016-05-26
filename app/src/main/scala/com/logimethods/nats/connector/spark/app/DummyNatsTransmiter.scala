@@ -16,11 +16,8 @@ object DummyNatsTransmiter extends App {
   Thread.sleep(2000)
   
   val properties = new Properties()
-//  properties.setProperty(/*io.nats.client.Constants.PROP_URL*/ "io.nats.client.url", "nats://nats-main:4222")
   //@see https://github.com/tyagihas/java_nats/blob/master/src/main/java/org/nats/Connection.java
-//  properties.put("uri", "nats://nats-main:4222")
   properties.put("servers", "nats://nats-main:4222")
-//  properties.put("verbose", java.lang.Boolean.TRUE)
   val conn = Conn.connect(properties)
 
   val inputSubject = args(0)
