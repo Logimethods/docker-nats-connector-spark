@@ -22,7 +22,7 @@ import com.logimethods.nats.connector.spark.NatsToSparkConnector
 object SparkProcessor extends App {
 	System.setProperty("org.slf4j.simpleLogger.log.com.logimethods.nats.connector.spark.NatsToSparkConnector", "trace");
 
-	Thread.sleep(5000)
+	Thread.sleep(10000)
 
   val inputSubject = args(0)
   val outputSubject = args(1)
@@ -30,7 +30,7 @@ object SparkProcessor extends App {
 
   val conf = new SparkConf().setAppName("NATS Data Processing").setMaster("local[2]");
   val sc = new SparkContext(conf);
-  val ssc = new StreamingContext(sc, new Duration(500));
+  val ssc = new StreamingContext(sc, new Duration(2000));
 
   val properties = new Properties();
   properties.put("servers", "nats://nats-main:4222")
@@ -42,7 +42,7 @@ object SparkProcessor extends App {
 
   max.print()
   
-  ssc.awaitTerminationOrTimeout(5000)
-  
   ssc.start();		
+  
+  ssc.awaitTerminationOrTimeout(5000)
 }
