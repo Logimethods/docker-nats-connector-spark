@@ -41,6 +41,7 @@ dockerfile in docker := {
     // Add the JAR file
     add(jarFile, jarTarget)
     // On launch run Scala with the classpath and the main class
-    entryPoint("scala", "-cp", classpathString, mainclass)
+    // @see https://mail-archives.apache.org/mod_mbox/spark-dev/201312.mbox/%3CCAPh_B=ass2NcrN41t7KTSoF1SFGce=N57YMVyukX4hPcO5YN2Q@mail.gmail.com%3E
+    entryPoint("java", "-cp", classpathString, mainclass)
   }
 }
