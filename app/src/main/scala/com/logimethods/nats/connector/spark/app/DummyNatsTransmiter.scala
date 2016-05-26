@@ -22,11 +22,11 @@ object DummyNatsTransmiter extends App {
   properties.put("servers", "nats://nats-main:4222")
 //  properties.put("verbose", java.lang.Boolean.TRUE)
   val conn = Conn.connect(properties)
-  
-  println("Will transmit messages from " + inputSubject + " to " + outputSubject)
 
   val inputSubject = args(0)
-  val outputSubject = args(1)
+  val outputSubject = args(1)  
+  println("Will transmit messages from " + inputSubject + " to " + outputSubject)
+
   conn.subscribe(inputSubject, (msg:Msg) => {
     println("Transmiting message from " + inputSubject + " to " + outputSubject + ": " + msg.body)
     conn.publish(outputSubject, msg.body)
