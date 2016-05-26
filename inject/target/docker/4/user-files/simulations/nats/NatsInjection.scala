@@ -22,6 +22,7 @@ class NatsInjection extends Simulation {
   
   val properties = new Properties()
   properties.setProperty(io.nats.client.Constants.PROP_URL, "nats://nats-main:4222")
+  println("System properties: " + System.getProperties())
   val subject = System.getProperties().getProperty("GATLING.TO_NATS.SUBJECT", "fromGatling")
   println("Will emit messages to " + subject)
   val natsProtocol = NatsProtocol(properties, subject)
