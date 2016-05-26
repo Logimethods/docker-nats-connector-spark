@@ -40,5 +40,8 @@ object SparkProcessor extends App {
 
   max.print()
   
+  ssc.awaitTerminationOrTimeout(5000)
+  Thread.sleep(3000) // Give some time for the forgetting old RDDs to complete
+  
   ssc.start();		
 }
