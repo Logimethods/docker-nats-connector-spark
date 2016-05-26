@@ -38,7 +38,7 @@ object SparkProcessor extends App {
   val messages = ssc.receiverStream(NatsToSparkConnector.receiveFromNats(properties, StorageLevel.MEMORY_ONLY, "INPUT"))
 
   val integers = messages.map({ str => Integer.parseInt(str) })
-  val max = integers.reduce({ (int1, int2) => Integer.max(int1, int2) })
+  val max = integers.reduce({ (int1, int2) => Math.max(int1, int2) })
 
   max.print()
   
