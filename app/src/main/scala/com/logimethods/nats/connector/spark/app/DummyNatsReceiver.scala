@@ -23,5 +23,5 @@ object DummyNatsReceiver extends App {
   properties.put("verbose", java.lang.Boolean.TRUE)
   var conn = Conn.connect(properties)
 
-  conn.subscribe(args(0), (msg:Msg) => {println("Received update : " + msg.body)})
+  conn.subscribe(args(0), (msg:Msg) => {conn.publish("OUTPUT", msg.body)})
 }
