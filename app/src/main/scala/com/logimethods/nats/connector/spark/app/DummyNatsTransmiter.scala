@@ -12,16 +12,23 @@ import java.util.Properties
 import org.nats._
 
 // @see https://github.com/tyagihas/scala_nats
-object DummyNatsReceiver extends App {
+object DummyNatsTransmiter extends App {
   Thread.sleep(2000)
   
   val properties = new Properties()
 //  properties.setProperty(/*io.nats.client.Constants.PROP_URL*/ "io.nats.client.url", "nats://nats-main:4222")
   //@see https://github.com/tyagihas/java_nats/blob/master/src/main/java/org/nats/Connection.java
-  properties.put("uri", "nats://nats-main:4222")
+//  properties.put("uri", "nats://nats-main:4222")
   properties.put("servers", "nats://nats-main:4222")
-  properties.put("verbose", java.lang.Boolean.TRUE)
-  var conn = Conn.connect(properties)
+//  properties.put("verbose", java.lang.Boolean.TRUE)
+  val conn = Conn.connect(properties)
+  
+  println("Will transmit messages from " + inputSubject + " to " + outputSubject)
 
-  conn.subscribe(args(0), (msg:Msg) => {conn.publish("OUTPUT", msg.body)})
+  val inputSubject = args(0)
+  val outputSubject = args(1)
+  conn.subscribe(inputSubject, (msg:Msg) => {
+    println("Transmiting message from " + inputSubject + " to " + outputSubject + ": " + msg.body)
+    conn.publish(outputSubject, msg.body)
+    })
 }

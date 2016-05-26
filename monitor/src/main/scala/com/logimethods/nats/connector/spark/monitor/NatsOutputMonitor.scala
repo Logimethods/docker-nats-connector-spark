@@ -21,7 +21,9 @@ object NatsOutputMonitor extends App {
   properties.put("uri", "nats://nats-main:4222")
   properties.put("servers", "nats://nats-main:4222")
   properties.put("verbose", java.lang.Boolean.TRUE)
-  var conn = Conn.connect(properties)
+  val conn = Conn.connect(properties)
 
-  conn.subscribe(args(0), (msg:Msg) => {println("Received update : " + msg.body)})
+  conn.subscribe(args(0), (msg:Msg) => {
+    println("Received message: " + msg.body)
+    })
 }
