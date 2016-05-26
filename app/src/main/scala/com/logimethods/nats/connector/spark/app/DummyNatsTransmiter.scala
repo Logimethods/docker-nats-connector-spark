@@ -12,8 +12,8 @@ import java.util.Properties
 import org.nats._
 
 // @see https://github.com/tyagihas/scala_nats
-object DummyNatsTransmiter extends App {
-  Thread.sleep(2000)
+object DummyNatsTransmiter /*extends App*/ {
+/*  Thread.sleep(2000)
   
   val properties = new Properties()
   //@see https://github.com/tyagihas/java_nats/blob/master/src/main/java/org/nats/Connection.java
@@ -27,5 +27,5 @@ object DummyNatsTransmiter extends App {
   conn.subscribe(inputSubject, (msg:Msg) => {
     println("Transmiting message from " + inputSubject + " to " + outputSubject + ": " + msg.body)
     conn.publish(outputSubject, msg.body)
-    })
+    })*/
 }
