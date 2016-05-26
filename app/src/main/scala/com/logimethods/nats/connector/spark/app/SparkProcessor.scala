@@ -22,7 +22,7 @@ import com.logimethods.nats.connector.spark.NatsToSparkConnector
 object SparkProcessor extends App {
 	System.setProperty("org.slf4j.simpleLogger.log.com.logimethods.nats.connector.spark.NatsToSparkConnector", "trace");
 
-	Thread.sleep(15000)
+	Thread.sleep(3000)
 
   val inputSubject = args(0)
   val outputSubject = args(1)
@@ -44,5 +44,5 @@ object SparkProcessor extends App {
   
   ssc.start();		
   
-  ssc.awaitTerminationOrTimeout(5000)
+  ssc.awaitTermination()
 }
