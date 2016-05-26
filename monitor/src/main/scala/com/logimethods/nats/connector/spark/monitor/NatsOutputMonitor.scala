@@ -23,7 +23,10 @@ object NatsOutputMonitor extends App {
   properties.put("verbose", java.lang.Boolean.TRUE)
   val conn = Conn.connect(properties)
 
-  conn.subscribe(args(0), (msg:Msg) => {
+  val inputSubject = args(0)
+  println("Will be listening to messages from " + inputSubject)
+
+  conn.subscribe(inputSubject, (msg:Msg) => {
     println("Received message: " + msg.body)
     })
 }
