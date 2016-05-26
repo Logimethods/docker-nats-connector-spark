@@ -13,4 +13,8 @@ services:
       
   app: 
     image: lmagnin/docker-nats-connector-spark:app
-    command: "TestingSubject"
+    command: "INPUT"
+      
+  monitor: 
+    image: lmagnin/docker-nats-connector-spark:monitor
+    command: "OUTPUT"

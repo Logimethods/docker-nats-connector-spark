@@ -22,7 +22,7 @@ class NatsInjection extends Simulation {
   
   val properties = new Properties()
   properties.setProperty(io.nats.client.Constants.PROP_URL, "nats://nats-main:4222")
-  val natsProtocol = NatsProtocol(properties, "TestingSubject")
+  val natsProtocol = NatsProtocol(properties, "INPUT")
   
   val natsScn = scenario("NATS call").exec(NatsBuilder("Hello from Gatling!"))
  
