@@ -21,7 +21,7 @@ import com.logimethods.nats.connector.spark._
 
 object SparkProcessor extends App {
   System.setProperty("org.slf4j.simpleLogger.log.org.apache.spark", "warn")
-	System.setProperty("org.slf4j.simpleLogger.log.com.logimethods.nats.connector.spark", "trace")
+	System.setProperty("org.slf4j.simpleLogger.log.com.logimethods.nats.connector.spark", "debug")
 
 	Thread.sleep(3000)
 
@@ -36,17 +36,18 @@ object SparkProcessor extends App {
   val properties = new Properties();
   properties.put("servers", "nats://nats-main:4222")
   properties.put(PROP_URL, "nats://nats-main:4222")
-  val messages = ssc.receiverStream(NatsToSparkConnector.receiveFromNats(properties, StorageLevel.MEMORY_ONLY, "INPUT"))
+  val messages = ssc.receiverStream(NatsToSparkConnector.receiveFromNats(properties, StorageLevel.MEMORY_ONLY, inputSubject))
 
   val integers = messages.map({ str => Integer.parseInt(str) })
   val max = integers.reduce({ (int1, int2) => Math.max(int1, int2) })
 
   max.print()
 
+  val publishToNats = SparkToNatsConnector.publishToNats(properties, outputSubject)
+  
   max.foreachRDD { rdd =>
     rdd.foreach { m =>
-      print("TO NATS: " + m)
-      SparkToNatsConnector.publishToNats(properties, "OUTPUT").call(m.toString())
+      publishToNats.call(m.toString())
     }
   }
    
