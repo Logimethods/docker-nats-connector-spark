@@ -39,13 +39,13 @@ class NatsInjection extends Simulation {
 }
 
 class ValueProvider {
-  val basedValue = 100
   val incr = 10
+  val basedValue = 100 -incr
   val maxIncr = 50
   var actualIncr = 0
   
   override def toString(): String = {
-    actualIncr = (actualIncr + incr) % maxIncr
+    actualIncr = (actualIncr % (maxIncr + incr)) + incr
     (basedValue + actualIncr).toString()
   }
 }
