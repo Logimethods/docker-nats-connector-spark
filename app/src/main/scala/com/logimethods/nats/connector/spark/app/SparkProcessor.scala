@@ -29,13 +29,17 @@ object SparkProcessor extends App {
   val outputSubject = args(1)
   println("Will process messages from " + inputSubject + " to " + outputSubject)
 
-  val conf = new SparkConf().setAppName("NATS Data Processing").setMaster("local[2]");
+  val sparkMasterUrl = System.getenv("SPARK_MASTER_URL")
+  println("SPARK_MASTER_URL = " + sparkMasterUrl)
+  val conf = new SparkConf().setAppName("NATS Data Processing").setMaster(sparkMasterUrl);
   val sc = new SparkContext(conf);
   val ssc = new StreamingContext(sc, new Duration(2000));
 
   val properties = new Properties();
-  properties.put("servers", "nats://nats-main:4222")
-  properties.put(PROP_URL, "nats://nats-main:4222")
+  val natsUrl = System.getenv("NATS_URI")
+  println("NATS_URI = " + natsUrl)
+  properties.put("servers", natsUrl)
+  properties.put(PROP_URL, natsUrl)
   val messages = ssc.receiverStream(NatsToSparkConnector.receiveFromNats(properties, StorageLevel.MEMORY_ONLY, inputSubject))
 
   val integers = messages.map({ str => Integer.parseInt(str) })

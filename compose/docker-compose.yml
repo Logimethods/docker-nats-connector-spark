@@ -1,6 +1,32 @@
 version: '2'
 
 services:
+  spark-master:
+    extends:
+      file: common-services.yml
+      service: spark-master
+
+  spark-slave1:
+    extends:
+      file: common-services.yml
+      service: spark-slave
+    container_name: slave1
+    hostname: slave1
+    environment:
+       - "constraint:node==swarm-node-1"
+    ports:
+      - 8082:8081
+
+  spark-slave2:
+    extends:
+      file: common-services.yml
+      service: spark-slave
+    container_name: slave2
+    hostname: slave2
+    environment:
+      - "constraint:node==swarm-node-2"
+    ports:
+      - 8083:8081
 
   nats-main: 
     extends:
@@ -13,6 +39,8 @@ services:
       service: gatling
     links: 
       - nats-main
+    environment:
+      - NATS_URI="nats://nats-main:4222"
       
   app:
     extends:
@@ -20,6 +48,10 @@ services:
       service: app
     links: 
       - nats-main
+      - spark-master
+    environment:
+      - NATS_URI="nats://nats-main:4222"
+      - SPARK_MASTER_URL="spark-master"
       
   monitor:
     extends:

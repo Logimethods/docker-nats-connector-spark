@@ -21,8 +21,10 @@ import io.nats.client.Constants.PROP_URL
 class NatsInjection extends Simulation {
   
   val properties = new Properties()
-  properties.setProperty(io.nats.client.Constants.PROP_URL, "nats://nats-main:4222")
+  val natsUrl = System.getenv("NATS_URI")
+  properties.setProperty(io.nats.client.Constants.PROP_URL, natsUrl)
   println("System properties: " + System.getenv())
+  
   var subject = System.getenv("GATLING.TO_NATS.SUBJECT")
   if (subject == null) {
     println("No Subject has been defined through the 'GATLING.TO_NATS.SUBJECT' Environment Variable!!!")
