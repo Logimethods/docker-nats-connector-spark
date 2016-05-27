@@ -40,7 +40,7 @@ services:
     links: 
       - nats-main
     environment:
-      - NATS_URI="nats://nats-main:4222"
+      - NATS_URI=nats://nats-main:4222
       
   app:
     extends:
@@ -50,8 +50,8 @@ services:
       - nats-main
       - spark-master
     environment:
-      - NATS_URI="nats://nats-main:4222"
-      - SPARK_MASTER_URL="spark-master"
+      - NATS_URI=nats://nats-main:4222
+      - SPARK_MASTER_URL=spark://master:7077
       
   monitor:
     extends:
