@@ -20,7 +20,8 @@ import io.nats.client.Constants._
 import com.logimethods.nats.connector.spark._
 
 object SparkProcessor extends App {
-	System.setProperty("org.slf4j.simpleLogger.log.com.logimethods.nats.connector.spark.NatsToSparkConnector", "trace");
+  System.setProperty("org.slf4j.simpleLogger.log.org.apache.spark", "warn")
+	System.setProperty("org.slf4j.simpleLogger.log.com.logimethods.nats.connector.spark", "trace")
 
 	Thread.sleep(3000)
 
@@ -43,6 +44,9 @@ object SparkProcessor extends App {
   max.print()
   
   max.map { m => SparkToNatsConnector.publishToNats(properties, "OUTPUT").call(m.toString()) }
+  
+//  val maxStr = max.map { m => m.toString() }
+//  maxStr.map(SparkToNatsConnector.publishToNats(properties, "OUTPUT"))
   
   ssc.start();		
   
