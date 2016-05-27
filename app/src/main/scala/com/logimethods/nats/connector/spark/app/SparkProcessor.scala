@@ -47,16 +47,13 @@ object SparkProcessor extends App {
 
   max.print()
 
-  val publishToNats = SparkToNatsConnector.publishToNats(properties, outputSubject)
+/*  val publishToNats = SparkToNatsConnector.publishToNats(properties, outputSubject)
   
   max.foreachRDD { rdd =>
     rdd.foreach { m =>
       publishToNats.call(m.toString())
     }
-  }
-   
-//  val maxStr = max.map { m => m.toString() }
-//  maxStr.map(SparkToNatsConnector.publishToNats(properties, "OUTPUT"))
+  }*/
   
   ssc.start();		
   
