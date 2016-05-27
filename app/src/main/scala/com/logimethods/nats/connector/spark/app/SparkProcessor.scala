@@ -43,7 +43,9 @@ object SparkProcessor extends App {
 
   max.print()
   
-  max.map { m => SparkToNatsConnector.publishToNats(properties, "OUTPUT").call(m.toString()) }
+  max.map { m => 
+    print("TO NATS: " + m)
+    SparkToNatsConnector.publishToNats(properties, "OUTPUT").call(m.toString()) }
   
 //  val maxStr = max.map { m => m.toString() }
 //  maxStr.map(SparkToNatsConnector.publishToNats(properties, "OUTPUT"))
