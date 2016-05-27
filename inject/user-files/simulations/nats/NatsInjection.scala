@@ -42,7 +42,7 @@ class ValueProvider {
   val basedValue = 100
   val incr = 10
   val maxIncr = 50
-  val actualIncr = 0
+  var actualIncr = 0
   
   override def toString(): String = {
     actualIncr = (actualIncr + incr) % maxIncr
