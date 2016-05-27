@@ -21,7 +21,7 @@ import com.logimethods.nats.connector.spark._
 
 object SparkProcessor extends App {
   System.setProperty("org.slf4j.simpleLogger.log.org.apache.spark", "warn")
-	System.setProperty("org.slf4j.simpleLogger.log.com.logimethods.nats.connector.spark", "debug")
+	System.setProperty("org.slf4j.simpleLogger.log.com.logimethods.nats.connector.spark", "trace")
 
 	Thread.sleep(3000)
 

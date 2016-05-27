@@ -26,15 +26,26 @@ class NatsInjection extends Simulation {
   var subject = System.getenv("GATLING.TO_NATS.SUBJECT")
   if (subject == null) {
     println("No Subject has been defined through the 'GATLING.TO_NATS.SUBJECT' Environment Variable!!!")
-//    exit(1)
   } else {
     println("Will emit messages to " + subject)
     val natsProtocol = NatsProtocol(properties, subject)
     
-    val natsScn = scenario("NATS call").exec(NatsBuilder("100"))
+    val natsScn = scenario("NATS call").exec(NatsBuilder(new ValueProvider()))
    
     setUp(
       natsScn.inject(constantUsersPerSec(15) during (1 minute))
     ).protocols(natsProtocol)
+  }
+}
+
+class ValueProvider {
+  val basedValue = 100
+  val incr = 10
+  val maxIncr = 50
+  val actualIncr = 0
+  
+  def override toString() {
+    actualIncr = (actualIncr + incr) % maxIncr
+    basedValue + actualIncr
   }
 }
