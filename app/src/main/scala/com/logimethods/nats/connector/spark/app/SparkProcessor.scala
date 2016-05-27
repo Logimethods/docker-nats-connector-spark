@@ -42,11 +42,14 @@ object SparkProcessor extends App {
   val max = integers.reduce({ (int1, int2) => Math.max(int1, int2) })
 
   max.print()
-  
-  max.map { m => 
-    print("TO NATS: " + m)
-    SparkToNatsConnector.publishToNats(properties, "OUTPUT").call(m.toString()) }
-  
+
+  max.foreachRDD { rdd =>
+    rdd.foreach { m =>
+      print("TO NATS: " + m)
+      SparkToNatsConnector.publishToNats(properties, "OUTPUT").call(m.toString())
+    }
+  }
+   
 //  val maxStr = max.map { m => m.toString() }
 //  maxStr.map(SparkToNatsConnector.publishToNats(properties, "OUTPUT"))
   
