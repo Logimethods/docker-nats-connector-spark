@@ -17,7 +17,7 @@ import org.apache.spark.streaming.StreamingContext
 import org.apache.spark.storage.StorageLevel;
 import io.nats.client.Constants._
 
-import com.logimethods.nats.connector.spark.NatsToSparkConnector
+import com.logimethods.nats.connector.spark._
 
 object SparkProcessor extends App {
 	System.setProperty("org.slf4j.simpleLogger.log.com.logimethods.nats.connector.spark.NatsToSparkConnector", "trace");
@@ -41,6 +41,8 @@ object SparkProcessor extends App {
   val max = integers.reduce({ (int1, int2) => Math.max(int1, int2) })
 
   max.print()
+  
+  max.map { m => SparkToNatsConnector.publishToNats(properties, "OUTPUT").call(m.toString()) }
   
   ssc.start();		
   
