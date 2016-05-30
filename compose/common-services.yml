@@ -24,7 +24,7 @@ services:
   spark-master:
     container_name: spark-master
     image: gettyimages/spark:1.6.1-hadoop-2.6
-    command: spark-class org.apache.spark.deploy.master.Master -h master
+    command: spark-class org.apache.spark.deploy.master.Master -h spark-master
     hostname: spark-master
     environment:
       - "SERVICE_NAME=spark-master"
