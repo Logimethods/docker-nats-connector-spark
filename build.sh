@@ -7,3 +7,6 @@ popd
 pushd monitor
 sbt docker
 popd
+pushd shell
+sbt docker
+popd

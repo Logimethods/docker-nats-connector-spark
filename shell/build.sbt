@@ -43,6 +43,6 @@ dockerfile in docker := {
     add(baseDirectory.value / "command", "./")
 
     env("SPARK.LIBS.PATHS", classpathString)
-    cmd("/bin/bash -c 'sleep infinity'")
+    cmd("sleep", "infinity")
   }
 }

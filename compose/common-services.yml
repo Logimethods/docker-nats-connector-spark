@@ -71,5 +71,5 @@ services:
       - ./data:/usr/local/spark/data
 
   spark-shell:
-    image: lmagnin/docker-nats-connector-spark:shell
-    command: spark-class org.apache.spark.deploy.worker.Worker spark://spark-master:7077
+#    image: lmagnin/docker-nats-connector-spark:shell
+    image: logimethods/docker-nats-connector-spark-shell
