@@ -15,7 +15,7 @@ services:
       
   app: 
     image: lmagnin/docker-nats-connector-spark:app
-//    command: "INPUT OUTPUT"
+#    command: "INPUT OUTPUT"
     command: bash
 
   monitor: 
