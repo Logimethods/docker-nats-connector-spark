@@ -34,7 +34,8 @@ dockerfile in docker := {
 
   new Dockerfile {
     // Use a base image that contain Scala
-	from("williamyeh/scala:2.10.4")
+//	from("williamyeh/scala:2.10.4")
+	from("gettyimages/spark:1.6.1-hadoop-2.6")
 	
     // Add all files on the classpath
     add(classpath.files, "/app/")
@@ -43,6 +44,6 @@ dockerfile in docker := {
     // On launch run Scala with the classpath and the main class
     // @see https://mail-archives.apache.org/mod_mbox/spark-dev/201312.mbox/%3CCAPh_B=ass2NcrN41t7KTSoF1SFGce=N57YMVyukX4hPcO5YN2Q@mail.gmail.com%3E
     // @see http://apache-spark-user-list.1001560.n3.nabble.com/spark-1-6-Issue-td25893.html
-    entryPoint("java", "-Xms128m", "-Xmx512m", "-XX:MaxPermSize=300m", "-cp", classpathString, mainclass)
+//    entryPoint("java", "-Xms128m", "-Xmx512m", "-XX:MaxPermSize=300m", "-cp", classpathString, mainclass)
   }
 }
