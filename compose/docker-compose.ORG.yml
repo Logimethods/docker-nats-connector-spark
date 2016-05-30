@@ -1,0 +1,29 @@
+version: '2'
+
+services:
+
+  nats-main: 
+    extends:
+      file: common-services.yml
+      service: nats
+      
+  gatling:
+    extends:
+      file: common-services.yml
+      service: gatling
+    links: 
+      - nats-main
+      
+  app:
+    extends:
+      file: common-services.yml
+      service: app
+    links: 
+      - nats-main
+      
+  monitor:
+    extends:
+      file: common-services.yml
+      service: monitor
+    links: 
+      - nats-main

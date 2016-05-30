@@ -22,12 +22,13 @@ services:
     command: "OUTPUT"
 
   spark-master:
-    container_name: master
+    container_name: spark-master
     image: gettyimages/spark:1.6.1-hadoop-2.6
     command: spark-class org.apache.spark.deploy.master.Master -h master
-    hostname: master
+    hostname: spark-master
     environment:
-      - "constraint:node==swarm-master"
+      - "SERVICE_NAME=spark-master"
+#      - "constraint:node==swarm-master"
       - "SPARK_CONF_DIR: /conf"
     expose:
       - 7001
@@ -49,7 +50,7 @@ services:
 
   spark-slave:
     image: gettyimages/spark:1.6.1-hadoop-2.6
-    command: spark-class org.apache.spark.deploy.worker.Worker spark://master:7077
+    command: spark-class org.apache.spark.deploy.worker.Worker spark://spark-master:7077
     environment:
       - "SPARK_CONF_DIR: /conf"
       - "SPARK_WORKER_CORES: 2"
