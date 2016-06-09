@@ -18,7 +18,9 @@ libraryDependencies += "com.logimethods" % "nats-connector-spark" % "0.1.0-SNAPS
 //libraryDependencies += "io.nats" % "jnats" % "0.4.1"
 //libraryDependencies += "com.github.tyagihas" % "scala_nats_2.10" % "0.1"
 
-resolvers += Resolver.mavenLocal
+//resolvers += Resolver.mavenLocal
+resolvers += "Sonatype OSS Snapshots" at "https://oss.sonatype.org/content/repositories/snapshots"
+resolvers += "Sonatype OSS Release" at "https://oss.sonatype.org/content/groups/public/"
 
 enablePlugins(DockerPlugin)
 
