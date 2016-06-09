@@ -21,17 +21,25 @@ import io.nats.client.Constants.PROP_URL
 class NatsInjection extends Simulation {
   
   val properties = new Properties()
-  val natsUrl = System.getenv("NATS_URI")
-  properties.setProperty(io.nats.client.Constants.PROP_URL, natsUrl)
+  
   println("System properties: " + System.getenv())
   
+  // The URI of the NATS server is provided by an environment variable:
+  // >export NATS_URI=nats://nats-main:4222
+  val natsUrl = System.getenv("NATS_URI")
+  properties.setProperty(io.nats.client.Constants.PROP_URL, natsUrl)
+  
+  // The NATS Subject is also provided by an environment variable:
+  // >export GATLING.TO_NATS.SUBJECT=FROM_GATLING  
   var subject = System.getenv("GATLING.TO_NATS.SUBJECT")
+  
   if (subject == null) {
     println("No Subject has been defined through the 'GATLING.TO_NATS.SUBJECT' Environment Variable!!!")
   } else {
     println("Will emit messages to " + subject)
     val natsProtocol = NatsProtocol(properties, subject)
     
+    // The messages sent to NATS will not be fixed thanks to the ValueProvider.
     val natsScn = scenario("NATS call").exec(NatsBuilder(new ValueProvider()))
    
     setUp(
@@ -40,6 +48,9 @@ class NatsInjection extends Simulation {
   }
 }
 
+/**
+ * The ValueProvider will generate a loop of values: 100, 110, 120, 130, 140, 150, 100...
+ */
 class ValueProvider {
   val incr = 10
   val basedValue = 100 -incr
