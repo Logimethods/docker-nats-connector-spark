@@ -13,6 +13,8 @@ services:
       service: gatling
     links: 
       - nats-main
+    environment:
+      - NATS_URI=nats://nats-main:4222
       
   app:
     extends:
@@ -20,6 +22,9 @@ services:
       service: app
     links: 
       - nats-main
+    environment:
+      - NATS_URI=nats://nats-main:4222
+      - SPARK_MASTER_URL=local[2]
       
   monitor:
     extends:

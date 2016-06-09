@@ -14,15 +14,22 @@ version := "0.1.0-SNAPSHOT"
 
 scalaVersion := "2.10.4"
 
-libraryDependencies += "org.apache.spark" %% "spark-core" % "1.6.0" % "provided"
-libraryDependencies += "org.apache.spark" %% "spark-streaming" % "1.6.0" % "provided"
-libraryDependencies += "com.logimethods" % "nats-connector-spark" % "0.1.0-SNAPSHOT"
-//libraryDependencies += "io.nats" % "jnats" % "0.4.1"
-//libraryDependencies += "com.github.tyagihas" % "scala_nats_2.10" % "0.1"
+val sparkVersion = "1.5.2"
+
+libraryDependencies += "org.apache.spark" %% "spark-core" % sparkVersion % "provided"
+/* http://stackoverflow.com/questions/31069136/sparkexception-local-class-incompatible */
+///resolvers += "Talend" at "https://talend-update.talend.com/nexus/content/repositories/libraries/"
+///libraryDependencies += "org.talend.libraries" % "spark-assembly-1.5.2-mapr-1602-hadoop2.7.0-mapr-1602" % "6.2.0"
 
 //resolvers += Resolver.mavenLocal
 resolvers += "Sonatype OSS Snapshots" at "https://oss.sonatype.org/content/repositories/snapshots"
 resolvers += "Sonatype OSS Release" at "https://oss.sonatype.org/content/groups/public/"
+
+libraryDependencies += "org.apache.spark" %% "spark-streaming" % sparkVersion
+libraryDependencies += "com.logimethods" % "nats-connector-spark" % "0.1.0-SNAPSHOT"
+//libraryDependencies += "io.nats" % "jnats" % "0.4.1"
+//libraryDependencies += "com.github.tyagihas" % "scala_nats_2.10" % "0.1"
+
 
 enablePlugins(DockerPlugin)
 
