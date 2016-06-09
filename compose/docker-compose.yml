@@ -30,15 +30,6 @@ services:
     ports:
       - 8083:8081
 
-  spark-shell:
-    extends:
-      file: common-services.yml
-      service: spark-shell
-    container_name: spark-shell
-    hostname: spark-shell
-    environment:
-      - SPARK_MASTER_URL=spark://spark-master:7077
-
   nats-main: 
     extends:
       file: common-services.yml
