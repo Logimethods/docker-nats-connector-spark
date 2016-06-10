@@ -9,7 +9,6 @@
 package com.logimethods.nats.connector.spark.app
 
 import java.util.Properties
-import org.nats._
 
 // @see https://github.com/tyagihas/scala_nats
 object DummyNatsTransmiter /*extends App*/ {

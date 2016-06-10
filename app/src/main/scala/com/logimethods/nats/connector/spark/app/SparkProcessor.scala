@@ -45,18 +45,17 @@ object SparkProcessor extends App {
   properties.put("servers", natsUrl)
   properties.put(PROP_URL, natsUrl)
   val messages = ssc.receiverStream(NatsToSparkConnector.receiveFromNats(properties, StorageLevel.MEMORY_ONLY, inputSubject))
-  
-//  messages.print()
 
   val integers = messages.map({ str => Integer.parseInt(str) })
   val max = integers.reduce({ (int1, int2) => Math.max(int1, int2) })
 
   max.print()
 
-  val publishToNats = SparkToNatsConnector.publishToNats(properties, outputSubject) 
+  // http://spark.apache.org/docs/latest/streaming-programming-guide.html#design-patterns-for-using-foreachrdd
   max.foreachRDD { rdd =>
-    rdd.foreach { m =>
-      publishToNats.call(m.toString())
+    val publishToNats = SparkToNatsConnector.publishToNats(properties, outputSubject)
+    rdd.foreachPartition { partitionOfRecords =>
+      partitionOfRecords.foreach(record => publishToNats.call(record.toString()))
     }
   }
   
