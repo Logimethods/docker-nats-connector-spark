@@ -10,9 +10,9 @@ name := "docker-nats-connector-spark"
 organization := "logimethods"
 val tag = "shell"
 
-version := "0.1.0-SNAPSHOT"
+version := "0.1.0"
 
-libraryDependencies += "com.logimethods" % "nats-connector-spark" % "0.1.0-SNAPSHOT"
+libraryDependencies += "com.logimethods" % "nats-connector-spark" % "0.1.0"
 
 resolvers += Resolver.mavenLocal
 
