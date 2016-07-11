@@ -1,0 +1,19 @@
+box: hseeberger/scala-sbt
+build:
+  steps:
+    - script:
+        name: build docker
+        code: |
+          pushd app
+          sbt clean docker
+          popd
+          pushd inject
+          sbt clean docker
+          popd
+          pushd monitor
+          sbt clean docker
+          popd
+          pushd shell
+          sbt clean docker
+          popd
+          ls ./*/target/docker/
