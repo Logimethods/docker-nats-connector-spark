@@ -1,5 +1,15 @@
-box: hseeberger/scala-sbt
+box: logimethods/docker-sbt-docker
 build:
+  steps:
+    - script:
+        name: build docker
+        code: |
+          pushd shell
+          sbt clean docker
+          popd
+          ls ./*/target/docker/
+
+buildX:
   steps:
     - script:
         name: build docker
