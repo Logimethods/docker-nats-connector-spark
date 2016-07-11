@@ -6,32 +6,27 @@ import sbt.Keys.{artifactPath, libraryDependencies, mainClass, managedClasspath,
 
 logLevel := Level.Debug
 
-name := "docker-nats-connector-spark-app"
-
+name := "docker-nats-connector-spark"
 organization := "logimethods"
+val tag = "app"
 
-version := "0.1.0-SNAPSHOT"
-
+version := "0.1.0"
 scalaVersion := "2.10.4"
-
 val sparkVersion = "1.5.2"
 
 libraryDependencies += "org.apache.spark" %% "spark-core" % sparkVersion % "provided"
-/* http://stackoverflow.com/questions/31069136/sparkexception-local-class-incompatible */
-///resolvers += "Talend" at "https://talend-update.talend.com/nexus/content/repositories/libraries/"
-///libraryDependencies += "org.talend.libraries" % "spark-assembly-1.5.2-mapr-1602-hadoop2.7.0-mapr-1602" % "6.2.0"
 
-//resolvers += Resolver.mavenLocal
 resolvers += "Sonatype OSS Snapshots" at "https://oss.sonatype.org/content/repositories/snapshots"
 resolvers += "Sonatype OSS Release" at "https://oss.sonatype.org/content/groups/public/"
 
 libraryDependencies += "org.apache.spark" %% "spark-streaming" % sparkVersion
-libraryDependencies += "com.logimethods" % "nats-connector-spark" % "0.1.0-SNAPSHOT"
-//libraryDependencies += "io.nats" % "jnats" % "0.4.1"
-//libraryDependencies += "com.github.tyagihas" % "scala_nats_2.10" % "0.1"
-
+libraryDependencies += "com.logimethods" % "nats-connector-spark" % "0.1.0"
 
 enablePlugins(DockerPlugin)
+
+imageNames in docker := Seq(
+  ImageName(s"${organization.value}/${name.value}:${tag}")
+)
 
 // Define a Dockerfile
 dockerfile in docker := {

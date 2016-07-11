@@ -6,9 +6,9 @@ import sbt.Keys.{artifactPath, libraryDependencies, mainClass, managedClasspath,
 
 logLevel := Level.Debug
 
-name := "docker-nats-connector-spark-shell"
-
+name := "docker-nats-connector-spark"
 organization := "logimethods"
+val tag = "shell"
 
 version := "0.1.0-SNAPSHOT"
 
@@ -17,6 +17,10 @@ libraryDependencies += "com.logimethods" % "nats-connector-spark" % "0.1.0-SNAPS
 resolvers += Resolver.mavenLocal
 
 enablePlugins(DockerPlugin)
+
+imageNames in docker := Seq(
+  ImageName(s"${organization.value}/${name.value}:${tag}")
+)
 
 // Define a Dockerfile
 dockerfile in docker := {

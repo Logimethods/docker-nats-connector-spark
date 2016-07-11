@@ -2,7 +2,7 @@ version: '2'
 
 services:
   gatling: 
-    image: lmagnin/docker-nats-connector-spark:gatling
+    image: logimethods/docker-nats-connector-spark:inject
     environment:
       - GATLING.TO_NATS.SUBJECT=INPUT
       
@@ -14,12 +14,11 @@ services:
       - 6222:6222
       
   app: 
-    image: lmagnin/docker-nats-connector-spark:app
-#    image: logimethods/docker-nats-connector-spark-app
+    image: logimethods/docker-nats-connector-spark:app
     command: "INPUT OUTPUT"
       
   monitor: 
-    image: lmagnin/docker-nats-connector-spark:monitor
+    image: logimethods/docker-nats-connector-spark:monitor
     command: "OUTPUT"
 
   spark-master:
@@ -72,5 +71,4 @@ services:
       - ./data:/usr/local/spark/data
 
   spark-shell:
-#    image: lmagnin/docker-nats-connector-spark:shell
-    image: logimethods/docker-nats-connector-spark-shell
+    image: logimethods/docker-nats-connector-spark:shell

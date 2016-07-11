@@ -6,30 +6,22 @@ import sbt.Keys.{artifactPath, libraryDependencies, mainClass, managedClasspath,
 
 logLevel := Level.Debug
 
-name := "docker-nats-connector-spark-inject"
-
+name := "docker-nats-connector-spark"
 organization := "logimethods"
+val tag = "inject"
 
-version := "0.1.0-SNAPSHOT"
-
+version := "0.1.0"
 scalaVersion := "2.11.8"
 
 libraryDependencies ++= Seq("com.logimethods" %% "nats-connector-gatling" % version.value)
 
-resolvers += Resolver.mavenLocal
+resolvers += "Sonatype OSS Snapshots" at "https://oss.sonatype.org/content/repositories/snapshots"
+resolvers += "Sonatype OSS Release" at "https://oss.sonatype.org/content/groups/public/"
 
 enablePlugins(DockerPlugin)
 
 imageNames in docker := Seq(
-  // Sets the latest tag
-  ImageName(s"${organization.value}/${name.value}:latest"),
-
-  // Sets a name with a tag that contains the project version
-  ImageName(
-    namespace = Some(organization.value),
-    repository = name.value,
-    tag = Some("v" + version.value)
-  )
+  ImageName(s"${organization.value}/${name.value}:${tag}")
 )
 
 // Define a Dockerfile
