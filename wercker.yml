@@ -22,6 +22,15 @@ build:
     - script:
         name: build dockerfile(s)
         code: |
+          pushd app
+          sbt clean assembly dockerFileTask
+          popd
+          pushd inject
+          sbt clean assembly dockerFileTask
+          popd
+          pushd monitor
+          sbt clean assembly dockerFileTask
+          popd
           pushd shell
           sbt clean assembly dockerFileTask
           popd
@@ -33,28 +42,8 @@ build:
           echo "GIT ADD"
           git add --all .
           echo "GIT COMMIT"
-          git commit -a -m "${WERCKER_GIT_COMMIT} at ${WERCKER_MAIN_PIPELINE_STARTED}"
+          git commit -a -m "${WERCKER_GIT_COMMIT} at ${WERCKER_MAIN_PIPELINE_STARTED} by WERCKER"
           echo "GIT STATUS"
           git status
           echo "GIT PUSH"
           git push origin HEAD:master_docker
-
-
-buildX:
-  steps:
-    - script:
-        name: build docker
-        code: |
-          pushd app
-          sbt clean docker
-          popd
-          pushd inject
-          sbt clean docker
-          popd
-          pushd monitor
-          sbt clean docker
-          popd
-          pushd shell
-          sbt clean docker
-          popd
-          ls ./*/target/docker/
