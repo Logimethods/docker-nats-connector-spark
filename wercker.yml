@@ -1,4 +1,4 @@
-box: hseeberger/scala-sbt
+box: logimethods/docker-sbt-docker
 build:
   steps:
     - script:
