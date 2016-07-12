@@ -37,7 +37,7 @@ build:
           echo "GIT STATUS"
           git status
           echo "GIT PUSH"
-          git push master_docker
+          git push origin HEAD:master_docker
 
 
 buildX:
