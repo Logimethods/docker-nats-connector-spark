@@ -10,21 +10,25 @@ dist/*
 target/
 
 !app/target
+app/project/target/*
 app/target/*
 # REMOVE from exclusion generated docker files
 !app/target/docker
 
 !inject/target
+inject/project/target/*
 inject/target/*
 # REMOVE from exclusion generated docker files
 !inject/target/docker
 
 !monitor/target
+monitor/project/target/*
 monitor/target/*
 # REMOVE from exclusion generated docker files
 !monitor/target/docker
 
 !shell/target
+shell/project/target/*
 shell/target/*
 # REMOVE from exclusion generated docker files
 !shell/target/docker
