@@ -3,7 +3,7 @@ build:
   steps:
     - install-packages:
         name: install git
-        packages: git
+        packages: git vim
     - add-to-known_hosts:
         name: add-to-known_hosts
         hostname: github.com
@@ -32,8 +32,8 @@ build:
           git status
           echo "GIT ADD"
           git add --all .
-          echo "GIT COMMI"
-          git commit -a
+          echo "GIT COMMIT"
+          git commit -a -m "${WERCKER_GIT_COMMIT} at ${WERCKER_MAIN_PIPELINE_STARTED}"
           echo "GIT STATUS"
           git status
           echo "GIT DONE"
