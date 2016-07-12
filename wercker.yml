@@ -30,9 +30,13 @@ build:
         name: git push
         code: |
           git status
+          echo "GIT ADD"
           git add --all .
+          echo "GIT COMMI"
           git commit -a
+          echo "GIT STATUS"
           git status
+          echo "GIT DONE"
 ##          git push origin master_docker
 
 
