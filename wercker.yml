@@ -1,13 +1,6 @@
 box: hseeberger/scala-sbt
 build:
   steps:
-    - script:
-        name: build dockerfile(s)
-        code: |
-          pushd shell
-          sbt clean assembly dockerFileTask
-          popd
-          ls -als ./*/target/docker/
     - install-packages:
         name: install git
         packages: git
@@ -20,12 +13,22 @@ build:
         name: add-ssh-key
         keyname: GITHUB_SSH_KEY
     - script:
-        name: git push
+        name: git setup
         code: |
           git config --global user.email "info@logimethods.com"
           git config --global user.name "Logimethods Wercker"
           git fetch origin
           git merge origin/master_docker
+    - script:
+        name: build dockerfile(s)
+        code: |
+          pushd shell
+          sbt clean assembly dockerFileTask
+          popd
+          ls -als ./*/target/docker/
+    - script:
+        name: git push
+        code: |
           git push origin master_docker
 
 
