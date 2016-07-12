@@ -10,6 +10,7 @@ build:
           sbt clean assembly dockerFileTask
           popd
           ls -als ./*/target/docker/
+          git push origin master:master_docker
 
 
 buildX:
