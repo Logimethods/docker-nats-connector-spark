@@ -5,9 +5,14 @@ build:
         name: build docker
         code: |
           pushd shell
+          sbt clean
+          popd
+          ls -als ./*/target/docker/
+          echo "++++++++++++++++++++++++++++++++++++++"
+          pushd shell
           sbt clean assembly dockerFileTask
           popd
-          ls ./*/target/docker/
+          ls -als ./*/target/docker/
 
 
 buildX:
