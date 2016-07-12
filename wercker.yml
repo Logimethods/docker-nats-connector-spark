@@ -22,7 +22,7 @@ build:
     - script:
         name: git push
         code: |
-          git push -f github master_docker
+          git push -f origin master_docker
 
 
 buildX:
