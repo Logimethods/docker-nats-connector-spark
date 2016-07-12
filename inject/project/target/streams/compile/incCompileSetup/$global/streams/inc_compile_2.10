@@ -1,0 +1,155 @@
+format version: 5
+output mode:
+1 items
+0 -> single
+output directories:
+1 items
+output dir -> /Users/laugimethods/Documents/GitHub/docker-nats-connector-spark/inject/project/target/scala-2.10/sbt-0.13/classes
+compile options:
+0 items
+javac options:
+0 items
+compiler version:
+1 items
+0 -> 2.10.6
+compile order:
+1 items
+0 -> Mixed
+name hashing:
+1 items
+0 -> true
+products:
+6 items
+/Users/laugimethods/Documents/GitHub/docker-nats-connector-spark/inject/project/ShellPrompPlugin.scala -> /Users/laugimethods/Documents/GitHub/docker-nats-connector-spark/inject/project/target/scala-2.10/sbt-0.13/classes/ShellPromptPlugin$$anon$1.class
+/Users/laugimethods/Documents/GitHub/docker-nats-connector-spark/inject/project/ShellPrompPlugin.scala -> /Users/laugimethods/Documents/GitHub/docker-nats-connector-spark/inject/project/target/scala-2.10/sbt-0.13/classes/ShellPromptPlugin$$anonfun$1.class
+/Users/laugimethods/Documents/GitHub/docker-nats-connector-spark/inject/project/ShellPrompPlugin.scala -> /Users/laugimethods/Documents/GitHub/docker-nats-connector-spark/inject/project/target/scala-2.10/sbt-0.13/classes/ShellPromptPlugin$$anonfun$currBranch$1.class
+/Users/laugimethods/Documents/GitHub/docker-nats-connector-spark/inject/project/ShellPrompPlugin.scala -> /Users/laugimethods/Documents/GitHub/docker-nats-connector-spark/inject/project/target/scala-2.10/sbt-0.13/classes/ShellPromptPlugin$$anonfun$projectSettings$1.class
+/Users/laugimethods/Documents/GitHub/docker-nats-connector-spark/inject/project/ShellPrompPlugin.scala -> /Users/laugimethods/Documents/GitHub/docker-nats-connector-spark/inject/project/target/scala-2.10/sbt-0.13/classes/ShellPromptPlugin$.class
+/Users/laugimethods/Documents/GitHub/docker-nats-connector-spark/inject/project/ShellPrompPlugin.scala -> /Users/laugimethods/Documents/GitHub/docker-nats-connector-spark/inject/project/target/scala-2.10/sbt-0.13/classes/ShellPromptPlugin.class
+binary dependencies:
+8 items
+/Users/laugimethods/Documents/GitHub/docker-nats-connector-spark/inject/project/ShellPrompPlugin.scala -> /Library/Java/JavaVirtualMachines/jdk1.8.0_60.jdk/Contents/Home/jre/lib/rt.jar
+/Users/laugimethods/Documents/GitHub/docker-nats-connector-spark/inject/project/ShellPrompPlugin.scala -> /Users/laugimethods/.ivy2/cache/org.scala-sbt/collections/jars/collections-0.13.11.jar
+/Users/laugimethods/Documents/GitHub/docker-nats-connector-spark/inject/project/ShellPrompPlugin.scala -> /Users/laugimethods/.ivy2/cache/org.scala-sbt/command/jars/command-0.13.11.jar
+/Users/laugimethods/Documents/GitHub/docker-nats-connector-spark/inject/project/ShellPrompPlugin.scala -> /Users/laugimethods/.ivy2/cache/org.scala-sbt/main-settings/jars/main-settings-0.13.11.jar
+/Users/laugimethods/Documents/GitHub/docker-nats-connector-spark/inject/project/ShellPrompPlugin.scala -> /Users/laugimethods/.ivy2/cache/org.scala-sbt/main/jars/main-0.13.11.jar
+/Users/laugimethods/Documents/GitHub/docker-nats-connector-spark/inject/project/ShellPrompPlugin.scala -> /Users/laugimethods/.ivy2/cache/org.scala-sbt/process/jars/process-0.13.11.jar
+/Users/laugimethods/Documents/GitHub/docker-nats-connector-spark/inject/project/ShellPrompPlugin.scala -> /Users/laugimethods/.ivy2/cache/org.scala-sbt/sbt/jars/sbt-0.13.11.jar
+/Users/laugimethods/Documents/GitHub/docker-nats-connector-spark/inject/project/ShellPrompPlugin.scala -> /Users/laugimethods/.sbt/boot/scala-2.10.6/lib/scala-library.jar
+direct source dependencies:
+0 items
+direct external dependencies:
+0 items
+public inherited source dependencies:
+0 items
+public inherited external dependencies:
+0 items
+member reference internal dependencies:
+0 items
+member reference external dependencies:
+0 items
+inheritance internal dependencies:
+0 items
+inheritance external dependencies:
+0 items
+class names:
+6 items
+/Users/laugimethods/Documents/GitHub/docker-nats-connector-spark/inject/project/ShellPrompPlugin.scala -> ShellPromptPlugin
+/Users/laugimethods/Documents/GitHub/docker-nats-connector-spark/inject/project/ShellPrompPlugin.scala -> ShellPromptPlugin$
+/Users/laugimethods/Documents/GitHub/docker-nats-connector-spark/inject/project/ShellPrompPlugin.scala -> ShellPromptPlugin$$anon$1
+/Users/laugimethods/Documents/GitHub/docker-nats-connector-spark/inject/project/ShellPrompPlugin.scala -> ShellPromptPlugin$$anonfun$1
+/Users/laugimethods/Documents/GitHub/docker-nats-connector-spark/inject/project/ShellPrompPlugin.scala -> ShellPromptPlugin$$anonfun$currBranch$1
+/Users/laugimethods/Documents/GitHub/docker-nats-connector-spark/inject/project/ShellPrompPlugin.scala -> ShellPromptPlugin$$anonfun$projectSettings$1
+used names:
+47 items
+/Users/laugimethods/Documents/GitHub/docker-nats-connector-spark/inject/project/ShellPrompPlugin.scala -> $anon
+/Users/laugimethods/Documents/GitHub/docker-nats-connector-spark/inject/project/ShellPrompPlugin.scala -> :=
+/Users/laugimethods/Documents/GitHub/docker-nats-connector-spark/inject/project/ShellPrompPlugin.scala -> <byname>
+/Users/laugimethods/Documents/GitHub/docker-nats-connector-spark/inject/project/ShellPrompPlugin.scala -> <init>
+/Users/laugimethods/Documents/GitHub/docker-nats-connector-spark/inject/project/ShellPrompPlugin.scala -> Any
+/Users/laugimethods/Documents/GitHub/docker-nats-connector-spark/inject/project/ShellPrompPlugin.scala -> AutoPlugin
+/Users/laugimethods/Documents/GitHub/docker-nats-connector-spark/inject/project/ShellPrompPlugin.scala -> Function1
+/Users/laugimethods/Documents/GitHub/docker-nats-connector-spark/inject/project/ShellPrompPlugin.scala -> InitializeInstance
+/Users/laugimethods/Documents/GitHub/docker-nats-connector-spark/inject/project/ShellPrompPlugin.scala -> Keys
+/Users/laugimethods/Documents/GitHub/docker-nats-connector-spark/inject/project/ShellPrompPlugin.scala -> Nothing
+/Users/laugimethods/Documents/GitHub/docker-nats-connector-spark/inject/project/ShellPrompPlugin.scala -> Predef
+/Users/laugimethods/Documents/GitHub/docker-nats-connector-spark/inject/project/ShellPrompPlugin.scala -> ProcessLogger
+/Users/laugimethods/Documents/GitHub/docker-nats-connector-spark/inject/project/ShellPrompPlugin.scala -> Project
+/Users/laugimethods/Documents/GitHub/docker-nats-connector-spark/inject/project/ShellPrompPlugin.scala -> Seq
+/Users/laugimethods/Documents/GitHub/docker-nats-connector-spark/inject/project/ShellPrompPlugin.scala -> ShellPromptPlugin
+/Users/laugimethods/Documents/GitHub/docker-nats-connector-spark/inject/project/ShellPrompPlugin.scala -> State
+/Users/laugimethods/Documents/GitHub/docker-nats-connector-spark/inject/project/ShellPrompPlugin.scala -> String
+/Users/laugimethods/Documents/GitHub/docker-nats-connector-spark/inject/project/ShellPrompPlugin.scala -> StringContext
+/Users/laugimethods/Documents/GitHub/docker-nats-connector-spark/inject/project/ShellPrompPlugin.scala -> T
+/Users/laugimethods/Documents/GitHub/docker-nats-connector-spark/inject/project/ShellPrompPlugin.scala -> Unit
+/Users/laugimethods/Documents/GitHub/docker-nats-connector-spark/inject/project/ShellPrompPlugin.scala -> _root_
+/Users/laugimethods/Documents/GitHub/docker-nats-connector-spark/inject/project/ShellPrompPlugin.scala -> allRequirements
+/Users/laugimethods/Documents/GitHub/docker-nats-connector-spark/inject/project/ShellPrompPlugin.scala -> apply
+/Users/laugimethods/Documents/GitHub/docker-nats-connector-spark/inject/project/ShellPrompPlugin.scala -> augmentString
+/Users/laugimethods/Documents/GitHub/docker-nats-connector-spark/inject/project/ShellPrompPlugin.scala -> buildShellPrompt
+/Users/laugimethods/Documents/GitHub/docker-nats-connector-spark/inject/project/ShellPrompPlugin.scala -> collection
+/Users/laugimethods/Documents/GitHub/docker-nats-connector-spark/inject/project/ShellPrompPlugin.scala -> currBranch
+/Users/laugimethods/Documents/GitHub/docker-nats-connector-spark/inject/project/ShellPrompPlugin.scala -> currProject
+/Users/laugimethods/Documents/GitHub/docker-nats-connector-spark/inject/project/ShellPrompPlugin.scala -> currentProject
+/Users/laugimethods/Documents/GitHub/docker-nats-connector-spark/inject/project/ShellPrompPlugin.scala -> devnull
+/Users/laugimethods/Documents/GitHub/docker-nats-connector-spark/inject/project/ShellPrompPlugin.scala -> extract
+/Users/laugimethods/Documents/GitHub/docker-nats-connector-spark/inject/project/ShellPrompPlugin.scala -> f
+/Users/laugimethods/Documents/GitHub/docker-nats-connector-spark/inject/project/ShellPrompPlugin.scala -> getOrElse
+/Users/laugimethods/Documents/GitHub/docker-nats-connector-spark/inject/project/ShellPrompPlugin.scala -> headOption
+/Users/laugimethods/Documents/GitHub/docker-nats-connector-spark/inject/project/ShellPrompPlugin.scala -> id
+/Users/laugimethods/Documents/GitHub/docker-nats-connector-spark/inject/project/ShellPrompPlugin.scala -> lines_!
+/Users/laugimethods/Documents/GitHub/docker-nats-connector-spark/inject/project/ShellPrompPlugin.scala -> ne
+/Users/laugimethods/Documents/GitHub/docker-nats-connector-spark/inject/project/ShellPrompPlugin.scala -> package
+/Users/laugimethods/Documents/GitHub/docker-nats-connector-spark/inject/project/ShellPrompPlugin.scala -> projectSettings
+/Users/laugimethods/Documents/GitHub/docker-nats-connector-spark/inject/project/ShellPrompPlugin.scala -> pure
+/Users/laugimethods/Documents/GitHub/docker-nats-connector-spark/inject/project/ShellPrompPlugin.scala -> s
+/Users/laugimethods/Documents/GitHub/docker-nats-connector-spark/inject/project/ShellPrompPlugin.scala -> sbt
+/Users/laugimethods/Documents/GitHub/docker-nats-connector-spark/inject/project/ShellPrompPlugin.scala -> scala
+/Users/laugimethods/Documents/GitHub/docker-nats-connector-spark/inject/project/ShellPrompPlugin.scala -> set
+/Users/laugimethods/Documents/GitHub/docker-nats-connector-spark/inject/project/ShellPrompPlugin.scala -> shellPrompt
+/Users/laugimethods/Documents/GitHub/docker-nats-connector-spark/inject/project/ShellPrompPlugin.scala -> stringToProcess
+/Users/laugimethods/Documents/GitHub/docker-nats-connector-spark/inject/project/ShellPrompPlugin.scala -> stripPrefix
+product stamps:
+6 items
+/Users/laugimethods/Documents/GitHub/docker-nats-connector-spark/inject/project/target/scala-2.10/sbt-0.13/classes/ShellPromptPlugin$$anon$1.class -> lastModified(1464116071000)
+/Users/laugimethods/Documents/GitHub/docker-nats-connector-spark/inject/project/target/scala-2.10/sbt-0.13/classes/ShellPromptPlugin$$anonfun$1.class -> lastModified(1464116071000)
+/Users/laugimethods/Documents/GitHub/docker-nats-connector-spark/inject/project/target/scala-2.10/sbt-0.13/classes/ShellPromptPlugin$$anonfun$currBranch$1.class -> lastModified(1464116072000)
+/Users/laugimethods/Documents/GitHub/docker-nats-connector-spark/inject/project/target/scala-2.10/sbt-0.13/classes/ShellPromptPlugin$$anonfun$projectSettings$1.class -> lastModified(1464116072000)
+/Users/laugimethods/Documents/GitHub/docker-nats-connector-spark/inject/project/target/scala-2.10/sbt-0.13/classes/ShellPromptPlugin$.class -> lastModified(1464116071000)
+/Users/laugimethods/Documents/GitHub/docker-nats-connector-spark/inject/project/target/scala-2.10/sbt-0.13/classes/ShellPromptPlugin.class -> lastModified(1464116071000)
+source stamps:
+1 items
+/Users/laugimethods/Documents/GitHub/docker-nats-connector-spark/inject/project/ShellPrompPlugin.scala -> hash(fba558f061c0ff671160fcd50e96d9b2cfbdcea4)
+binary stamps:
+8 items
+/Library/Java/JavaVirtualMachines/jdk1.8.0_60.jdk/Contents/Home/jre/lib/rt.jar -> lastModified(1438711540000)
+/Users/laugimethods/.ivy2/cache/org.scala-sbt/collections/jars/collections-0.13.11.jar -> lastModified(1456100090000)
+/Users/laugimethods/.ivy2/cache/org.scala-sbt/command/jars/command-0.13.11.jar -> lastModified(1456100128000)
+/Users/laugimethods/.ivy2/cache/org.scala-sbt/main-settings/jars/main-settings-0.13.11.jar -> lastModified(1456100137000)
+/Users/laugimethods/.ivy2/cache/org.scala-sbt/main/jars/main-0.13.11.jar -> lastModified(1456100157000)
+/Users/laugimethods/.ivy2/cache/org.scala-sbt/process/jars/process-0.13.11.jar -> lastModified(1456100071000)
+/Users/laugimethods/.ivy2/cache/org.scala-sbt/sbt/jars/sbt-0.13.11.jar -> lastModified(1456100154000)
+/Users/laugimethods/.sbt/boot/scala-2.10.6/lib/scala-library.jar -> lastModified(1442568926000)
+class names:
+8 items
+/Library/Java/JavaVirtualMachines/jdk1.8.0_60.jdk/Contents/Home/jre/lib/rt.jar -> java.lang.Object
+/Users/laugimethods/.ivy2/cache/org.scala-sbt/collections/jars/collections-0.13.11.jar -> sbt.Init
+/Users/laugimethods/.ivy2/cache/org.scala-sbt/command/jars/command-0.13.11.jar -> sbt.State
+/Users/laugimethods/.ivy2/cache/org.scala-sbt/main-settings/jars/main-settings-0.13.11.jar -> sbt.Def$
+/Users/laugimethods/.ivy2/cache/org.scala-sbt/main/jars/main-0.13.11.jar -> sbt.AutoPlugin
+/Users/laugimethods/.ivy2/cache/org.scala-sbt/process/jars/process-0.13.11.jar -> sbt.ProcessLogger
+/Users/laugimethods/.ivy2/cache/org.scala-sbt/sbt/jars/sbt-0.13.11.jar -> sbt.package$
+/Users/laugimethods/.sbt/boot/scala-2.10.6/lib/scala-library.jar -> scala.Function1
+internal apis:
+1 items
+/Users/laugimethods/Documents/GitHub/docker-nats-connector-spark/inject/project/ShellPrompPlugin.scala -> 
+rO0ABXNyABB4c2J0aS5hcGkuU291cmNlFlpwRASfbtoCAAZJAAdhcGlIYXNoWgAIaGFzTWFjcm9MABhfaW50ZXJuYWxPbmx5X25hbWVIYXNoZXN0ACRMeHNidGkvYXBpL19pbnRlcm5hbE9ubHlfTmFtZUhhc2hlcztMAANhcGl0ABVMeHNidGkvYXBpL1NvdXJjZUFQSTtMAAtjb21waWxhdGlvbnQAF0x4c2J0aS9hcGkvQ29tcGlsYXRpb247WwAEaGFzaHQAAltCeHBF1So3AHNyACJ4c2J0aS5hcGkuX2ludGVybmFsT25seV9OYW1lSGFzaGVzVNq+mfrU7EwCAAJbAA9pbXBsaWNpdE1lbWJlcnN0ACNbTHhzYnRpL2FwaS9faW50ZXJuYWxPbmx5X05hbWVIYXNoO1sADnJlZ3VsYXJNZW1iZXJzcQB+AAd4cHVyACNbTHhzYnRpLmFwaS5faW50ZXJuYWxPbmx5X05hbWVIYXNoO0lagLbdlov0AgAAeHAAAAAAdXEAfgAJAAAAJnNyACB4c2J0aS5hcGkuX2ludGVybmFsT25seV9OYW1lSGFzaFsO9SJ2OFfPAgACSQAEaGFzaEwABG5hbWV0ABJMamF2YS9sYW5nL1N0cmluZzt4cCbTQSt0AAZpc1Jvb3RzcQB+AAzoHfgidAAGbm90aWZ5c3EAfgAMKCgkEnQAFXByb2plY3RDb25maWd1cmF0aW9uc3NxAH4ADAm2DOB0AAR3YWl0c3EAfgAMhBt1M3QADSRhc0luc3RhbmNlT2ZzcQB+AAz3usJAdAAFZW1wdHlzcQB+AAzmiWs2dAAHZGV2bnVsbHNxAH4ADHUiwRF0AAZlcXVhbHNzcQB+AAxzmXQ7dAAJbm9UcmlnZ2Vyc3EAfgAMu77pK3QADGFzSW5zdGFuY2VPZnNxAH4ADF+lOsJ0AAxzeW5jaHJvbml6ZWRzcQB+AAwNNN1EdAAHdW5hcnlfIXNxAH4ADCIYc3Z0AAVsYWJlbHNxAH4ADM4ozX10AA0kaXNJbnN0YW5jZU9mc3EAfgAMvsBVk3QAEVNoZWxsUHJvbXB0UGx1Z2luc3EAfgAM3k6rL3QAD2FsbFJlcXVpcmVtZW50c3NxAH4ADEJKmbd0AA9pc0Fsd2F5c0VuYWJsZWRzcQB+AAz7RJygdAAJbm90aWZ5QWxsc3EAfgAMJ4lnwHQADGlzSW5zdGFuY2VPZnNxAH4ADDMpnAV0AA5nbG9iYWxTZXR0aW5nc3NxAH4ADIH1Na50AA9wcm9qZWN0U2V0dGluZ3NzcQB+AAwi/+nsdAACPT1zcQB+AAwqafjLdAAFY2xvbmVzcQB+AAyf41vrdAAGJGluaXQkc3EAfgAMxEbTfHQACHRvU3RyaW5nc3EAfgAMjyoEFXQACHJlcXVpcmVzc3EAfgAMvm5YZ3QAAiE9c3EAfgAMYKjaP3QAEGJ1aWxkU2hlbGxQcm9tcHRzcQB+AAy0jfxSdAACJiZzcQB+AAzM4W6KdAAIZ2V0Q2xhc3NzcQB+AAwpA8xydAACbmVzcQB+AAwJ4BC9dAANYnVpbGRTZXR0aW5nc3NxAH4ADIDGefR0AAJlcXNxAH4ADKoieQZ0AApjdXJyQnJhbmNoc3EAfgAMrs4713QAAiMjc3EAfgAMHXoHxXQACGZpbmFsaXplc3EAfgAMCA05k3QACGhhc2hDb2Rlc3EAfgAMnwOdUnQAB3RyaWdnZXJzcgATeHNidGkuYXBpLlNvdXJjZUFQSblep/kpIzikAgACWwALZGVmaW5pdGlvbnN0ABdbTHhzYnRpL2FwaS9EZWZpbml0aW9uO1sACHBhY2thZ2VzdAAUW0x4c2J0aS9hcGkvUGFja2FnZTt4cHVyABdbTHhzYnRpLmFwaS5EZWZpbml0aW9uO4jJXOe0414OAgAAeHAAAAABc3IAE3hzYnRpLmFwaS5DbGFzc0xpa2WDNByh37CXbAIABEwADmRlZmluaXRpb25UeXBldAAaTHhzYnRpL2FwaS9EZWZpbml0aW9uVHlwZTtbABBzYXZlZEFubm90YXRpb25zdAATW0xqYXZhL2xhbmcvU3RyaW5nO0wACHNlbGZUeXBldAAQTHhzYnRpL2FwaS9MYXp5O0wACXN0cnVjdHVyZXEAfgBjeHIAIXhzYnRpLmFwaS5QYXJhbWV0ZXJpemVkRGVmaW5pdGlvbvkRbrHVUDziAgABWwAOdHlwZVBhcmFtZXRlcnN0ABpbTHhzYnRpL2FwaS9UeXBlUGFyYW1ldGVyO3hyABR4c2J0aS5hcGkuRGVmaW5pdGlvbocqG+hxQuNGAgAETAAGYWNjZXNzdAASTHhzYnRpL2FwaS9BY2Nlc3M7WwALYW5ub3RhdGlvbnN0ABdbTHhzYnRpL2FwaS9Bbm5vdGF0aW9uO0wACW1vZGlmaWVyc3QAFUx4c2J0aS9hcGkvTW9kaWZpZXJzO0wABG5hbWVxAH4ADXhwc3IAEHhzYnRpLmFwaS5QdWJsaWO6WD2ubC1gQgIAAHhyABB4c2J0aS5hcGkuQWNjZXNz3WKa+B1jMUgCAAB4cHVyABdbTHhzYnRpLmFwaS5Bbm5vdGF0aW9uO+uX6xkQ9o1IAgAAeHAAAAAAc3IAE3hzYnRpLmFwaS5Nb2RpZmllcnOX52HcEyZ7swIAAUIABWZsYWdzeHAAcQB+ACt1cgAaW0x4c2J0aS5hcGkuVHlwZVBhcmFtZXRlcjvZbSYPKJ3ytgIAAHhwAAAAAH5yABh4c2J0aS5hcGkuRGVmaW5pdGlvblR5cGUAAAAAAAAAABIAAHhyAA5qYXZhLmxhbmcuRW51bQAAAAAAAAAAEgAAeHB0AAZNb2R1bGV1cgATW0xqYXZhLmxhbmcuU3RyaW5nO63SVufpHXtHAgAAeHAAAAAAc3IAIXhzYnRpLmFwaS5BYnN0cmFjdExhenkkU3RyaWN0TGF6eQ1mHGspFiq4AgABTAAFdmFsdWV0ABJMamF2YS9sYW5nL09iamVjdDt4cHNyABN4c2J0aS5hcGkuRW1wdHlUeXBlvP2eRkk7iSQCAAB4cgAUeHNidGkuYXBpLlNpbXBsZVR5cGVyeGKIISO/QAIAAHhyAA54c2J0aS5hcGkuVHlwZT9q2SEWSarKAgAAeHBzcQB+AHpzcgATeHNidGkuYXBpLlN0cnVjdHVyZamq+YCTb9gAAgADTAAIZGVjbGFyZWRxAH4AY0wACWluaGVyaXRlZHEAfgBjTAAHcGFyZW50c3EAfgBjeHEAfgB/c3EAfgB6dXEAfgBeAAAAAHNxAH4AenVxAH4AXgAAAABzcQB+AHp1cgARW0x4c2J0aS5hcGkuVHlwZTt0/6Vae/npQQIAAHhwAAAABnNyABR4c2J0aS5hcGkuUHJvamVjdGlvbvPSjVTpRaQtAgACTAACaWRxAH4ADUwABnByZWZpeHQAFkx4c2J0aS9hcGkvU2ltcGxlVHlwZTt4cQB+AH50AApBdXRvUGx1Z2luc3IAE3hzYnRpLmFwaS5TaW5nbGV0b278p1/4z1bkRgIAAUwABHBhdGh0ABBMeHNidGkvYXBpL1BhdGg7eHEAfgB+c3IADnhzYnRpLmFwaS5QYXRomz1cCM6lJ4QCAAFbAApjb21wb25lbnRzdAAaW0x4c2J0aS9hcGkvUGF0aENvbXBvbmVudDt4cHVyABpbTHhzYnRpLmFwaS5QYXRoQ29tcG9uZW50O0PaCXQtZxZ0AgAAeHAAAAACc3IADHhzYnRpLmFwaS5JZJgybIs3U8RAAgABTAACaWRxAH4ADXhyABd4c2J0aS5hcGkuUGF0aENvbXBvbmVudF+aIlsuhp+8AgAAeHB0AANzYnRzcgAOeHNidGkuYXBpLlRoaXPbCe2mzFpAXAIAAHhxAH4AmHNxAH4Ai3QAEFBsdWdpbnNGdW5jdGlvbnNxAH4AkXNxAH4Ai3QABUJhc2ljc3EAfgCLdAAHUGx1Z2luc3EAfgCRc3EAfgCLdAAHUGx1Z2luc3EAfgCRc3EAfgCLdAAGT2JqZWN0c3EAfgCPc3EAfgCSdXEAfgCVAAAAA3NxAH4Al3QABGphdmFzcQB+AJd0AARsYW5ncQB+AJxzcQB+AIt0AANBbnlzcQB+AI9zcQB+AJJ1cQB+AJUAAAACc3EAfgCXdAAFc2NhbGFxAH4AnHVyABRbTHhzYnRpLmFwaS5QYWNrYWdlO1sTGTdwpyehAgAAeHAAAAAAc3IAFXhzYnRpLmFwaS5Db21waWxhdGlvbu364MNq6KBCAgACSgAJc3RhcnRUaW1lWwAHb3V0cHV0c3QAGltMeHNidGkvYXBpL091dHB1dFNldHRpbmc7eHAAAAFU5B5Iq3VyABpbTHhzYnRpLmFwaS5PdXRwdXRTZXR0aW5nO39qwvOnh6VCAgAAeHAAAAABc3IAF3hzYnRpLmFwaS5PdXRwdXRTZXR0aW5netmaR3T7HXsCAAJMAA9vdXRwdXREaXJlY3RvcnlxAH4ADUwAD3NvdXJjZURpcmVjdG9yeXEAfgANeHB0AHIvVXNlcnMvbGF1Z2ltZXRob2RzL0RvY3VtZW50cy9HaXRIdWIvZG9ja2VyLW5hdHMtY29ubmVjdG9yLXNwYXJrL2luamVjdC9wcm9qZWN0L3RhcmdldC9zY2FsYS0yLjEwL3NidC0wLjEzL2NsYXNzZXN0AAEvdXIAAltCrPMX+AYIVOACAAB4cAAAABT7pVjwYcD/ZxFg/NUOltmyz73OpA==
+external apis:
+0 items
+source infos:
+1 items
+/Users/laugimethods/Documents/GitHub/docker-nats-connector-spark/inject/project/ShellPrompPlugin.scala -> 
+AAAAAAAAAAEAAAEAAAAQADIgICAgKCJnaXQgc3RhdHVzIC1zYiIgbGluZXNfISBkZXZudWxsIGhlYWRPcHRpb24pLgEAAAHXAQAAACYBACYgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIAEAZi9Vc2Vycy9sYXVnaW1ldGhvZHMvRG9jdW1lbnRzL0dpdEh1Yi9kb2NrZXItbmF0cy1jb25uZWN0b3Itc3BhcmsvaW5qZWN0L3Byb2plY3QvU2hlbGxQcm9tcFBsdWdpbi5zY2FsYQEAZi9Vc2Vycy9sYXVnaW1ldGhvZHMvRG9jdW1lbnRzL0dpdEh1Yi9kb2NrZXItbmF0cy1jb25uZWN0b3Itc3BhcmsvaW5qZWN0L3Byb2plY3QvU2hlbGxQcm9tcFBsdWdpbi5zY2FsYQFvcG9zdGZpeCBvcGVyYXRvciBoZWFkT3B0aW9uIHNob3VsZCBiZSBlbmFibGVkCmJ5IG1ha2luZyB0aGUgaW1wbGljaXQgdmFsdWUgc2NhbGEubGFuZ3VhZ2UucG9zdGZpeE9wcyB2aXNpYmxlLgpUaGlzIGNhbiBiZSBhY2hpZXZlZCBieSBhZGRpbmcgdGhlIGltcG9ydCBjbGF1c2UgJ2ltcG9ydCBzY2FsYS5sYW5ndWFnZS5wb3N0Zml4T3BzJwpvciBieSBzZXR0aW5nIHRoZSBjb21waWxlciBvcHRpb24gLWxhbmd1YWdlOnBvc3RmaXhPcHMuClNlZSB0aGUgU2NhbGEgZG9jcyBmb3IgdmFsdWUgc2NhbGEubGFuZ3VhZ2UucG9zdGZpeE9wcyBmb3IgYSBkaXNjdXNzaW9uCndoeSB0aGUgZmVhdHVyZSBzaG91bGQgYmUgZXhwbGljaXRseSBlbmFibGVkLgE=
+compilations:
+1 items
+0 -> rO0ABXNyABV4c2J0aS5hcGkuQ29tcGlsYXRpb27t+uDDauigQgIAAkoACXN0YXJ0VGltZVsAB291dHB1dHN0ABpbTHhzYnRpL2FwaS9PdXRwdXRTZXR0aW5nO3hwAAABVOQeSKt1cgAaW0x4c2J0aS5hcGkuT3V0cHV0U2V0dGluZzt/asLzp4elQgIAAHhwAAAAAXNyABd4c2J0aS5hcGkuT3V0cHV0U2V0dGluZ3rZmkd0+x17AgACTAAPb3V0cHV0RGlyZWN0b3J5dAASTGphdmEvbGFuZy9TdHJpbmc7TAAPc291cmNlRGlyZWN0b3J5cQB+AAZ4cHQAci9Vc2Vycy9sYXVnaW1ldGhvZHMvRG9jdW1lbnRzL0dpdEh1Yi9kb2NrZXItbmF0cy1jb25uZWN0b3Itc3BhcmsvaW5qZWN0L3Byb2plY3QvdGFyZ2V0L3NjYWxhLTIuMTAvc2J0LTAuMTMvY2xhc3Nlc3QAAS8=
