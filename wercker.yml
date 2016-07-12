@@ -29,7 +29,8 @@ build:
     - script:
         name: git push
         code: |
-          git push origin master_docker
+          git status
+##          git push origin master_docker
 
 
 buildX:
