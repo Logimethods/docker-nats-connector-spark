@@ -4,6 +4,7 @@ build:
     - script:
         name: build docker
         code: |
+          docker --version
           pushd shell
           sbt clean docker
           popd
