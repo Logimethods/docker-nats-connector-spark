@@ -4,11 +4,21 @@ build:
     - script:
         name: build docker
         code: |
+          env
+          docker --version
+          docker ps
+
+buildXX:
+  steps:
+    - script:
+        name: build docker
+        code: |
           docker-entrypoint.sh docker --version
           pushd shell
           docker-entrypoint.sh sbt clean docker
           popd
           ls ./*/target/docker/
+
 
 buildX:
   steps:
