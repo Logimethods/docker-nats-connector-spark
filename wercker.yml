@@ -1,11 +1,13 @@
-box: logimethods/docker-sbt-docker
+box: hseeberger/scala-sbt
 build:
   steps:
+    - install-packages:
+        packages: git
     - script:
         name: build docker
         code: |
           pushd shell
-          sbt clean assembly dockerFileTask dockerPush
+          sbt clean assembly dockerFileTask
           popd
           ls -als ./*/target/docker/
 
