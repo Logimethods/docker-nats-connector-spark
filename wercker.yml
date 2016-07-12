@@ -1,21 +1,11 @@
-box: logimethods/docker-sbt-docker
+box: hseeberger/scala-sbt
 build:
   steps:
     - script:
         name: build docker
         code: |
-          env
-          docker --version
-          docker --privileged ps
-
-buildXX:
-  steps:
-    - script:
-        name: build docker
-        code: |
-          docker-entrypoint.sh docker --version
           pushd shell
-          docker-entrypoint.sh sbt clean docker
+          sbt clean assembly dockerFileTask
           popd
           ls ./*/target/docker/
 
