@@ -7,7 +7,7 @@
 .lib/
 dist/*
 
-target
+target/
 
 !app/target
 app/target/*
