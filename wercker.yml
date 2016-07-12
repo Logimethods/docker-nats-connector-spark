@@ -4,12 +4,15 @@ build:
     - install-packages:
         packages: git
     - script:
-        name: build docker
+        name: build dockerfile(s)
         code: |
           pushd shell
           sbt clean assembly dockerFileTask
           popd
           ls -als ./*/target/docker/
+    - script:
+        name: git push
+        code: |
           git push origin master:master_docker
 
 
