@@ -6,7 +6,23 @@
 .history
 .lib/
 dist/*
-*/target/
+
+target
+
+!app/target
+app/target/*
+# REMOVE from exclusion generated docker files
+!app/target/docker
+
+!inject/target
+inject/target/*
+# REMOVE from exclusion generated docker files
+!inject/target/docker
+
+!monitor/target
+monitor/target/*
+# REMOVE from exclusion generated docker files
+!monitor/target/docker
 
 lib_managed/
 src_managed/
