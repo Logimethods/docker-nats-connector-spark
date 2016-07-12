@@ -22,6 +22,8 @@ build:
     - script:
         name: git push
         code: |
+          git config --global user.email "info@logimethods.com"
+          git config --global user.name "Logimethods Wercker"
           git fetch origin
           git merge origin/master_docker
           git push origin master_docker
