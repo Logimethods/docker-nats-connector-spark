@@ -24,6 +24,11 @@ monitor/target/*
 # REMOVE from exclusion generated docker files
 !monitor/target/docker
 
+!shell/target
+shell/target/*
+# REMOVE from exclusion generated docker files
+!shell/target/docker
+
 lib_managed/
 src_managed/
 project/boot/
