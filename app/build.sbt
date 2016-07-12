@@ -52,3 +52,29 @@ dockerfile in docker := {
     entryPoint("java", "-Xms128m", "-Xmx512m", "-XX:MaxPermSize=300m", "-cp", classpathString, mainclass)
   }
 }
+
+// sbt dockerFileTask
+// See https://github.com/marcuslonnberg/sbt-docker/issues/34
+
+val dockerFileTask = taskKey[Unit]("Prepare the dockerfile and needed files")
+
+dockerFileTask := {
+  val dockerDir = target.value / "docker"
+  val artifact: File = assembly.value
+  val artifactTargetPath = s"/app/${artifact.name}"
+
+  val dockerFile = new Dockerfile {
+    from("java")
+    add(artifact, artifactTargetPath)
+    entryPoint("java", "-jar", artifactTargetPath)
+  }
+
+  val stagedDockerfile =  sbtdocker.staging.DefaultDockerfileProcessor(dockerFile, dockerDir)
+  IO.write(dockerDir / "Dockerfile",stagedDockerfile.instructionsString)
+  stagedDockerfile.stageFiles.foreach {
+    case (source, destination) =>
+      source.stage(destination)
+  }
+}
+
+dockerFileTask <<= dockerFileTask.dependsOn(compile in Compile, dockerfile in docker)
