@@ -36,8 +36,8 @@ build:
           git commit -a -m "${WERCKER_GIT_COMMIT} at ${WERCKER_MAIN_PIPELINE_STARTED}"
           echo "GIT STATUS"
           git status
-          echo "GIT DONE"
-##          git push origin master_docker
+          echo "GIT PUSH"
+          git push master_docker
 
 
 buildX:
