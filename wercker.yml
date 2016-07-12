@@ -6,7 +6,7 @@ build:
         code: |
           docker-entrypoint.sh docker --version
           pushd shell
-          sbt clean docker
+          docker-entrypoint.sh sbt clean docker
           popd
           ls ./*/target/docker/
 
