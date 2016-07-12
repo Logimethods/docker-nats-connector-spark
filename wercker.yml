@@ -6,7 +6,7 @@ build:
         code: |
           env
           docker --version
-          docker ps
+          docker --privileged ps
 
 buildXX:
   steps:
