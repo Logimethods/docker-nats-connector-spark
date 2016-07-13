@@ -20,8 +20,8 @@ import io.nats.client.Constants._
 import com.logimethods.nats.connector.spark._
 
 object SparkProcessor extends App {
-  System.setProperty("org.slf4j.simpleLogger.log.org.apache.spark", "warn")
-	System.setProperty("org.slf4j.simpleLogger.log.com.logimethods.nats.connector.spark", "trace")
+  System.setProperty(org.slf4j.impl.SimpleLogger.DEFAULT_LOG_LEVEL_KEY, "WARN")
+	System.setProperty("org.slf4j.simpleLogger.log.com.logimethods.nats.connector.spark", "INFO")
 
 	Thread.sleep(5000)
 
