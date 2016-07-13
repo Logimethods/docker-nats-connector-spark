@@ -32,8 +32,8 @@ dockerfile in docker := {
 
   new Dockerfile {
     // Use a base image that contain Spark
-	from("gettyimages/spark:1.6.1-hadoop-2.6")
-	
+    from("gettyimages/spark:1.6.1-hadoop-2.6")
+
     // Add all files on the classpath
     add(classpath.files, "./lib_add/")
     
@@ -61,10 +61,30 @@ dockerFileTask := {
   val artifact: File = assembly.value
   val artifactTargetPath = s"/app/${artifact.name}"
 
+  val jarFile: File = sbt.Keys.`package`.in(Compile, packageBin).value
+  val classpath = (managedClasspath in Compile).value
+  val jarTarget = s"./lib_main/${jarFile.getName}"
+  // Make a colon separated classpath with the JAR file
+  val classpathString = classpath.files.map("./lib_add/" + _.getName).mkString(":") + ":" + jarTarget
+
   val dockerFile = new Dockerfile {
-    from("java")
-    add(artifact, artifactTargetPath)
-    entryPoint("java", "-jar", artifactTargetPath)
+    // Use a base image that contain Spark
+    from("gettyimages/spark:1.6.1-hadoop-2.6")
+
+    // Add all files on the classpath
+    add(classpath.files, "./lib_add/")
+    
+    // Add the JAR file
+    add(jarFile, jarTarget)
+
+    // Copy all Spark scripts
+    add(baseDirectory.value / "script", "./script")
+
+    // Copy all commands
+    add(baseDirectory.value / "command", "./")
+
+    env("SPARK.LIBS.PATHS", classpathString)
+    cmd("sleep", "infinity")
   }
 
   val stagedDockerfile =  sbtdocker.staging.DefaultDockerfileProcessor(dockerFile, dockerDir)

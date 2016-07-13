@@ -50,10 +50,17 @@ dockerFileTask := {
   val artifact: File = assembly.value
   val artifactTargetPath = s"/app/${artifact.name}"
 
+  val classpath = (managedClasspath in Compile).value
+
   val dockerFile = new Dockerfile {
-    from("java")
-    add(artifact, artifactTargetPath)
-    entryPoint("java", "-jar", artifactTargetPath)
+    // Use a base image that contain Gatling
+	from("denvazh/gatling:2.1.7")
+    // Add all files on the classpath
+    add(classpath.files, "./lib/")
+    // Add Gatling User Files
+    add(baseDirectory.value / "user-files", "./user-files")
+    
+    cmd("-s com.logimethods.nats.demo.NatsInjection")
   }
 
   val stagedDockerfile =  sbtdocker.staging.DefaultDockerfileProcessor(dockerFile, dockerDir)

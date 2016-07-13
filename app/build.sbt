@@ -22,6 +22,18 @@ resolvers += "Sonatype OSS Release" at "https://oss.sonatype.org/content/groups/
 libraryDependencies += "org.apache.spark" %% "spark-streaming" % sparkVersion
 libraryDependencies += "com.logimethods" % "nats-connector-spark" % "0.1.0"
 
+// @see http://stackoverflow.com/questions/30446984/spark-sbt-assembly-deduplicate-different-file-contents-found-in-the-followi
+assemblyMergeStrategy in assembly := {
+    case PathList("com", "esotericsoftware", minlog @ _*) => MergeStrategy.last
+    case PathList("com", "google", common @ _*) => MergeStrategy.last
+    case PathList("org", "apache", commons @ _*) => MergeStrategy.last
+    case PathList("org", "apache", hadoop @ _*) => MergeStrategy.last
+    case PathList("org", "slf4j", impl @ _*) => MergeStrategy.last
+    case x =>
+        val oldStrategy = (assemblyMergeStrategy in assembly).value
+        oldStrategy(x)
+}
+
 enablePlugins(DockerPlugin)
 
 imageNames in docker := Seq(
@@ -40,8 +52,8 @@ dockerfile in docker := {
 
   new Dockerfile {
     // Use a base image that contain Scala
-	from("williamyeh/scala:2.10.4")
-	
+    from("williamyeh/scala:2.10.4")
+
     // Add all files on the classpath
     add(classpath.files, "/app/")
     // Add the JAR file
@@ -63,10 +75,26 @@ dockerFileTask := {
   val artifact: File = assembly.value
   val artifactTargetPath = s"/app/${artifact.name}"
 
+  val jarFile: File = sbt.Keys.`package`.in(Compile, packageBin).value
+  val classpath = (managedClasspath in Compile).value
+  val mainclass = mainClass.in(Compile, packageBin).value.getOrElse(sys.error("Expected exactly one main class"))
+  val jarTarget = s"/app/${jarFile.getName}"
+  // Make a colon separated classpath with the JAR file
+  val classpathString = classpath.files.map("/app/" + _.getName)
+    .mkString(":") + ":" + jarTarget
+
   val dockerFile = new Dockerfile {
-    from("java")
-    add(artifact, artifactTargetPath)
-    entryPoint("java", "-jar", artifactTargetPath)
+    // Use a base image that contain Scala
+    from("williamyeh/scala:2.10.4")
+
+    // Add all files on the classpath
+    add(classpath.files, "/app/")
+    // Add the JAR file
+    add(jarFile, jarTarget)
+    // On launch run Scala with the classpath and the main class
+    // @see https://mail-archives.apache.org/mod_mbox/spark-dev/201312.mbox/%3CCAPh_B=ass2NcrN41t7KTSoF1SFGce=N57YMVyukX4hPcO5YN2Q@mail.gmail.com%3E
+    // @see http://apache-spark-user-list.1001560.n3.nabble.com/spark-1-6-Issue-td25893.html
+    entryPoint("java", "-Xms128m", "-Xmx512m", "-XX:MaxPermSize=300m", "-cp", classpathString, mainclass)
   }
 
   val stagedDockerfile =  sbtdocker.staging.DefaultDockerfileProcessor(dockerFile, dockerDir)
