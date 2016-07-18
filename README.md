@@ -3,6 +3,8 @@ A collection of Docker Images to illustrate the use of the [nats-connector-spark
 
 [![MIT License](https://img.shields.io/npm/l/express.svg)](http://opensource.org/licenses/MIT)
 
+[![Dockerhub](http://dockeri.co/image/logimethods/nats-connector-spark)](https://hub.docker.com/r/logimethods/nats-connector-spark/)
+
 ## Usage
     cd compose
     docker-compose up
