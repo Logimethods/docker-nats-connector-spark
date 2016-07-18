@@ -5,7 +5,7 @@ A collection of Docker Images to illustrate the use of the [nats-connector-spark
     cd compose
     docker-compose up
 
-## How it works...
+## What it does...
 1) Docker-compose will instantiate and run a collection of Docker Containers defined by [docker-compose.yml](https://github.com/Logimethods/docker-nats-connector-spark/blob/master/compose/docker-compose.yml)
 
 2) Gatling does emit every 15 sec a stream of values from 100 to 150 into NATS. See [NatsInjection.scala](https://github.com/Logimethods/docker-nats-connector-spark/blob/master/inject/user-files/simulations/nats/NatsInjection.scala).
