@@ -6,11 +6,11 @@ A collection of Docker Images to illustrate the use of the [nats-connector-spark
     docker-compose up
 
 ## How it works...
-1) Docker-compose will instanciate and run a collection of Docker Containers defined by [docker-compose.yml](https://github.com/Logimethods/docker-nats-connector-spark/blob/master/compose/docker-compose.yml)
+1) Docker-compose will instantiate and run a collection of Docker Containers defined by [docker-compose.yml](https://github.com/Logimethods/docker-nats-connector-spark/blob/master/compose/docker-compose.yml)
 
 2) Gatling does emit every 15 sec a stream of values from 100 to 150 into NATS. See [NatsInjection.scala](https://github.com/Logimethods/docker-nats-connector-spark/blob/master/inject/user-files/simulations/nats/NatsInjection.scala).
 
-3) Those values are transmited from NATS to Spark Streaming (running on a Spark cluster), then the maximum value of each stream is reemited into NATS. See [SparkProcessor.scala](https://github.com/Logimethods/docker-nats-connector-spark/blob/master/app/src/main/scala/com/logimethods/nats/connector/spark/app/SparkProcessor.scala)
+3) Those values are transmitted from NATS to Spark Streaming (running on a Spark cluster), then the maximum value of each stream is reemited into NATS. See [SparkProcessor.scala](https://github.com/Logimethods/docker-nats-connector-spark/blob/master/app/src/main/scala/com/logimethods/nats/connector/spark/app/SparkProcessor.scala)
 
 4) Finally, those values are monitored and printed into the console. See [NatsOutputMonitor.scala](https://github.com/Logimethods/docker-nats-connector-spark/blob/master/monitor/src/main/scala/com/logimethods/nats/connector/spark/monitor/NatsOutputMonitor.scala)
 
