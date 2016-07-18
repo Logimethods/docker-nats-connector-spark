@@ -16,7 +16,7 @@ A collection of Docker Images to illustrate the use of the [nats-connector-spark
 
 ## Build
 
-Those Docker Images are pushed to [dockerhub:lmagnin/docker-nats-connector-spark](https://hub.docker.com/r/lmagnin/docker-nats-connector-spark/) and build there.
+Those Docker Images are pushed to [dockerhub:logimethods/nats-connector-spark](https://hub.docker.com/r/logimethods/nats-connector-spark/) and build there.
 
 ![build.png](build.png "Global Build")
     
