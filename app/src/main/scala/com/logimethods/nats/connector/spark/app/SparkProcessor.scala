@@ -20,10 +20,7 @@ import io.nats.client.Constants._
 import com.logimethods.nats.connector.spark._
 
 object SparkProcessor extends App {
-  System.setProperty(org.slf4j.impl.SimpleLogger.DEFAULT_LOG_LEVEL_KEY, "WARN")
-	System.setProperty("org.slf4j.simpleLogger.log.com.logimethods.nats.connector.spark", "INFO")
-
-	Thread.sleep(5000)
+  Thread.sleep(5000)
 
   val inputSubject = args(0)
   val outputSubject = args(1)
@@ -44,16 +41,6 @@ object SparkProcessor extends App {
   properties.put("servers", natsUrl)
   properties.put(PROP_URL, natsUrl)
   val messages = ssc.receiverStream(NatsToSparkConnector.receiveFromNats(properties, StorageLevel.MEMORY_ONLY, inputSubject))
-
-  // http://spark.apache.org/docs/latest/streaming-programming-guide.html#design-patterns-for-using-foreachrdd
-/*  messages.foreachRDD { rdd =>
-    val connectorPool = new SparkToNatsConnectorPool(properties, outputSubject)
-    rdd.foreachPartition { partitionOfRecords =>
-      val connector = connectorPool.getConnector()
-      partitionOfRecords.foreach(record => connector.publishToNats(record))
-      connectorPool.returnConnector(connector)  // return to the pool for future reuse
-    }
-  }*/
   
   val integers = messages.map({ str => Integer.parseInt(str) })
   val max = integers.reduce({ (int1, int2) => Math.max(int1, int2) })
