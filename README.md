@@ -27,3 +27,110 @@ Those Docker Images are pushed to [dockerhub:lmagnin/docker-nats-connector-spark
 * [logimethods on Nexus](https://oss.sonatype.org/#nexus-search;quick~logimethods)
 * [docker-nats-connector-spark build on Wercker](https://app.wercker.com/logimethods/docker-nats-connector-spark)
 * [nats-connector-spark on Docker Hub](https://hub.docker.com/r/logimethods/nats-connector-spark/)
+
+## Outcome (digest)
+```
+compose$ docker-compose up
+spark-master is up-to-date
+spark-slave2 is up-to-date
+nats-main is up-to-date
+spark-slave1 is up-to-date
+Recreating compose_monitor_1
+Recreating main-app
+Recreating compose_gatling_1
+Attaching to spark-master, spark-slave2, nats-main, spark-slave1, main-app, compose_gatling_1, compose_monitor_1
+main-app        | Will process messages from INPUT to OUTPUT
+gatling_1       | GATLING_HOME is set to /opt/gatling
+main-app        | SPARK_MASTER_URL = spark://spark-master:7077
+spark-master    | 16/07/11 18:13:55 INFO Master: Registered signal handlers for [TERM, HUP, INT]
+main-app        | 16/07/13 14:03:10 INFO SparkContext: Running Spark version 1.5.2
+spark-slave2    | 16/07/11 18:13:54 INFO Worker: Registered signal handlers for [TERM, HUP, INT]
+nats-main       | [1] 2016/07/11 18:13:53.495906 [INF] Starting nats-server version 0.8.1
+spark-slave2    | 16/07/11 18:13:56 INFO Remoting: Starting remoting
+spark-slave2    | 16/07/11 18:13:57 INFO Remoting: Remoting started; listening on addresses :[akka.tcp://sparkWorker@172.20.0.4:37988]
+spark-slave2    | 16/07/11 18:13:57 INFO Utils: Successfully started service 'sparkWorker' on port 37988.
+spark-master    | 16/07/11 18:13:58 INFO Remoting: Starting remoting
+spark-master    | 16/07/11 18:13:58 INFO Utils: Successfully started service 'sparkMaster' on port 7077.
+spark-master    | 16/07/11 18:13:58 INFO Remoting: Remoting started; listening on addresses :[akka.tcp://sparkMaster@spark-master:7077]
+spark-master    | 16/07/11 18:13:58 INFO Master: Starting Spark master at spark://spark-master:7077
+spark-master    | 16/07/11 18:13:58 INFO Master: Running Spark version 1.5.2
+spark-master    | 16/07/11 18:13:59 INFO Utils: Successfully started service 'MasterUI' on port 8080.
+spark-master    | 16/07/11 18:13:59 INFO MasterWebUI: Started MasterWebUI at http://172.20.0.3:8080
+spark-master    | 16/07/11 18:13:59 INFO Utils: Successfully started service on port 6066.
+spark-master    | 16/07/11 18:13:59 INFO StandaloneRestServer: Started REST server for submitting applications on port 6066
+spark-master    | 16/07/11 18:14:05 INFO Master: Registering app NATS Data Processing
+spark-master    | 16/07/11 18:14:05 INFO Master: Registered app NATS Data Processing with ID app-20160711181405-0000
+nats-main       | [1] 2016/07/11 18:13:53.495988 [INF] Starting http monitor on :8222
+spark-slave2    | 16/07/11 18:13:57 INFO Worker: Starting Spark worker 172.20.0.4:37988 with 4 cores, 8.7 GB RAM
+main-app        | 16/07/13 14:03:11 INFO Remoting: Remoting started; listening on addresses :[akka.tcp://sparkDriver@172.20.0.8:37838]
+main-app        | 16/07/13 14:03:11 INFO Utils: Successfully started service 'sparkDriver' on port 37838.
+main-app        | 16/07/13 14:03:11 INFO AppClient$ClientEndpoint: Connecting to master spark://spark-master:7077...
+main-app        | 16/07/13 14:03:12 INFO SparkDeploySchedulerBackend: Connected to Spark cluster with app ID app-20160713140311-0001
+nats-main       | [1] 2016/07/11 18:13:53.496144 [INF] Listening for route connections on 0.0.0.0:6222
+nats-main       | [1] 2016/07/11 18:13:53.496196 [INF] Listening for client connections on 0.0.0.0:4222
+nats-main       | [1] 2016/07/11 18:13:53.496236 [INF] Server is ready
+nats-main       | [1] 2016/07/11 18:23:47.824141 [INF] Starting nats-server version 0.8.1
+spark-master    | 16/07/11 18:23:51 INFO Remoting: Remoting started; listening on addresses :[akka.tcp://sparkMaster@spark-master:7077]
+spark-master    | 16/07/11 18:23:51 INFO Utils: Successfully started service 'sparkMaster' on port 7077.
+spark-master    | 16/07/11 18:23:51 INFO Master: Starting Spark master at spark://spark-master:7077
+spark-master    | 16/07/11 18:23:52 INFO Master: I have been elected leader! New state: ALIVE
+spark-slave2    | 16/07/11 18:13:57 INFO WorkerWebUI: Started WorkerWebUI at http://172.20.0.4:8081
+spark-slave2    | 16/07/11 18:13:57 INFO Worker: Connecting to master spark-master:7077...
+main-app        | 16/07/13 14:03:12 INFO AppClient$ClientEndpoint: Executor added: app-20160713140311-0001/0 on worker-20160713140115-172.20.0.4-41459 (172.20.0.4:41459) with 4 cores
+main-app        | 16/07/13 14:03:12 INFO SparkDeploySchedulerBackend: Granted executor ID app-20160713140311-0001/0 on hostPort 172.20.0.4:41459 with 4 cores, 1024.0 MB RAM
+spark-master    | 16/07/11 18:32:23 INFO Master: Registered app NATS Data Processing with ID app-20160711183223-0000
+main-app        | 16/07/13 14:03:12 INFO SparkContext: Added JAR /app/nats-connector-spark-0.1.0.jar at http://172.20.0.8:46335/jars/nats-connector-spark-0.1.0.jar with timestamp 1468418592350
+main-app        | NATS_URI = nats://nats-main:4222
+spark-slave1    | 16/07/11 18:14:03 INFO Worker: Connecting to master spark-master:7077...
+spark-slave1    | 16/07/11 18:14:04 INFO Worker: Successfully registered with master spark://spark-master:7077
+spark-slave2    | 16/07/11 18:14:07 INFO Worker: Successfully registered with master spark://spark-master:7077
+spark-slave2    | 16/07/11 18:14:08 INFO Worker: Asked to launch executor app-20160711181405-0000/1 for NATS Data Processing
+monitor_1       | Will be listening to messages from OUTPUT
+main-app        | -------------------------------------------
+main-app        | Time: 1468418602000 ms
+main-app        | -------------------------------------------
+main-app        | 
+gatling_1       | Simulation com.logimethods.nats.demo.NatsInjection started...
+gatling_1       | Will emit messages to INPUT
+gatling_1       | 
+gatling_1       | ================================================================================
+gatling_1       | 2016-07-13 14:03:31                                           0s elapsed
+gatling_1       | ---- NATS call -----------------------------------------------------------------
+gatling_1       | [                                                                          ]  0%
+gatling_1       |           waiting: 900    / active: 0      / done:0     
+gatling_1       | ---- Requests ------------------------------------------------------------------
+gatling_1       | > Global                                                   (OK=0      KO=0     )
+gatling_1       | 
+gatling_1       | ================================================================================
+gatling_1       | 
+main-app        | -------------------------------------------
+main-app        | Time: 1468418612000 ms
+main-app        | -------------------------------------------
+main-app        | 140
+main-app        | 
+monitor_1       | Received message: 140
+main-app        | -------------------------------------------
+main-app        | Time: 1468418614000 ms
+main-app        | -------------------------------------------
+main-app        | 150
+main-app        | 
+monitor_1       | Received message: 150
+gatling_1       | 
+gatling_1       | ================================================================================
+gatling_1       | 2016-07-13 14:03:36                                           5s elapsed
+gatling_1       | ---- NATS call -----------------------------------------------------------------
+gatling_1       | [######                                                                    ]  8%
+gatling_1       |           waiting: 825    / active: 0      / done:75    
+gatling_1       | ---- Requests ------------------------------------------------------------------
+gatling_1       | > Global                                                   (OK=0      KO=0     )
+gatling_1       | 
+gatling_1       | ================================================================================
+gatling_1       | 
+main-app        | -------------------------------------------
+main-app        | Time: 1468418618000 ms
+main-app        | -------------------------------------------
+main-app        | 150
+main-app        | 
+monitor_1       | Received message: 150
+...
+```
