@@ -10,7 +10,7 @@ name := "docker-nats-connector-spark"
 organization := "logimethods"
 val tag = "monitor"
 
-version := "0.1.0"
+version := "0.2.0-SNAPSHOT"
 scalaVersion := "2.11.6"
 
 libraryDependencies += "com.github.tyagihas" % "scala_nats_2.10" % "0.1"

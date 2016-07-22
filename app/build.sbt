@@ -10,7 +10,7 @@ name := "docker-nats-connector-spark"
 organization := "logimethods"
 val tag = "app"
 
-version := "0.1.0"
+version := "0.2.0-SNAPSHOT"
 scalaVersion := "2.10.4"
 val sparkVersion = "1.5.2"
 
@@ -20,7 +20,7 @@ resolvers += "Sonatype OSS Snapshots" at "https://oss.sonatype.org/content/repos
 resolvers += "Sonatype OSS Release" at "https://oss.sonatype.org/content/groups/public/"
 
 libraryDependencies += "org.apache.spark" %% "spark-streaming" % sparkVersion
-libraryDependencies += "com.logimethods" % "nats-connector-spark" % "0.1.0"
+libraryDependencies += "com.logimethods" % "nats-connector-spark" % version
 
 // @see http://stackoverflow.com/questions/30446984/spark-sbt-assembly-deduplicate-different-file-contents-found-in-the-followi
 assemblyMergeStrategy in assembly := {
