@@ -12,7 +12,7 @@ val tag = "app"
 
 version := "0.2.0-SNAPSHOT"
 scalaVersion := "2.10.4"
-val sparkVersion = "1.5.2"
+val sparkVersion = "1.6.2"
 
 libraryDependencies += "org.apache.spark" %% "spark-core" % sparkVersion % "provided"
 
