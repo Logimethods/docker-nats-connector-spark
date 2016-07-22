@@ -24,7 +24,20 @@ A collection of Docker Images to illustrate the use of the [nats-connector-spark
 Those Docker Images are pushed to [dockerhub:logimethods/nats-connector-spark](https://hub.docker.com/r/logimethods/nats-connector-spark/) and build there.
 
 ![build.png](build.png "Global Build")
-    
+
+## Release Notes
+### Version 0.1.0
+* Spark is based on version 1.5.2 so to be able to use docker-compse without hostname constrains.
+
+### Version 0.2.0
+* To be able to use Spark version 1.6.2, docker-compose containers need to belong to an external network (which enforce an hostname without underscore). See [Switch to using hyphens as a separator in hostnames](https://github.com/docker/compose/issues/229):
+```
+networks:
+  default:
+    external:
+      name: spark
+```
+
 ## Links
 * [nats-connector-gatling on Github](https://github.com/Logimethods/nats-connector-gatling)
 * [nats-connector-spark on Github](https://github.com/Logimethods/nats-connector-spark)
