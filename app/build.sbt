@@ -10,15 +10,14 @@ name := "docker-nats-connector-spark"
 organization := "logimethods"
 val tag = "app"
 
+resolvers += "Sonatype OSS Snapshots" at "https://oss.sonatype.org/content/repositories/snapshots"
+resolvers += "Sonatype OSS Release" at "https://oss.sonatype.org/content/groups/public/"
+
 version := "0.2.0-SNAPSHOT"
 scalaVersion := "2.10.4"
 val sparkVersion = "1.6.2"
 
 libraryDependencies += "org.apache.spark" %% "spark-core" % sparkVersion % "provided"
-
-resolvers += "Sonatype OSS Snapshots" at "https://oss.sonatype.org/content/repositories/snapshots"
-resolvers += "Sonatype OSS Release" at "https://oss.sonatype.org/content/groups/public/"
-
 libraryDependencies += "org.apache.spark" %% "spark-streaming" % sparkVersion
 libraryDependencies += "com.logimethods" % "nats-connector-spark" % version.value
 
