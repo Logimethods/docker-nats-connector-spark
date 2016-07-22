@@ -9,6 +9,7 @@
 package com.logimethods.nats.connector.spark.app
 
 import java.util.Properties;
+import java.io.File
 
 import org.apache.spark.SparkConf
 import org.apache.spark.SparkContext
@@ -30,9 +31,10 @@ object SparkProcessor extends App {
   println("SPARK_MASTER_URL = " + sparkMasterUrl)
   val conf = new SparkConf().setAppName("NATS Data Processing").setMaster(sparkMasterUrl);
   val sc = new SparkContext(conf);
-  sc.addJar("/app/jnats-0.3.1.jar")
-  sc.addJar("/app/nats-connector-spark-*.jar")
-  sc.addJar("/app/docker-nats-connector-spark_2.10-*.jar")
+  for (file <- new File("/app/").listFiles) { sc.addJar(file.getAbsolutePath) }
+//  sc.addJar("/app/jnats-0.3.1.jar")
+//  sc.addJar("/app/nats-connector-spark-*.jar")
+//  sc.addJar("/app/docker-nats-connector-spark_2.10-*.jar")
   val ssc = new StreamingContext(sc, new Duration(2000));
 
   val properties = new Properties();
