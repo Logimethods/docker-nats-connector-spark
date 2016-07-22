@@ -20,7 +20,7 @@ resolvers += "Sonatype OSS Snapshots" at "https://oss.sonatype.org/content/repos
 resolvers += "Sonatype OSS Release" at "https://oss.sonatype.org/content/groups/public/"
 
 libraryDependencies += "org.apache.spark" %% "spark-streaming" % sparkVersion
-libraryDependencies += "com.logimethods" % "nats-connector-spark" % version
+libraryDependencies += "com.logimethods" % "nats-connector-spark" % version.value
 
 // @see http://stackoverflow.com/questions/30446984/spark-sbt-assembly-deduplicate-different-file-contents-found-in-the-followi
 assemblyMergeStrategy in assembly := {
