@@ -65,3 +65,9 @@ services:
       service: monitor
     links: 
       - nats-main
+
+# See https://github.com/docker/compose/issues/229
+networks:
+  default:
+    external:
+      name: spark
