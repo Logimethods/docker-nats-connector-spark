@@ -27,10 +27,10 @@ Those Docker Images are pushed to [dockerhub:logimethods/nats-connector-spark](h
 
 ## Release Notes
 ### Version 0.1.0
-* Spark is based on version 1.5.2 so to be able to use docker-compse without hostname constrains.
+* Spark is based on version 1.5.2 so to be able to use docker-compose without hostname constrains.
 
 ### Version 0.2.0
-* To be able to use Spark version 1.6.2, docker-compose containers need to belong to an external network (which enforce an hostname without underscore). See [Switch to using hyphens as a separator in hostnames](https://github.com/docker/compose/issues/229):
+* To be able to use Spark version 1.6.2, docker-compose containers need to belong to an external network (which enforce a hostname without underscore). See [Switch to using hyphens as a separator in hostnames](https://github.com/docker/compose/issues/229):
 ```
 networks:
   default:
