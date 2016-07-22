@@ -31,8 +31,8 @@ object SparkProcessor extends App {
   val conf = new SparkConf().setAppName("NATS Data Processing").setMaster(sparkMasterUrl);
   val sc = new SparkContext(conf);
   sc.addJar("/app/jnats-0.3.1.jar")
-  sc.addJar("/app/nats-connector-spark-0.1.0.jar")
-  sc.addJar("/app/docker-nats-connector-spark_2.10-0.1.0.jar")
+  sc.addJar("/app/nats-connector-spark-*.jar")
+  sc.addJar("/app/docker-nats-connector-spark_2.10-*.jar")
   val ssc = new StreamingContext(sc, new Duration(2000));
 
   val properties = new Properties();
