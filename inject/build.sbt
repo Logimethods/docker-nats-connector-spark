@@ -12,7 +12,7 @@ val tag = "inject"
 
 version := "0.2.0-SNAPSHOT"
 scalaVersion := "2.11.8"
-gatlingVersion := "2.2.2"
+val gatlingVersion = "2.2.2"
 
 libraryDependencies ++= Seq("com.logimethods" %% "nats-connector-gatling" % version.value)
 
@@ -31,7 +31,7 @@ dockerfile in docker := {
 
   new Dockerfile {
     // Use a base image that contain Gatling
-	from("denvazh/gatling:" + gatlingVersion.value)
+	from("denvazh/gatling:" + gatlingVersion)
     // Add all files on the classpath
     add(classpath.files, "./lib/")
     // Add Gatling User Files
@@ -55,7 +55,7 @@ dockerFileTask := {
 
   val dockerFile = new Dockerfile {
     // Use a base image that contain Gatling
-	from("denvazh/gatling:" + gatlingVersion.value)
+	from("denvazh/gatling:" + gatlingVersion)
     // Add all files on the classpath
     add(classpath.files, "./lib/")
     // Add Gatling User Files
