@@ -11,7 +11,7 @@ package com.logimethods.nats.demo
 import akka.actor.{ActorRef, Props}
 import io.gatling.core.Predef._
 import io.gatling.core.action.builder.ActionBuilder
-import io.gatling.core.config.{Protocol, Protocols}
+
 import com.logimethods.nats.connector.gatling._
 
 import scala.concurrent.duration._
