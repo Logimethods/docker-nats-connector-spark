@@ -37,7 +37,7 @@ dockerfile in docker := {
     // Add Gatling User Files
     add(baseDirectory.value / "user-files", "./user-files")
     
-    cmd("-s", "com.logimethods.nats.demo.NatsInjection")
+    cmd("--no-reports", "-s", "com.logimethods.nats.demo.NatsInjection")
   }
 }
 
@@ -61,7 +61,7 @@ dockerFileTask := {
     // Add Gatling User Files
     add(baseDirectory.value / "user-files", "./user-files")
 
-    cmd("-s", "com.logimethods.nats.demo.NatsInjection")
+    cmd("--no-reports", "-s", "com.logimethods.nats.demo.NatsInjection")
   }
 
   val stagedDockerfile =  sbtdocker.staging.DefaultDockerfileProcessor(dockerFile, dockerDir)
