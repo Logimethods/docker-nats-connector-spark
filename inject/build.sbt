@@ -6,7 +6,7 @@ import sbt.Keys.{artifactPath, libraryDependencies, mainClass, managedClasspath,
 
 logLevel := Level.Debug
 
-name := "docker-nats-connector-spark"
+name := "nats-connector-spark"
 organization := "logimethods"
 val tag = "inject"
 
