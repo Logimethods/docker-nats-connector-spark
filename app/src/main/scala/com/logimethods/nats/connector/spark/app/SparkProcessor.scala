@@ -18,9 +18,14 @@ import org.apache.spark.streaming.StreamingContext
 import org.apache.spark.storage.StorageLevel;
 import io.nats.client.Constants._
 
+import org.apache.log4j.{Level, LogManager, PropertyConfigurator}
+
 import com.logimethods.nats.connector.spark._
 
 object SparkProcessor extends App {
+  val log = LogManager.getRootLogger
+  log.setLevel(Level.WARN)
+  
   Thread.sleep(5000)
 
   val inputSubject = args(0)
