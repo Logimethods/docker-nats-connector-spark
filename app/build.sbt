@@ -61,9 +61,9 @@ dockerfile in docker := {
     copy("log4j.properties", "/usr/local/spark/conf")
 
     // Add all files on the classpath
-    add(classpath.files, "/app/")
+    copy(classpath.files, "/app/")
     // Add the JAR file
-    add(jarFile, jarTarget)
+    copy(jarFile, jarTarget)
     
     // On launch run Scala with the classpath and the main class
     // @see https://mail-archives.apache.org/mod_mbox/spark-dev/201312.mbox/%3CCAPh_B=ass2NcrN41t7KTSoF1SFGce=N57YMVyukX4hPcO5YN2Q@mail.gmail.com%3E
@@ -101,9 +101,9 @@ dockerFileTask := {
     copy("log4j.properties", "/usr/local/spark/conf")
 
     // Add all files on the classpath
-    add(classpath.files, "/app/")
+    copy(classpath.files, "/app/")
     // Add the JAR file
-    add(jarFile, jarTarget)
+    copy(jarFile, jarTarget)
     
     // On launch run Scala with the classpath and the main class
     // @see https://mail-archives.apache.org/mod_mbox/spark-dev/201312.mbox/%3CCAPh_B=ass2NcrN41t7KTSoF1SFGce=N57YMVyukX4hPcO5YN2Q@mail.gmail.com%3E
