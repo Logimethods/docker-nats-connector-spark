@@ -6,7 +6,8 @@ import sbt.Keys.{artifactPath, libraryDependencies, mainClass, managedClasspath,
 
 logLevel := Level.Debug
 
-name := "nats-connector-spark"
+val rootName = "nats-connector-spark"
+name := "docker-" + rootName
 organization := "logimethods"
 val tag = "app"
 
@@ -36,7 +37,7 @@ assemblyMergeStrategy in assembly := {
 enablePlugins(DockerPlugin)
 
 imageNames in docker := Seq(
-  ImageName(s"${organization.value}/${name.value}:${tag}")
+  ImageName(s"${organization.value}/${rootName}:${tag}")
 )
 
 // Define a Dockerfile
