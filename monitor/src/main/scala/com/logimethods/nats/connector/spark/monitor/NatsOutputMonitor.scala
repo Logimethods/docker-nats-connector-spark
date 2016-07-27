@@ -23,7 +23,26 @@ object NatsOutputMonitor extends App {
   val inputSubject = args(0)
   println("Will be listening to messages from " + inputSubject)
 
-  conn.subscribe(inputSubject, (msg:Msg) => {
-    println("Received message: " + msg.body)
-    })
+  if (args.length > 1) {// TEST mode
+    val espectedValue = args(1)
+    println("Is especting a value equals to " + espectedValue)
+    
+    var iterations = 3
+    conn.subscribe(inputSubject, (msg: Msg) => {
+      println("Received message: " + msg.body)
+      iterations -= 1
+      if (iterations <= 0) {
+        val receivedValue = msg.body.toInt
+        if (receivedValue == espectedValue) { // "Tests passed!"
+          System.exit(0)
+        } else { // "Tests failed!"
+          System.exit(1)
+        }
+      }
+    })          
+  } else { // REGULAR mode
+    conn.subscribe(inputSubject, (msg: Msg) => {
+      println("Received message: " + msg.body)
+    })    
+  }
 }
