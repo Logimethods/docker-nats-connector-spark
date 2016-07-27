@@ -24,7 +24,7 @@ object NatsOutputMonitor extends App {
   println("Will be listening to messages from " + inputSubject)
 
   if (args.length > 1) {// TEST mode
-    val espectedValue = args(1)
+    val espectedValue = args(1).toInt
     println("Is especting a value equals to " + espectedValue)
     
     var iterations = 3

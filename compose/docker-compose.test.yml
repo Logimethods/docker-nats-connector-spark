@@ -1,0 +1,74 @@
+version: '2'
+
+services:
+  spark-master:
+    extends:
+      file: common-services.yml
+      service: spark-master
+
+  spark-slave1:
+    extends:
+      file: common-services.yml
+      service: spark-slave
+    container_name: spark-slave1
+    hostname: spark-slave1
+    environment:
+#      - "constraint:node==swarm-node-1"
+      - "SERVICE_NAME=spark-slave1"
+    ports:
+      - 8082:8081
+
+  spark-slave2:
+    extends:
+      file: common-services.yml
+      service: spark-slave
+    container_name: spark-slave2
+    hostname: spark-slave2
+    environment:
+#      - "constraint:node==swarm-node-2"
+      - "SERVICE_NAME=spark-slave2"
+    ports:
+      - 8083:8081
+
+  nats-main: 
+    extends:
+      file: common-services.yml
+      service: nats
+    container_name: nats-main
+    hostname: nats-main
+      
+  gatling:
+    extends:
+      file: common-services.yml
+      service: gatling
+    links: 
+      - nats-main
+    environment:
+      - NATS_URI=nats://nats-main:4222
+      
+  app:
+    extends:
+      file: common-services.yml
+      service: app
+    container_name: main-app
+    hostname: main-app
+    links: 
+      - nats-main
+      - spark-master
+    environment:
+      - NATS_URI=nats://nats-main:4222
+      - SPARK_MASTER_URL=spark://spark-master:7077
+      
+  sut:
+    extends:
+      file: common-services.yml
+      service: monitor
+    links: 
+      - nats-main
+    command: "OUTPUT 150"
+
+# See https://github.com/docker/compose/issues/229
+networks:
+  default:
+    external:
+      name: spark
