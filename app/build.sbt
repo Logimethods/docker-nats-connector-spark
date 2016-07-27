@@ -61,6 +61,11 @@ dockerfile in docker := {
     // @see https://mail-archives.apache.org/mod_mbox/spark-dev/201312.mbox/%3CCAPh_B=ass2NcrN41t7KTSoF1SFGce=N57YMVyukX4hPcO5YN2Q@mail.gmail.com%3E
     // @see http://apache-spark-user-list.1001560.n3.nabble.com/spark-1-6-Issue-td25893.html
     entryPoint("java", "-Xms128m", "-Xmx512m", "-XX:MaxPermSize=300m", "-cp", classpathString, mainclass)
+    
+    run("mkdir", "-p", "/usr/local/spark/conf")
+    env("SPARK_HOME", "/usr/local/spark")
+    copyToStageDir(file("spark/conf/log4j.properties"), file("log4j.properties"))
+    copy("log4j.properties", "/usr/local/spark/conf")
   }
 }
 
@@ -94,6 +99,11 @@ dockerFileTask := {
     // @see https://mail-archives.apache.org/mod_mbox/spark-dev/201312.mbox/%3CCAPh_B=ass2NcrN41t7KTSoF1SFGce=N57YMVyukX4hPcO5YN2Q@mail.gmail.com%3E
     // @see http://apache-spark-user-list.1001560.n3.nabble.com/spark-1-6-Issue-td25893.html
     entryPoint("java", "-Xms128m", "-Xmx512m", "-XX:MaxPermSize=300m", "-cp", classpathString, mainclass)
+        
+    run("mkdir", "-p", "/usr/local/spark/conf")
+    env("SPARK_HOME", "/usr/local/spark")
+    copyToStageDir(file("spark/conf/log4j.properties"), file("log4j.properties"))
+    copy("log4j.properties", "/usr/local/spark/conf")
   }
 
   val stagedDockerfile =  sbtdocker.staging.DefaultDockerfileProcessor(dockerFile, dockerDir)
