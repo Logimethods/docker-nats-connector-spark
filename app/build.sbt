@@ -52,7 +52,8 @@ dockerfile in docker := {
 
   new Dockerfile {
     // Use a base image that contain Scala
-    from("williamyeh/scala:2.10.4")
+//    from("williamyeh/scala:2.10.4")
+    from("frolvlad/alpine-scala:2.10")
     
     // Set the log4j.properties
     run("mkdir", "-p", "/usr/local/spark/conf")
@@ -92,7 +93,8 @@ dockerFileTask := {
 
   val dockerFile = new Dockerfile {
     // Use a base image that contain Scala
-    from("williamyeh/scala:2.10.4")
+//    from("williamyeh/scala:2.10.4")
+    from("frolvlad/alpine-scala:2.10")
         
     // Set the log4j.properties
     run("mkdir", "-p", "/usr/local/spark/conf")
