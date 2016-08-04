@@ -20,7 +20,8 @@ import io.nats.client.Constants._
 
 import org.apache.log4j.{Level, LogManager, PropertyConfigurator}
 
-import com.logimethods.nats.connector.spark._
+import com.logimethods.nats.connector.spark.subscribe._
+import com.logimethods.nats.connector.spark.publish._
 
 object SparkProcessor extends App {
   val log = LogManager.getRootLogger
