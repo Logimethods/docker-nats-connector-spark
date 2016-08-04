@@ -49,6 +49,7 @@ networks:
 * [nats-connector-spark on Github](https://github.com/Logimethods/nats-connector-spark)
 * [docker-nats-connector-spark on Github](https://github.com/Logimethods/docker-nats-connector-spark)
 * [nats-connector-gatling build on Wercker](https://app.wercker.com/logimethods/nats-connector-gatling)
+* [logimethods/maven-nats on Github](https://hub.docker.com/r/logimethods/maven-nats/builds/)
 * [nats-connector-spark build on Wercker](https://app.wercker.com/logimethods/nats-connector-spark)
 * [logimethods on Nexus](https://oss.sonatype.org/#nexus-search;quick~logimethods)
 * [docker-nats-connector-spark build on Wercker](https://app.wercker.com/logimethods/docker-nats-connector-spark)
