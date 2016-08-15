@@ -22,6 +22,22 @@
         }
       ],
       "state": "started"
-    }
-  }
+    },
+    "job::/sandbox/admin::gatling": {
+      "docker": {
+        "image": "logimethods/nats-connector-spark:inject"
+      },
+      "links": {
+        "NATS": {
+          "fqn": "job::/sandbox/admin::nats-main",
+          "port": 4222
+        }
+      },
+      "env": {
+        "NATS_URI": "nats://nats-main:4222",
+        "GATLING.TO_NATS.SUBJECT": "INPUT"
+      },
+      "state": "started"
+      }
+   }
 }
