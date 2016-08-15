@@ -34,7 +34,6 @@
         }
       },
       "env": {
-        "NATS_URI": "nats://nats-main:4222",
         "GATLING_TO_NATS_SUBJECT": "INPUT"
       },
       "state": "started"
