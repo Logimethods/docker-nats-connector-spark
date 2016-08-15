@@ -12,7 +12,7 @@ import akka.actor.{ActorRef, Props}
 import io.gatling.core.Predef._
 import io.gatling.core.action.builder.ActionBuilder
 
-import com.logimethods.nats.connector.gatling._
+import com.logimethods.connector.gatling.to_nats._
 
 import scala.concurrent.duration._
 import java.util.Properties
@@ -25,9 +25,9 @@ class NatsInjection extends Simulation {
   properties.setProperty(io.nats.client.Constants.PROP_URL, natsUrl)
   println("System properties: " + System.getenv())
   
-  var subject = System.getenv("GATLING.TO_NATS.SUBJECT")
+  var subject = System.getenv("GATLING_TO_NATS_SUBJECT")
   if (subject == null) {
-    println("No Subject has been defined through the 'GATLING.TO_NATS.SUBJECT' Environment Variable!!!")
+    println("No Subject has been defined through the 'GATLING_TO_NATS_SUBJECT' Environment Variable!!!")
   } else {
     println("Will emit messages to " + subject)
     val natsProtocol = NatsProtocol(properties, subject)
