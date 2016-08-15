@@ -4,7 +4,7 @@ services:
   gatling: 
     image: logimethods/nats-connector-spark:inject
     environment:
-      - GATLING.TO_NATS.SUBJECT=INPUT
+      - GATLING_TO_NATS_SUBJECT=INPUT
       
   nats:
     image: nats

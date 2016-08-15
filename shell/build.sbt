@@ -46,7 +46,7 @@ dockerfile in docker := {
     // Copy all commands
     add(baseDirectory.value / "command", "./")
 
-    env("SPARK.LIBS.PATHS", classpathString)
+    env("SPARK_LIBS_PATHS", classpathString)
     cmd("sleep", "infinity")
   }
 }
@@ -83,7 +83,7 @@ dockerFileTask := {
     // Copy all commands
     add(baseDirectory.value / "command", "./")
 
-    env("SPARK.LIBS.PATHS", classpathString)
+    env("SPARK_LIBS_PATHS", classpathString)
     cmd("sleep", "infinity")
   }
 
