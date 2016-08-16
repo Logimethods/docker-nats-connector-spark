@@ -37,6 +37,51 @@
         "GATLING_TO_NATS_SUBJECT": "INPUT"
       },
       "state": "started"
-      }
-   }
+      },
+    "job::/sandbox/admin::spark-master": {
+      "docker": {
+        "image": "gettyimages/spark:1.6.2-hadoop-2.6"
+      },
+      "exposed_ports": [ 7001, 7002, 7003, 7003, 7005, 7006, 7077, 6066, 4040, 8080 ],
+      "routes": [
+        {
+          "type": "http",
+          "endpoint": "auto",
+          "config": {
+            "/*": [ { "port": 4040 } ]
+          }
+        },
+        {
+          "type": "http",
+          "endpoint": "auto",
+          "config": {
+            "/*": [ { "port": 6066 } ]
+          }
+        },
+        {
+          "type": "http",
+          "endpoint": "auto",
+          "config": {
+            "/*": [ { "port": 7077 } ]
+          }
+        },
+        {
+          "type": "http",
+          "endpoint": "auto",
+          "config": {
+            "/*": [ { "port": 8080 } ]
+          }
+        }
+      ],
+      "env": {
+        "SERVICE_NAME": "spark-master",
+        "SPARK_CONF_DIR": "/conf"
+      },
+      "start": {
+        "cmd": "bin/spark-class org.apache.spark.deploy.master.Master -h spark-master",
+        "timeout" : 30
+      },
+      "state": "started"
+    }
+  }
 }
