@@ -20,27 +20,9 @@ build:
           git fetch origin
           git merge origin/master_docker
     - script:
-        name: build APP dockerfile
-        code: |
-          pushd app
-          sbt clean assembly dockerFileTask
-          popd
-    - script:
         name: build INJECT dockerfile
         code: |
           pushd inject
-          sbt clean assembly dockerFileTask
-          popd
-    - script:
-        name: build MONITOR dockerfile
-        code: |
-          pushd monitor
-          sbt clean assembly dockerFileTask
-          popd
-    - script:
-        name: build SHELL dockerfile
-        code: |
-          pushd shell
           sbt clean assembly dockerFileTask
           popd
     - script:
