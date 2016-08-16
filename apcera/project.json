@@ -25,7 +25,7 @@
     },
     "job::/sandbox/admin::gatling": {
       "docker": {
-        "image": "logimethods/nats-connector-spark:inject"
+        "image": "logimethods/nats-connector-spark:inject_0.2.0"
       },
       "links": {
         "NATS": {
