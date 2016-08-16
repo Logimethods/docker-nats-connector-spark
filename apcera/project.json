@@ -78,7 +78,7 @@
         "SPARK_CONF_DIR": "/conf"
       },
       "start": {
-        "cmd": "bin/spark-class org.apache.spark.deploy.master.Master -h spark-master",
+        "cmd": "/usr/spark-1.6.2/bin/spark-class org.apache.spark.deploy.master.Master -h spark-master",
         "timeout" : 30
       },
       "state": "started"
