@@ -21,7 +21,7 @@
           }
         }
       ],
-      "state": "started"
+      "state": "stopped"
     },
     "job::/sandbox/admin::gatling": {
       "docker": {
@@ -36,13 +36,13 @@
       "env": {
         "GATLING_TO_NATS_SUBJECT": "INPUT"
       },
-      "state": "started"
+      "state": "stopped"
       },
     "job::/sandbox/admin::spark-master": {
       "docker": {
         "image": "gettyimages/spark:1.6.2-hadoop-2.6"
       },
-      "exposed_ports": [ 7001, 7002, 7003, 7003, 7005, 7006, 7077, 6066, 4040, 8080 ],
+      "exposed_ports": [ 7001, 7002, 7003, 7004, 7005, 7006, 7077, 6066, 4040, 8080 ],
       "routes": [
         {
           "type": "http",
@@ -77,8 +77,38 @@
         "SERVICE_NAME": "spark-master",
         "SPARK_CONF_DIR": "/conf"
       },
+      "state": "started"
+    },
+    "job::/sandbox/admin::spark-slave1": {
+      "docker": {
+        "image": "gettyimages/spark:1.6.2-hadoop-2.6"
+      },
+      "links": {
+        "SPARK-MASTER": {
+          "fqn": "job::/sandbox/admin::spark-master",
+          "port": 7077
+        }
+      },
+      "exposed_ports": [ 7012, 7013, 7014, 7015, 7016, 8081 ],
+      "routes": [
+        {
+          "type": "http",
+          "endpoint": "auto",
+          "config": {
+            "/*": [ { "port": 8081 } ]
+          }
+        }
+      ],
+      "env": {
+        "SERVICE_NAME": "spark-slave1",
+        "SPARK_CONF_DIR": "/conf",
+        "SPARK_WORKER_CORES": "2",
+        "SPARK_WORKER_MEMORY": "2g",
+        "SPARK_WORKER_PORT": "8881",
+        "SPARK_WORKER_WEBUI_PORT": "8081"
+      },
       "start": {
-        "cmd": "/usr/spark-1.6.2/bin/spark-class org.apache.spark.deploy.master.Master -h spark-master",
+        "cmd": "/usr/spark-1.6.2/bin/spark-class org.apache.spark.deploy.worker.Worker spark://${SPARK-MASTER_URI}:7077",
         "timeout" : 30
       },
       "state": "started"
