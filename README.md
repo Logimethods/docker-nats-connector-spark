@@ -1,4 +1,4 @@
-# docker-nats-connector-spark
+# docker-nats-connector-spark (version 0.1.0)
 A collection of Docker Images to illustrate the use of the [nats-connector-spark](https://github.com/Logimethods/nats-connector-spark) & [nats-connector-gatling](https://github.com/Logimethods/nats-connector-gatling) librairies.
 
 [![MIT License](https://img.shields.io/npm/l/express.svg)](http://opensource.org/licenses/MIT)
