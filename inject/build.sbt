@@ -10,13 +10,12 @@ name := "nats-connector-spark"
 organization := "logimethods"
 val tag = "inject"
 
-////version := "0.2.0-SNAPSHOT"
-version := "0.1.0"
+version := "0.2.0-SNAPSHOT"
 scalaVersion := "2.11.8"
-////val gatlingVersion = "2.2.2"
-val gatlingVersion = "2.1.7"
+val gatlingVersion = "2.2.2"
+val natsConnectorGatlingVersion = "0.2.0-SNAPSHOT"
 
-libraryDependencies ++= Seq("com.logimethods" %% "nats-connector-gatling" % version.value)
+libraryDependencies ++= Seq("com.logimethods" %% "nats-connector-gatling" % natsConnectorGatlingVersion)
 
 resolvers += "Sonatype OSS Snapshots" at "https://oss.sonatype.org/content/repositories/snapshots"
 resolvers += "Sonatype OSS Release" at "https://oss.sonatype.org/content/groups/public/"
