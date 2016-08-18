@@ -21,7 +21,7 @@
           }
         }
       ],
-      "state": "stopped"
+      "state": "started"
     },
     "job::/sandbox/admin::gatling": {
       "docker": {
@@ -36,7 +36,7 @@
       "env": {
         "GATLING_TO_NATS_SUBJECT": "INPUT"
       },
-      "state": "stopped"
+      "state": "started"
       },
     "job::/sandbox/admin::spark-master": {
       "docker": {
@@ -108,7 +108,7 @@
         "SPARK_WORKER_WEBUI_PORT": "8081"
       },
       "start": {
-        "cmd": "/usr/spark-1.6.2/bin/spark-class org.apache.spark.deploy.worker.Worker spark://${SPARK-MASTER_URI}:7077",
+        "cmd": "sh -c \"url=$(echo ${SPARK_MASTER_URI%:*}:7077); $(${SPARK_HOME}/bin/spark-class org.apache.spark.deploy.worker.Worker spark:${url#*:}) \" ",
         "timeout" : 30
       },
       "state": "started"
