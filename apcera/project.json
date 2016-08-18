@@ -84,7 +84,7 @@
         "image": "gettyimages/spark:1.6.2-hadoop-2.6"
       },
       "links": {
-        "SPARK-MASTER": {
+        "SPARK_MASTER": {
           "fqn": "job::/sandbox/admin::spark-master",
           "port": 7077
         }
