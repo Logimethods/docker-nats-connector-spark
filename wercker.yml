@@ -1,6 +1,11 @@
 box: hseeberger/scala-sbt
 build:
   steps:
+    - script:
+        name: (TMP) Populate local maven repo
+        code: |
+          mkdir -p "/root/.m2/repository/io/nats/"
+          cp -v -R "./inject/repository/io/nats/" "/root/.m2/repository/io/"
     - install-packages:
         name: install git
         packages: git vim
