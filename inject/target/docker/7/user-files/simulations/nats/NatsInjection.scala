@@ -39,15 +39,3 @@ class NatsInjection extends Simulation {
     ).protocols(natsProtocol)
   }
 }
-
-class ValueProvider {
-  val incr = 10
-  val basedValue = 100 -incr
-  val maxIncr = 50
-  var actualIncr = 0
-  
-  override def toString(): String = {
-    actualIncr = (actualIncr % (maxIncr + incr)) + incr
-    (basedValue + actualIncr).toString()
-  }
-}
