@@ -45,6 +45,7 @@ services:
       - nats-main
     environment:
       - NATS_URI=nats://nats-main:4222
+    command: --no-reports -s com.logimethods.nats.demo.NatsInjection
       
   app:
     extends:

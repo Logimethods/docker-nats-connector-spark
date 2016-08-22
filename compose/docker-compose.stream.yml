@@ -1,0 +1,25 @@
+version: '2'
+
+  nats-streaming-main: 
+    extends:
+      file: common-services.yml
+      service: nats-streaming
+    container_name: nats-streaming-main
+    hostname: nats-streaming-main
+      
+  gatling:
+    extends:
+      file: common-services.yml
+      service: gatling
+    links: 
+      - nats-streaming-main
+    environment:
+      - NATS_URI=nats://nats-streaming-main:4222
+      - CLUSTER_ID=test-cluster
+    command: --no-reports -s com.logimethods.nats.demo.NatsStreamingInjection
+
+# See https://github.com/docker/compose/issues/229
+networks:
+  default:
+    external:
+      name: spark

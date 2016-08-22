@@ -13,6 +13,13 @@ services:
       - 8222:8222
       - 6222:6222
       
+  nats-streaming:
+    image: logimethods/stan
+    ports:
+      - 4222:4222
+      - 8222:8222
+      - 6222:6222
+      
   app: 
     image: logimethods/nats-connector-spark:app_0.2.0
     command: "INPUT OUTPUT"

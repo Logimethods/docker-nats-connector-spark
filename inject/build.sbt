@@ -20,6 +20,9 @@ libraryDependencies ++= Seq("com.logimethods" %% "nats-connector-gatling" % nats
 resolvers += "Sonatype OSS Snapshots" at "https://oss.sonatype.org/content/repositories/snapshots"
 resolvers += "Sonatype OSS Release" at "https://oss.sonatype.org/content/groups/public/"
 
+// TODO Remove once the java-nats-streaming is released on a public repository
+resolvers += "Local Maven Repository" at "file://"+Path.userHome.absolutePath+"/.m2/repository"
+
 enablePlugins(DockerPlugin)
 
 imageNames in docker := Seq(
@@ -38,7 +41,7 @@ dockerfile in docker := {
     // Add Gatling User Files
     add(baseDirectory.value / "user-files", "./user-files")
     
-    cmd("--no-reports", "-s", "com.logimethods.nats.demo.NatsInjection")
+//    cmd("--no-reports", "-s", "com.logimethods.nats.demo.NatsInjection")
   }
 }
 
@@ -62,7 +65,7 @@ dockerFileTask := {
     // Add Gatling User Files
     add(baseDirectory.value / "user-files", "./user-files")
 
-    cmd("--no-reports", "-s", "com.logimethods.nats.demo.NatsInjection")
+//    cmd("--no-reports", "-s", "com.logimethods.nats.demo.NatsInjection")
   }
 
   val stagedDockerfile =  sbtdocker.staging.DefaultDockerfileProcessor(dockerFile, dockerDir)
