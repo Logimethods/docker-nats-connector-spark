@@ -1,5 +1,6 @@
 version: '2'
 
+services:
   nats-streaming-main: 
     extends:
       file: common-services.yml
