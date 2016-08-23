@@ -42,7 +42,7 @@
 	    <plugin>
 	      <groupId>com.spotify</groupId>
 	      <artifactId>docker-maven-plugin</artifactId>
-	      <version>VERSION GOES HERE</version>
+	      <version>0.4.11</version>
 	      <configuration>
 	        <imageName>example</imageName>
 	        <baseImage>java</baseImage>
