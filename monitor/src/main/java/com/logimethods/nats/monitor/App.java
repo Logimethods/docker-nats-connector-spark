@@ -1,4 +1,4 @@
-package com.logimethods.nats_monitor;
+package com.logimethods.nats.monitor;
 
 /**
  * Hello world!
