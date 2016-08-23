@@ -28,7 +28,7 @@ class NatsStreamingInjection extends Simulation {
     println("No Subject has been defined through the 'GATLING_TO_NATS_SUBJECT' Environment Variable!!!")
   } else {
     println("Will emit messages to " + subject)
-    val natsProtocol = NatsStreamingProtocol(clusterID, subject)
+    val natsProtocol = NatsStreamingProtocol(natsUrl, clusterID, subject)
     
     val natsScn = scenario("NATS call").exec(NatsStreamingBuilder(new ValueProvider()))
    

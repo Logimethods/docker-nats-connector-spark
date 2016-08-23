@@ -8,10 +8,6 @@
 
 package com.logimethods.nats.demo
 
-/**
- * @author laugimethods
- *
- */
 class ValueProvider {
   val incr = 10
   val basedValue = 100 -incr
