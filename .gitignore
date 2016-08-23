@@ -23,12 +23,12 @@ inject/target/*
 # REMOVE from exclusion generated docker files
 !inject/target/docker
 
-!monitor/target
-monitor/project/target/*
-monitor/project/project/*
-monitor/target/*
+!monitor-scala/target
+monitor-scala/project/target/*
+monitor-scala/project/project/*
+monitor-scala/target/*
 # REMOVE from exclusion generated docker files
-!monitor/target/docker
+!monitor-scala/target/docker
 
 !shell/target
 shell/project/target/*
@@ -49,6 +49,7 @@ project/plugins/project/
 # Eclipse IDE
 .classpath
 .project
+.settings
 
 .cache-main
 
