@@ -24,13 +24,15 @@ build:
         code: |
           pushd app
           sbt clean assembly dockerFileTask
+          mv target/docker .
           popd
     - script:
         name: build INJECT dockerfile
         code: |
           pushd inject
           sbt clean assembly dockerFileTask
-          popd
+           mv target/docker .
+         popd
     - script:
         name: build MONITOR dockerfile
         code: |
@@ -43,12 +45,14 @@ build:
         code: |
           pushd monitor-scala
           sbt clean assembly dockerFileTask
+          mv target/docker .
           popd
     - script:
         name: build SHELL dockerfile
         code: |
           pushd shell
           sbt clean assembly dockerFileTask
+          mv target/docker .
           popd
     - script:
         name: git push

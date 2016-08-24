@@ -8,35 +8,6 @@
 dist/*
 
 target/
-
-!app/target
-app/project/target/*
-app/project/project/*
-app/target/*
-# REMOVE from exclusion generated docker files
-!app/target/docker
-
-!inject/target
-inject/project/target/*
-inject/project/project/*
-inject/target/*
-# REMOVE from exclusion generated docker files
-!inject/target/docker
-
-!monitor-scala/target
-monitor-scala/project/target/*
-monitor-scala/project/project/*
-monitor-scala/target/*
-# REMOVE from exclusion generated docker files
-!monitor-scala/target/docker
-
-!shell/target
-shell/project/target/*
-shell/project/project/*
-shell/target/*
-# REMOVE from exclusion generated docker files
-!shell/target/docker
-
 lib_managed/
 src_managed/
 project/boot/
