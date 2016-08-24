@@ -20,8 +20,8 @@ import io.nats.client.Constants._
 
 import org.apache.log4j.{Level, LogManager, PropertyConfigurator}
 
-import com.logimethods.nats.connector.spark.subscribe._
-import com.logimethods.nats.connector.spark.publish._
+import com.logimethods.connector.nats.to_spark._
+import com.logimethods.connector.spark.to_nats._
 
 object SparkProcessor extends App {
   val log = LogManager.getRootLogger
@@ -47,14 +47,21 @@ object SparkProcessor extends App {
   println("NATS_URI = " + natsUrl)
   properties.put("servers", natsUrl)
   properties.put(PROP_URL, natsUrl)
-  val messages = ssc.receiverStream(NatsToSparkConnector.receiveFromNats(properties, StorageLevel.MEMORY_ONLY, inputSubject))
+  val messages = ssc.receiverStream(NatsToSparkConnector
+                                      .receiveFromNats(StorageLevel.MEMORY_ONLY)
+                                      .withProperties(properties)
+                                      .withSubjects(inputSubject));
   
   val integers = messages.map({ str => Integer.parseInt(str) })
   val max = integers.reduce({ (int1, int2) => Math.max(int1, int2) })
 
   max.print()
 
-  // http://spark.apache.org/docs/latest/streaming-programming-guide.html#design-patterns-for-using-foreachrdd
+  SparkToNatsConnectorPool.newPool()
+                          .withProperties(properties)
+                          .withSubjects(outputSubject)
+                          .publishToNats(max)
+/*  // http://spark.apache.org/docs/latest/streaming-programming-guide.html#design-patterns-for-using-foreachrdd
   max.foreachRDD { rdd =>
     val connectorPool = new SparkToNatsConnectorPool(properties, outputSubject)
     rdd.foreachPartition { partitionOfRecords =>
@@ -62,7 +69,7 @@ object SparkProcessor extends App {
       partitionOfRecords.foreach(record => connector.publishToNats(record))
       connectorPool.returnConnector(connector)  // return to the pool for future reuse
     }
-  }
+  }*/
   
   ssc.start();		
   

@@ -11,6 +11,9 @@ name := "docker-" + rootName + "-main-app"
 organization := "logimethods"
 val tag = "app"
 
+// TODO Remove once the java-nats-streaming is released on a public repository
+resolvers += "Local Maven Repository" at "file://"+Path.userHome.absolutePath+"/.m2/repository"
+
 resolvers += "Sonatype OSS Snapshots" at "https://oss.sonatype.org/content/repositories/snapshots"
 resolvers += "Sonatype OSS Release" at "https://oss.sonatype.org/content/groups/public/"
 
