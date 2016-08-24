@@ -1,11 +1,6 @@
 box: hseeberger/scala-sbt
 build:
   steps:
-    - script:
-        name: (TMP) Populate local maven repo
-        code: |
-          mkdir -p "/root/.m2/repository/io/nats/"
-          cp -v -R "./inject/repository/io/nats/" "/root/.m2/repository/io/"
     - install-packages:
         name: install git
         packages: git vim
@@ -25,9 +20,34 @@ build:
           git fetch origin
           git merge origin/master_docker
     - script:
+        name: build APP dockerfile
+        code: |
+          pushd app
+          sbt clean assembly dockerFileTask
+          popd
+    - script:
         name: build INJECT dockerfile
         code: |
           pushd inject
+          sbt clean assembly dockerFileTask
+          popd
+    - script:
+        name: build MONITOR dockerfile
+        code: |
+          pushd monitor
+          mvn clean package docker:build
+          mv target/docker .
+          popd
+    - script:
+        name: build MONITOR-SCALA dockerfile
+        code: |
+          pushd monitor-scala
+          sbt clean assembly dockerFileTask
+          popd
+    - script:
+        name: build SHELL dockerfile
+        code: |
+          pushd shell
           sbt clean assembly dockerFileTask
           popd
     - script:
