@@ -29,6 +29,7 @@ build:
         code: |
           pushd app
           sbt clean assembly dockerFileTask
+          rm -R ./docker
           mv target/docker .
           popd
     - script:
@@ -36,6 +37,7 @@ build:
         code: |
           pushd inject
           sbt clean assembly dockerFileTask
+          rm -R ./docker
           mv target/docker .
           popd
     - script:
@@ -43,6 +45,7 @@ build:
         code: |
           pushd monitor
           sbt clean assembly dockerFileTask
+          rm -R ./docker
           mv target/docker .
           popd
     - script:
@@ -50,6 +53,7 @@ build:
         code: |
           pushd shell
           sbt clean assembly dockerFileTask
+          rm -R ./docker
           mv target/docker .
           popd
     - script:
