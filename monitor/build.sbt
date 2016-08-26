@@ -15,8 +15,14 @@ version := "0.2.0-SNAPSHOT"
 scalaVersion := "2.11.6"
 
 libraryDependencies += "com.github.tyagihas" % "scala_nats_2.10" % "0.1"
+libraryDependencies += "io.nats"     		 % "java-nats-streaming" % "0.1.0-SNAPSHOT" changing()
 
-resolvers += Resolver.mavenLocal
+// TODO Remove once the java-nats-streaming is released on a public repository
+resolvers += "Local Maven Repository" at "file://"+Path.userHome.absolutePath+"/.m2/repository"
+//resolvers += Resolver.mavenLocal
+
+resolvers += "Sonatype OSS Snapshots" at "https://oss.sonatype.org/content/repositories/snapshots"
+resolvers += "Sonatype OSS Release" at "https://oss.sonatype.org/content/groups/public/"
 
 enablePlugins(DockerPlugin)
 

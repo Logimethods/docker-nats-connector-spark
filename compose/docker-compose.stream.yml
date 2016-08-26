@@ -56,7 +56,7 @@ services:
     container_name: main-app
     hostname: main-app
     links: 
-      - nats-main
+      - nats-streaming-main
       - spark-master
     environment:
       - NATS_URI=nats://nats-streaming-main:4222
@@ -69,7 +69,9 @@ services:
       file: common-services.yml
       service: monitor
     links: 
-      - nats-main
+      - nats-streaming-main
+    environment:
+      - NATS_URI=nats://nats-streaming-main:4222
     command: "OUTPUT_STREAMING"
 
 # See https://github.com/docker/compose/issues/229

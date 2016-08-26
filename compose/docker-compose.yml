@@ -66,6 +66,8 @@ services:
       service: monitor
     links: 
       - nats-main
+    environment:
+      - NATS_URI=nats://nats-main:4222
 
 # See https://github.com/docker/compose/issues/229
 networks:
