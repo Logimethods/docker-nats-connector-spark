@@ -30,7 +30,9 @@ object SparkProcessor extends App {
   Thread.sleep(5000)
 
   val inputSubject = args(0)
+  val inputStreaming = inputSubject.toUpperCase.contains("STREAMING")
   val outputSubject = args(1)
+  val outputStreaming = outputSubject.toUpperCase.contains("STREAMING")
   println("Will process messages from " + inputSubject + " to " + outputSubject)
 
   val sparkMasterUrl = System.getenv("SPARK_MASTER_URL")
@@ -47,29 +49,39 @@ object SparkProcessor extends App {
   println("NATS_URI = " + natsUrl)
   properties.put("servers", natsUrl)
   properties.put(PROP_URL, natsUrl)
-  val messages = ssc.receiverStream(NatsToSparkConnector
-                                      .receiveFromNats(StorageLevel.MEMORY_ONLY)
-                                      .withProperties(properties)
-                                      .withSubjects(inputSubject));
+  
+  val clusterId = System.getenv("NATS_CLUSTER_ID")
+  
+  val stream =
+    if (inputStreaming) {
+      NatsToSparkConnector
+        .receiveFromNatsStreaming(StorageLevel.MEMORY_ONLY, clusterId)
+        .withNatsURL(natsUrl)
+        .withSubjects(inputSubject)
+    } else {
+      NatsToSparkConnector
+        .receiveFromNats(StorageLevel.MEMORY_ONLY)
+        .withProperties(properties)
+        .withSubjects(inputSubject)
+    }
+  val messages = ssc.receiverStream(stream);
   
   val integers = messages.map({ str => Integer.parseInt(str) })
   val max = integers.reduce({ (int1, int2) => Math.max(int1, int2) })
 
   max.print()
 
-  SparkToNatsConnectorPool.newPool()
-                          .withProperties(properties)
-                          .withSubjects(outputSubject)
-                          .publishToNats(max)
-/*  // http://spark.apache.org/docs/latest/streaming-programming-guide.html#design-patterns-for-using-foreachrdd
-  max.foreachRDD { rdd =>
-    val connectorPool = new SparkToNatsConnectorPool(properties, outputSubject)
-    rdd.foreachPartition { partitionOfRecords =>
-      val connector = connectorPool.getConnector()
-      partitionOfRecords.foreach(record => connector.publishToNats(record))
-      connectorPool.returnConnector(connector)  // return to the pool for future reuse
-    }
-  }*/
+  if (outputStreaming) {
+    SparkToNatsConnectorPool.newStreamingPool(clusterId)
+                            .withNatsURL(natsUrl)
+                            .withSubjects(outputSubject)
+                            .publishToNats(max)
+  } else {
+    SparkToNatsConnectorPool.newPool()
+                            .withProperties(properties)
+                            .withSubjects(outputSubject)
+                            .publishToNats(max)
+  }
   
   ssc.start();		
   

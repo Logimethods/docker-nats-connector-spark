@@ -1,6 +1,35 @@
 version: '2'
 
 services:
+  spark-master:
+    extends:
+      file: common-services.yml
+      service: spark-master
+
+  spark-slave1:
+    extends:
+      file: common-services.yml
+      service: spark-slave
+    container_name: spark-slave1
+    hostname: spark-slave1
+    environment:
+#      - "constraint:node==swarm-node-1"
+      - "SERVICE_NAME=spark-slave1"
+    ports:
+      - 8082:8081
+
+  spark-slave2:
+    extends:
+      file: common-services.yml
+      service: spark-slave
+    container_name: spark-slave2
+    hostname: spark-slave2
+    environment:
+#      - "constraint:node==swarm-node-2"
+      - "SERVICE_NAME=spark-slave2"
+    ports:
+      - 8083:8081
+
   nats-streaming-main: 
     extends:
       file: common-services.yml
@@ -16,8 +45,32 @@ services:
       - nats-streaming-main
     environment:
       - NATS_URI=nats://nats-streaming-main:4222
-      - CLUSTER_ID=test-cluster
+      - NATS_CLUSTER_ID=test-cluster
+      - GATLING_TO_NATS_SUBJECT=INPUT_STREAMING
     command: --no-reports -s com.logimethods.nats.demo.NatsStreamingInjection
+      
+  app:
+    extends:
+      file: common-services.yml
+      service: app
+    container_name: main-app
+    hostname: main-app
+    links: 
+      - nats-main
+      - spark-master
+    environment:
+      - NATS_URI=nats://nats-streaming-main:4222
+      - NATS_CLUSTER_ID=test-cluster
+      - SPARK_MASTER_URL=spark://spark-master:7077
+    command: "INPUT_STREAMING OUTPUT_STREAMING"
+      
+  monitor:
+    extends:
+      file: common-services.yml
+      service: monitor
+    links: 
+      - nats-main
+    command: "OUTPUT_STREAMING"
 
 # See https://github.com/docker/compose/issues/229
 networks:
