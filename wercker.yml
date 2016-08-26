@@ -35,8 +35,8 @@ build:
         code: |
           pushd inject
           sbt clean assembly dockerFileTask
-           mv target/docker .
-         popd
+          mv target/docker .
+          popd
     - script:
         name: build MONITOR dockerfile
         code: |
