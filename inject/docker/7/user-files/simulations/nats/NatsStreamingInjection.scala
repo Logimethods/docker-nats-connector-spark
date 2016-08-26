@@ -21,7 +21,7 @@ import io.nats.client.Constants.PROP_URL
 class NatsStreamingInjection extends Simulation {
   
   val natsUrl = System.getenv("NATS_URI")
-  val clusterID = System.getenv("CLUSTER_ID")
+  val clusterID = System.getenv("NATS_CLUSTER_ID")
   
   var subject = System.getenv("GATLING_TO_NATS_SUBJECT")
   if (subject == null) {
