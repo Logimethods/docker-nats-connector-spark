@@ -18,12 +18,12 @@ resolvers += "Sonatype OSS Snapshots" at "https://oss.sonatype.org/content/repos
 resolvers += "Sonatype OSS Release" at "https://oss.sonatype.org/content/groups/public/"
 
 version := "0.2.0-SNAPSHOT"
-scalaVersion := "2.10.4"
+scalaVersion := "2.11.7"
 val sparkVersion = "1.6.2"
 
 libraryDependencies += "org.apache.spark" %% "spark-core" % sparkVersion % "provided"
 libraryDependencies += "org.apache.spark" %% "spark-streaming" % sparkVersion
-libraryDependencies += "com.logimethods" % "nats-connector-spark" % version.value
+libraryDependencies += "com.logimethods"  %% "nats-connector-spark-scala" % version.value changing()
 
 // @see http://stackoverflow.com/questions/30446984/spark-sbt-assembly-deduplicate-different-file-contents-found-in-the-followi
 assemblyMergeStrategy in assembly := {
