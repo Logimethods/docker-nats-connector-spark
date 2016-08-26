@@ -42,13 +42,6 @@ build:
         name: build MONITOR dockerfile
         code: |
           pushd monitor
-          mvn clean package docker:build
-          mv target/docker .
-          popd
-    - script:
-        name: build MONITOR-SCALA dockerfile
-        code: |
-          pushd monitor-scala
           sbt clean assembly dockerFileTask
           mv target/docker .
           popd

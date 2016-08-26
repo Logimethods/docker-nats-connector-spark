@@ -7,9 +7,9 @@ import sbt.Keys.{artifactPath, libraryDependencies, mainClass, managedClasspath,
 logLevel := Level.Debug
 
 val rootName = "nats-connector-spark"
-name := "docker-" + rootName + "-monitor-scala"
+name := "docker-" + rootName + "-monitor"
 organization := "logimethods"
-val tag = "monitor-scala"
+val tag = "monitor"
 
 version := "0.2.0-SNAPSHOT"
 scalaVersion := "2.11.6"
