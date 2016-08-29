@@ -72,6 +72,7 @@ services:
       - nats-streaming-main
     environment:
       - NATS_URI=nats://nats-streaming-main:4222
+      - NATS_CLUSTER_ID=test-cluster
     command: "OUTPUT_STREAMING"
 
 # See https://github.com/docker/compose/issues/229

@@ -23,7 +23,7 @@ object NatsOutputMonitor extends App {
   
   if (inputSubject.toUpperCase().contains("STREAMING")) {
     val clusterID = System.getenv("NATS_CLUSTER_ID");
-		System.out.println("NATS_CLUSTER_ID = " + natsUrl);
+		System.out.println("NATS_CLUSTER_ID = " + clusterID);
 
     NatsStreamingOutputMonitor.main(inputSubject, natsUrl, clusterID)
   } else {
