@@ -62,6 +62,7 @@ services:
       - NATS_URI=nats://nats-streaming-main:4222
       - NATS_CLUSTER_ID=test-cluster
       - SPARK_MASTER_URL=spark://spark-master:7077
+      - LOG_LEVEL=INFO
     command: "INPUT_STREAMING OUTPUT_STREAMING"
       
   monitor:

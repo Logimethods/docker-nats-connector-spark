@@ -34,6 +34,9 @@ object SparkProcessor extends App {
   val outputSubject = args(1)
   val outputStreaming = outputSubject.toUpperCase.contains("STREAMING")
   println("Will process messages from " + inputSubject + " to " + outputSubject)
+  
+  val logLevel = scala.util.Properties.envOrElse("LOG_LEVEL", "INFO")
+  println("LOG_LEVEL = " + logLevel)
 
   val sparkMasterUrl = System.getenv("SPARK_MASTER_URL")
   println("SPARK_MASTER_URL = " + sparkMasterUrl)
@@ -69,7 +72,9 @@ object SparkProcessor extends App {
   val integers = messages.map({ str => Integer.parseInt(str) })
   val max = integers.reduce({ (int1, int2) => Math.max(int1, int2) })
 
-  max.print()
+  if (logLevel.equals("DEBUG")) { 
+    max.print()
+  }
 
   if (outputStreaming) {
     SparkToNatsConnectorPool.newStreamingPool(clusterId)
