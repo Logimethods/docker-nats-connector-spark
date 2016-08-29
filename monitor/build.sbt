@@ -13,8 +13,6 @@ val tag = "monitor"
 
 version := "0.2.0-SNAPSHOT"
 scalaVersion := "2.10.6"
-scalacOptions += "-target:jvm-1.8"
-javacOptions ++= Seq("-source", "1.8", "-target", "1.8")
 
 libraryDependencies += "com.github.tyagihas" % "scala_nats_2.10" % "0.1"
 libraryDependencies += "io.nats"     		 % "java-nats-streaming" % "v0.1.0"
