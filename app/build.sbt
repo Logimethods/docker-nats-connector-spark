@@ -17,7 +17,7 @@ resolvers += "Sonatype OSS Release" at "https://oss.sonatype.org/content/groups/
 resolvers += "Local Maven Repository" at "file://"+Path.userHome.absolutePath+"/.m2/repository"
 
 version := "0.2.0-SNAPSHOT"
-scalaVersion := "2.11.7"
+scalaVersion := "2.10.6"
 val sparkVersion = "1.6.2"
 
 libraryDependencies += "org.apache.spark" %% "spark-core" % sparkVersion % "provided"
