@@ -13,6 +13,8 @@ val tag = "monitor"
 
 version := "0.2.0-SNAPSHOT"
 scalaVersion := "2.10.6"
+scalacOptions += "-target:jvm-1.7"
+javacOptions ++= Seq("-source", "1.7", "-target", "1.7")
 
 libraryDependencies += "com.github.tyagihas" % "scala_nats_2.10" % "0.1"
 libraryDependencies += "io.nats"     		 % "java-nats-streaming" % "v0.1.0"
@@ -48,7 +50,7 @@ dockerfile in docker := {
 
   new Dockerfile {
     // Use a base image that contain Scala
-	from("williamyeh/scala:2.10.4")
+	from("abigail/scala:2.10.6")
 	
     // Add all files on the classpath
     add(classpath.files, "/app/")
@@ -79,7 +81,7 @@ dockerFileTask := {
 
   val dockerFile = new Dockerfile {
     // Use a base image that contain Scala
-	from("williamyeh/scala:2.10.4")
+	from("abigail/scala:2.10.6")
 	
     // Add all files on the classpath
     add(classpath.files, "/app/")
