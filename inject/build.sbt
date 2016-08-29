@@ -19,8 +19,7 @@ libraryDependencies ++= Seq("com.logimethods" %% "nats-connector-gatling" % nats
 
 resolvers += "Sonatype OSS Snapshots" at "https://oss.sonatype.org/content/repositories/snapshots"
 resolvers += "Sonatype OSS Release" at "https://oss.sonatype.org/content/groups/public/"
-
-// TODO Remove once the java-nats-streaming is released on a public repository
+// TODO Remove once the nats-parent 1.0-SNAPSHOT is fixed (https://github.com/nats-io/java-nats-streaming/issues/18)
 resolvers += "Local Maven Repository" at "file://"+Path.userHome.absolutePath+"/.m2/repository"
 
 enablePlugins(DockerPlugin)
