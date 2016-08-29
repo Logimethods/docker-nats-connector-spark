@@ -22,8 +22,8 @@ build:
     - script:
         name: (TMP) Populate local maven repo
         code: |
-          mkdir -p "${WERCKER_CACHE_DIR}/io/nats/nats-parent"
-          cp -v -R "./repository/io/nats/nats-parent/" "${WERCKER_CACHE_DIR}/io/nats/"
+          mkdir -p "/root/.m2/repository/io/nats/nats-parent"
+          cp -v -R "./repository/io/nats/nats-parent" "/root/.m2/repository/io/nats"
     - script:
         name: build APP dockerfile
         code: |
