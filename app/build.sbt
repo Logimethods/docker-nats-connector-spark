@@ -31,6 +31,7 @@ assemblyMergeStrategy in assembly := {
     case PathList("org", "apache", commons @ _*) => MergeStrategy.last
     case PathList("org", "apache", hadoop @ _*) => MergeStrategy.last
     case PathList("org", "slf4j", impl @ _*) => MergeStrategy.last
+    case "nats_checkstyle.xml" => MergeStrategy.last
     case x =>
         val oldStrategy = (assemblyMergeStrategy in assembly).value
         oldStrategy(x)
