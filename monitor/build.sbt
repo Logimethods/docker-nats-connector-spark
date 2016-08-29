@@ -12,7 +12,7 @@ organization := "logimethods"
 val tag = "monitor"
 
 version := "0.2.0-SNAPSHOT"
-scalaVersion := "2.11.6"
+scalaVersion := "2.10.6"
 
 libraryDependencies += "com.github.tyagihas" % "scala_nats_2.10" % "0.1"
 libraryDependencies += "io.nats"     		 % "java-nats-streaming" % "v0.1.0"
