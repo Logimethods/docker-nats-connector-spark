@@ -48,7 +48,7 @@ dockerfile in docker := {
 
   new Dockerfile {
     // Use a base image that contain Scala
-	from("williamyeh/scala:2.11.6")
+	from("williamyeh/scala:2.10.4")
 	
     // Add all files on the classpath
     add(classpath.files, "/app/")
@@ -79,7 +79,7 @@ dockerFileTask := {
 
   val dockerFile = new Dockerfile {
     // Use a base image that contain Scala
-	from("williamyeh/scala:2.11.6")
+	from("williamyeh/scala:2.10.4")
 	
     // Add all files on the classpath
     add(classpath.files, "/app/")
