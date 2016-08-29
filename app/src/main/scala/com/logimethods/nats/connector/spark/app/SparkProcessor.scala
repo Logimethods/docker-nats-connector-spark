@@ -39,7 +39,7 @@ object SparkProcessor extends App {
   println("SPARK_MASTER_URL = " + sparkMasterUrl)
   val conf = new SparkConf().setAppName("NATS Data Processing").setMaster(sparkMasterUrl);
   val sc = new SparkContext(conf);
-  val jarFilesRegex = "jnats-(.*)jar|nats-connector-spark-(.*)jar|docker-nats-connector-spark(.*)jar"
+  val jarFilesRegex = "jnats-(.*)jar|java-nats-streaming-(.*)jar|nats-connector-spark-(.*)jar|docker-nats-connector-spark(.*)jar"
   for (file <- new File("/app/").listFiles.filter(_.getName.matches(jarFilesRegex))) 
     { sc.addJar(file.getAbsolutePath) }
   val ssc = new StreamingContext(sc, new Duration(2000));
