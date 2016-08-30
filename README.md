@@ -47,10 +47,13 @@ networks:
 ## Links
 * [nats-connector-gatling on Github](https://github.com/Logimethods/nats-connector-gatling)
 * [nats-connector-spark on Github](https://github.com/Logimethods/nats-connector-spark)
+* [nats-connector-spark-scala on Github](https://github.com/Logimethods/nats-connector-spark-scala)
 * [docker-nats-connector-spark on Github](https://github.com/Logimethods/docker-nats-connector-spark)
 * [nats-connector-gatling build on Wercker](https://app.wercker.com/logimethods/nats-connector-gatling)
 * [logimethods/maven-nats on Github](https://hub.docker.com/r/logimethods/maven-nats/builds/)
 * [nats-connector-spark build on Wercker](https://app.wercker.com/logimethods/nats-connector-spark)
+* [logimethods/sbt-nats on Github](https://hub.docker.com/r/logimethods/sbt-nats/builds/)
+* [nats-connector-spark-scala build on Wercker](https://app.wercker.com/logimethods/nats-connector-spark-scala/)
 * [logimethods on Nexus](https://oss.sonatype.org/#nexus-search;quick~logimethods)
 * [docker-nats-connector-spark build on Wercker](https://app.wercker.com/logimethods/docker-nats-connector-spark)
 * [nats-connector-spark on Docker Hub](https://hub.docker.com/r/logimethods/nats-connector-spark/)
