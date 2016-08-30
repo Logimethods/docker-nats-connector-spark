@@ -15,20 +15,20 @@ version := "0.2.0-SNAPSHOT"
 scalaVersion := "2.10.6"
 
 libraryDependencies += "com.github.tyagihas" % "scala_nats_2.10" % "0.1"
-libraryDependencies += "io.nats"     		 % "java-nats-streaming" % "v0.1.0"
+libraryDependencies += "io.nats"     		 % "java-nats-streaming" % "0.1.2"
 
 resolvers += "Sonatype OSS Snapshots" at "https://oss.sonatype.org/content/repositories/snapshots"
 resolvers += "Sonatype OSS Release" at "https://oss.sonatype.org/content/groups/public/"
 // TODO Remove once the nats-parent 1.0-SNAPSHOT is fixed (https://github.com/nats-io/java-nats-streaming/issues/18)
-resolvers += "Local Maven Repository" at "file://"+Path.userHome.absolutePath+"/.m2/repository"
+///resolvers += "Local Maven Repository" at "file://"+Path.userHome.absolutePath+"/.m2/repository"
 
 // @see http://stackoverflow.com/questions/30446984/spark-sbt-assembly-deduplicate-different-file-contents-found-in-the-followi
-assemblyMergeStrategy in assembly := {
+/**assemblyMergeStrategy in assembly := {
     case "nats_checkstyle.xml" => MergeStrategy.last
     case x =>
         val oldStrategy = (assemblyMergeStrategy in assembly).value
         oldStrategy(x)
-}
+}*/
 
 enablePlugins(DockerPlugin)
 

@@ -14,7 +14,7 @@ val tag = "app"
 resolvers += "Sonatype OSS Snapshots" at "https://oss.sonatype.org/content/repositories/snapshots"
 resolvers += "Sonatype OSS Release" at "https://oss.sonatype.org/content/groups/public/"
 // TODO Remove once the nats-parent 1.0-SNAPSHOT is fixed (https://github.com/nats-io/java-nats-streaming/issues/18)
-resolvers += "Local Maven Repository" at "file://"+Path.userHome.absolutePath+"/.m2/repository"
+///resolvers += "Local Maven Repository" at "file://"+Path.userHome.absolutePath+"/.m2/repository"
 
 version := "0.2.0-SNAPSHOT"
 scalaVersion := "2.10.6"
@@ -31,7 +31,7 @@ assemblyMergeStrategy in assembly := {
     case PathList("org", "apache", commons @ _*) => MergeStrategy.last
     case PathList("org", "apache", hadoop @ _*) => MergeStrategy.last
     case PathList("org", "slf4j", impl @ _*) => MergeStrategy.last
-    case "nats_checkstyle.xml" => MergeStrategy.last
+///    case "nats_checkstyle.xml" => MergeStrategy.last
     case x =>
         val oldStrategy = (assemblyMergeStrategy in assembly).value
         oldStrategy(x)
