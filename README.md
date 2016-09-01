@@ -20,6 +20,8 @@ A collection of Docker Images to illustrate the use of the [nats-connector-spark
 
 4) Finally, those values are monitored and printed into the console. See [NatsOutputMonitor.scala](https://github.com/Logimethods/docker-nats-connector-spark/blob/master/monitor/src/main/scala/com/logimethods/nats/connector/spark/monitor/NatsOutputMonitor.scala)
 
+![NATS-Docker_Containers.png](NATS-Docker_Containers.png "Data flow")
+
 ## Build
 
 Those Docker Images are pushed to [dockerhub:logimethods/nats-connector-spark](https://hub.docker.com/r/logimethods/nats-connector-spark/) and build there.
