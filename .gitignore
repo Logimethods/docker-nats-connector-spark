@@ -30,3 +30,5 @@ _projects/
 _steps/
 
 apcera/references/
+
+.DS_Store
