@@ -8,8 +8,10 @@ A collection of Docker Images to illustrate the use of the [nats-connector-spark
 [![Dockerhub](http://dockeri.co/image/logimethods/nats-connector-spark)](https://hub.docker.com/r/logimethods/nats-connector-spark/)
 
 ## Usage
-    cd compose
-    docker-compose up
+```Shell
+cd compose
+docker-compose up
+```
 
 ## What it does...
 1) Docker-compose will instantiate and run a collection of Docker Containers defined by [docker-compose.yml](https://github.com/Logimethods/docker-nats-connector-spark/blob/master/compose/docker-compose.yml)
@@ -34,11 +36,11 @@ Those Docker Images are pushed to [dockerhub:logimethods/nats-connector-spark](h
 
 ### Version 0.2.0
 * To be able to use Spark version 1.6.2, docker-compose containers need to belong to an external network (which enforce a hostname without underscore). See [Switch to using hyphens as a separator in hostnames](https://github.com/docker/compose/issues/229):
-```
+```Shell
 $ docker network create spark
 ```
 `docker-compose.yml`:
-```
+```YAML
 ...
 networks:
   default:
@@ -61,7 +63,7 @@ networks:
 * [nats-connector-spark on Docker Hub](https://hub.docker.com/r/logimethods/nats-connector-spark/)
 
 ## Outcome (digest)
-```
+```Shell
 compose$ docker-compose up
 spark-master is up-to-date
 spark-slave2 is up-to-date
