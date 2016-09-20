@@ -36,6 +36,10 @@
       "env": {
         "GATLING_TO_NATS_SUBJECT": "INPUT"
       },
+      "start": {
+        "cmd": "/opt/gatling/bin/gatling.sh --no-reports -s com.logimethods.nats.demo.NatsInjection",
+        "timeout" : 30
+      },
       "state": "started"
       },
     "job::/sandbox/admin::spark-master": {
@@ -77,6 +81,10 @@
         "SERVICE_NAME": "spark-master",
         "SPARK_CONF_DIR": "/conf"
       },
+      "start": {
+        "cmd": "/usr/spark-1.6.2/bin/spark-class org.apache.spark.deploy.master.Master --host 0.0.0.0",
+        "timeout" : 30
+      },
       "state": "started"
     },
     "job::/sandbox/admin::spark-slave1": {
@@ -108,10 +116,32 @@
         "SPARK_WORKER_WEBUI_PORT": "8081"
       },
       "start": {
-        "cmd": "sh -c \"url=$(echo ${SPARK_MASTER_URI%:*}:7077); $(${SPARK_HOME}/bin/spark-class org.apache.spark.deploy.worker.Worker spark:${url#*:}) \" ",
+        "cmd": "sh -c \"${SPARK_HOME}/bin/spark-class org.apache.spark.deploy.worker.Worker spark-master.apcera.local:7077 \" ",
         "timeout" : 30
       },
       "state": "started"
+    }
+  },
+  "networks": {
+    "network::/sandbox/admin::spark-net": {
+      "jobs": [
+        {
+          "fqn": "job::/sandbox/admin::spark-master",
+          "discovery_address": "spark-master",
+          "broadcast_enable": true,
+          "multicast_addresses": [
+            "225.1.1.0/24"
+          ]
+        },
+        {
+          "fqn": "job::/sandbox/admin::spark-slave1",
+          "discovery_address": "spark-slave1",
+          "broadcast_enable": true,
+          "multicast_addresses": [
+            "225.1.1.0/24"
+          ]
+        }
+      ]
     }
   }
 }
