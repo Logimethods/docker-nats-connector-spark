@@ -1,0 +1,98 @@
+{
+  "jobs": {
+    "job::/sandbox/admin::nats-main": {
+      "docker": {
+        "image": "nats:0.9.2"
+      },
+      "exposed_ports": [ 4222, 8222, 6222 ],
+      "routes": [
+        {
+          "type": "http",
+          "endpoint": "auto",
+          "config": {
+            "/*": [ { "port": 8222 } ]
+          }
+        },
+        {
+          "type": "http",
+          "endpoint": "auto",
+          "config": {
+            "/*": [ { "port": 4222 } ]
+          }
+        }
+      ],
+      "state": "started"
+    },
+    
+    "job::/sandbox/admin::gatling": {
+      "docker": {
+        "image": "logimethods/nats-connector-spark:inject_0.2.0"
+      },
+      "links": {
+        "NATS-MAIN": {
+          "fqn": "job::/sandbox/admin::nats-main",
+          "port": 4222
+        }
+      },
+      "env": {
+        "NATS_URI": "nats://nats-main.apcera.local:4222",
+        "GATLING_TO_NATS_SUBJECT": "INPUT"
+      },
+      "start": {
+        "cmd": "/opt/gatling/bin/gatling.sh --no-reports -s com.logimethods.nats.demo.NatsInjection",
+        "timeout" : 30
+      },
+      "state": "started"
+    },
+    
+    "job::/sandbox/admin::monitor": {
+      "docker": {
+        "image": "logimethods/nats-connector-spark:monitor_0.2.0"
+      },
+      "links": {
+        "NATS-MAIN": {
+          "fqn": "job::/sandbox/admin::nats-main",
+          "port": 4222
+        }
+      },
+      "env": {
+        "NATS_URI": "nats://nats-main.apcera.local:4222"
+      },
+      "start": {
+        "cmd": "scala -cp \/app\/scala-library.jar:\/app\/scala_nats_2.10-0.1.jar:\/app\/java_nats-0.5.1.jar:\/app\/java-nats-streaming-0.1.2.jar:\/app\/jnats-0.5.3.jar:\/app\/slf4j-api-1.7.21.jar:\/app\/protobuf-java-3.0.0.jar:\/app\/guava-19.0.jar:\/app\/docker-nats-connector-spark-monitor_2.10-0.2.0-SNAPSHOT.jar com.logimethods.nats.connector.spark.monitor.NatsOutputMonitor INPUT",
+        "timeout" : 30
+      },
+      "state": "started"
+    }
+  },
+  "networks": {
+    "network::/sandbox/admin::spark-net": {
+      "jobs": [
+        {
+          "fqn": "job::/sandbox/admin::nats-main",
+          "discovery_address": "nats-main",
+          "broadcast_enable": true,
+          "multicast_addresses": [
+            "225.1.1.0/24"
+          ]
+        },
+        {
+          "fqn": "job::/sandbox/admin::gatling",
+          "discovery_address": "gatling",
+          "broadcast_enable": true,
+          "multicast_addresses": [
+            "225.1.1.0/24"
+          ]
+        },
+        {
+          "fqn": "job::/sandbox/admin::monitor",
+          "discovery_address": "monitor",
+          "broadcast_enable": true,
+          "multicast_addresses": [
+            "225.1.1.0/24"
+          ]
+        }
+      ]
+    }
+  }
+}
