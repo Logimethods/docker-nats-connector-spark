@@ -70,13 +70,13 @@
         }
       ],
       "resources": {
-          "memory": "2.2GB"
+          "memory": "1.2GB"
       },
       "env": {
         "SERVICE_NAME": "spark-slave1",
         "SPARK_CONF_DIR": "/conf",
         "SPARK_WORKER_CORES": "2",
-        "SPARK_WORKER_MEMORY": "2G",
+        "SPARK_WORKER_MEMORY": "1G",
         "SPARK_WORKER_PORT": "7881",
         "SPARK_WORKER_WEBUI_PORT": "8081"
       },
@@ -108,13 +108,13 @@
         }
       ],
       "resources": {
-          "memory": "2.2GB"
+          "memory": "1.2GB"
       },
       "env": {
         "SERVICE_NAME": "spark-slave2",
         "SPARK_CONF_DIR": "/conf",
         "SPARK_WORKER_CORES": "2",
-        "SPARK_WORKER_MEMORY": "2G",
+        "SPARK_WORKER_MEMORY": "1G",
         "SPARK_WORKER_PORT": "7882",
         "SPARK_WORKER_WEBUI_PORT": "8082"
       },
