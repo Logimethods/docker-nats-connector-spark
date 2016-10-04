@@ -11,7 +11,7 @@ name := "docker-" + rootName + "-monitor"
 organization := "logimethods"
 val tag = "monitor"
 
-version := "0.2.0-SNAPSHOT"
+version := "0.2.0"
 scalaVersion := "2.10.6"
 
 libraryDependencies += "com.github.tyagihas" % "scala_nats_2.10" % "0.1"
