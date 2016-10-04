@@ -10,10 +10,10 @@ name := "nats-connector-spark"
 organization := "logimethods"
 val tag = "inject"
 
-version := "0.2.0"
+version := "0.3.0-SNAPSHOT"
 scalaVersion := "2.11.8"
 val gatlingVersion = "2.2.2"
-val natsConnectorGatlingVersion = "0.2.0"
+val natsConnectorGatlingVersion = "0.3.0-SNAPSHOT"
 
 libraryDependencies ++= Seq("com.logimethods" %% "nats-connector-gatling" % natsConnectorGatlingVersion)
 
