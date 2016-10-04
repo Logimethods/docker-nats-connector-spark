@@ -12,6 +12,11 @@ A collection of Docker Images to illustrate the use of the [nats-connector-spark
 cd compose
 docker-compose up
 ```
+Then, to stop this application (from another terminal):
+```Shell
+cd compose
+docker-compose down
+```
 
 ## What it does...
 1) Docker-compose will instantiate and run a collection of Docker Containers defined by [docker-compose.yml](https://github.com/Logimethods/docker-nats-connector-spark/blob/master/compose/docker-compose.yml)
