@@ -6,17 +6,18 @@ import sbt.Keys.{artifactPath, libraryDependencies, mainClass, managedClasspath,
 
 logLevel := Level.Debug
 
+val rootVersion = "0.3.0"
+version := rootVersion + "-SNAPSHOT"
+scalaVersion := "2.11.8"
+val sparkVersion = "2.0.1"
+
 val rootName = "nats-connector-spark"
 name := "docker-" + rootName + "-main-app"
 organization := "logimethods"
-val tag = "app"
+val tag = "app_" + rootVersion
 
 resolvers += "Sonatype OSS Snapshots" at "https://oss.sonatype.org/content/repositories/snapshots"
 resolvers += "Sonatype OSS Release" at "https://oss.sonatype.org/content/groups/public/"
-
-version := "0.3.0-SNAPSHOT"
-scalaVersion := "2.10.6"
-val sparkVersion = "1.6.2"
 
 libraryDependencies += "org.apache.spark" %% "spark-core" % sparkVersion % "provided"
 libraryDependencies += "org.apache.spark" %% "spark-streaming" % sparkVersion
@@ -53,7 +54,7 @@ dockerfile in docker := {
   new Dockerfile {
     // Use a base image that contain Scala
 //    from("williamyeh/scala:2.10.4")
-    from("frolvlad/alpine-scala:2.10")
+    from("frolvlad/alpine-scala:2.11")
     
     // Set the log4j.properties
     run("mkdir", "-p", "/usr/local/spark/conf")
@@ -94,7 +95,7 @@ dockerFileTask := {
   val dockerFile = new Dockerfile {
     // Use a base image that contain Scala
 //    from("williamyeh/scala:2.10.4")
-    from("frolvlad/alpine-scala:2.10")
+    from("frolvlad/alpine-scala:2.11")
         
     // Set the log4j.properties
     run("mkdir", "-p", "/usr/local/spark/conf")

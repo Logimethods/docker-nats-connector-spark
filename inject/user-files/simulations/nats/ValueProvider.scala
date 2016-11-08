@@ -17,6 +17,10 @@ class ValueProvider(subject: String) extends NatsMessage {
   val maxIncr = 50
   var actualIncr = 0
   
+  def getSubject(): String = {
+    return subject
+  }
+  
   def getPayload(): Array[Byte] = {
     actualIncr = (actualIncr % (maxIncr + incr)) + incr
     // https://docs.oracle.com/javase/8/docs/api/java/nio/ByteBuffer.html

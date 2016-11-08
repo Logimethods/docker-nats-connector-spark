@@ -30,7 +30,7 @@ services:
 
   spark-master:
     container_name: spark-master
-    image: gettyimages/spark:1.6.2-hadoop-2.6
+    image: gettyimages/spark:2.0.1-hadoop-2.7
     command: spark-class org.apache.spark.deploy.master.Master -h spark-master
     hostname: spark-master
     environment:
@@ -56,7 +56,7 @@ services:
       - ./data:/usr/local/spark/data
 
   spark-slave:
-    image: gettyimages/spark:1.6.2-hadoop-2.6
+    image: gettyimages/spark:2.0.1-hadoop-2.7
     command: spark-class org.apache.spark.deploy.worker.Worker spark://spark-master:7077
     environment:
       - "SPARK_CONF_DIR: /conf"

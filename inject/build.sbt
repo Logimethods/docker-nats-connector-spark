@@ -6,14 +6,15 @@ import sbt.Keys.{artifactPath, libraryDependencies, mainClass, managedClasspath,
 
 logLevel := Level.Debug
 
-name := "nats-connector-spark"
-organization := "logimethods"
-val tag = "inject"
-
-version := "0.3.0-SNAPSHOT"
+val rootVersion = "0.3.0"
+version := rootVersion + "-SNAPSHOT"
 scalaVersion := "2.11.8"
 val gatlingVersion = "2.2.2"
 val natsConnectorGatlingVersion = "0.3.0-SNAPSHOT"
+
+name := "nats-connector-spark"
+organization := "logimethods"
+val tag = "inject_" + rootVersion
 
 libraryDependencies ++= Seq("com.logimethods" %% "nats-connector-gatling" % natsConnectorGatlingVersion)
 

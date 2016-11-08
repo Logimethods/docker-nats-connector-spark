@@ -6,13 +6,14 @@ import sbt.Keys.{artifactPath, libraryDependencies, mainClass, managedClasspath,
 
 logLevel := Level.Debug
 
+val rootVersion = "0.3.0"
+version := rootVersion + "-SNAPSHOT"
+scalaVersion := "2.11.8"
+
 val rootName = "nats-connector-spark"
 name := "docker-" + rootName + "-monitor"
 organization := "logimethods"
-val tag = "monitor"
-
-version := "0.3.0-SNAPSHOT"
-scalaVersion := "2.11.8"
+val tag = "monitor_" + rootVersion
 
 libraryDependencies += "com.github.tyagihas" % "scala_nats_2.11" 			% "0.2.1"
 libraryDependencies += "io.nats"     		 % "java-nats-streaming" 	% "0.4.1"
