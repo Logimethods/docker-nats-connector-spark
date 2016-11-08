@@ -8,6 +8,12 @@ A collection of Docker Images to illustrate the use of the [nats-connector-spark
 [![Dockerhub](http://dockeri.co/image/logimethods/nats-connector-spark)](https://hub.docker.com/r/logimethods/nats-connector-spark/)
 
 ## Usage
+
+You might have first to create the `spark` network:
+```Shell
+docker network create spark
+```
+
 ```Shell
 cd compose
 docker-compose up
