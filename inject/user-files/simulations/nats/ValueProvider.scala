@@ -8,14 +8,21 @@
 
 package com.logimethods.nats.demo
 
-class ValueProvider {
+import com.logimethods.connector.gatling.to_nats.NatsMessage
+import java.nio.ByteBuffer
+
+class ValueProvider(subject: String) extends NatsMessage {
   val incr = 10
   val basedValue = 100 -incr
   val maxIncr = 50
   var actualIncr = 0
   
-  override def toString(): String = {
+  def getPayload(): Array[Byte] = {
     actualIncr = (actualIncr % (maxIncr + incr)) + incr
-    (basedValue + actualIncr).toString()
+    // https://docs.oracle.com/javase/8/docs/api/java/nio/ByteBuffer.html
+    val buffer = ByteBuffer.allocate(4);
+    buffer.putFloat((basedValue + actualIncr))
+    
+    return buffer.array()
   }
 }

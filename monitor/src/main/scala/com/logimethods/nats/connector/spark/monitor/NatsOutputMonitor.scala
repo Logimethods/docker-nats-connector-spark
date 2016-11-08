@@ -10,6 +10,7 @@ package com.logimethods.nats.connector.spark.monitor
 
 import java.util.Properties
 import org.nats._
+import java.nio.ByteBuffer;
 
 // @see https://github.com/tyagihas/scala_nats
 object NatsOutputMonitor extends App {
@@ -50,8 +51,9 @@ object NatsOutputMonitor extends App {
         }
       })          
     } else { // REGULAR mode
-      conn.subscribe(inputSubject, (msg: Msg) => {
-        println("Received message: " + msg.body)
+      conn.subscribe(inputSubject, (msg: MsgB) => {
+    	val f = ByteBuffer.wrap(msg.body)  
+        println(s"Received message: ${f.getFloat()}")
       })    
     }
   }
