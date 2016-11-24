@@ -7,7 +7,7 @@ import sbt.Keys.{artifactPath, libraryDependencies, mainClass, managedClasspath,
 logLevel := Level.Debug
 
 val rootVersion = "0.3.0"
-version := rootVersion + "-SNAPSHOT"
+version := rootVersion // + "-SNAPSHOT"
 scalaVersion := "2.11.8"
 
 val rootName = "nats-connector-spark"
