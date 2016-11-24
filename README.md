@@ -42,8 +42,11 @@ Those Docker Images are pushed to [dockerhub:logimethods/nats-connector-spark](h
 ![build.png](build.png "Global Build")
 
 ## Release Notes
-### Version 0.1.0
-* Spark is based on version 1.5.2 so to be able to use docker-compose without hostname constrains.
+### Version 0.3.0
+* Makes use of `NATS/Spark Connectors` at version `0.3.0`
+* Based on `Spark` version `2.0.1`
+* Based on `Scala` version `2.11.8`
+* The NATS payload are now Floats encoded as `byte[]` (instead of `String`)
 
 ### Version 0.2.0
 * To be able to use Spark version 1.6.2, docker-compose containers need to belong to an external network (which enforce a hostname without underscore). See [Switch to using hyphens as a separator in hostnames](https://github.com/docker/compose/issues/229):
@@ -58,6 +61,9 @@ networks:
     external:
       name: spark
 ```
+
+### Version 0.1.0
+* Spark is based on version 1.5.2 so to be able to use docker-compose without hostname constrains.
 
 ## Links
 * [nats-connector-gatling on Github](https://github.com/Logimethods/nats-connector-gatling)
