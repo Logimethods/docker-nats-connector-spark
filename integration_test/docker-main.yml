@@ -1,15 +1,11 @@
-version: '2'
+version: '3'
 
 services:
   spark-master:
-    extends:
-      file: common-services.yml
-      service: spark-master
+    <<: *spark-master
 
   spark-slave1:
-    extends:
-      file: common-services.yml
-      service: spark-slave
+    <<: *spark-slave
     container_name: spark-slave1
     hostname: spark-slave1
     environment:
@@ -19,9 +15,7 @@ services:
       - 8082:8081
 
   spark-slave2:
-    extends:
-      file: common-services.yml
-      service: spark-slave
+    <<: *spark-slave
     container_name: spark-slave2
     hostname: spark-slave2
     environment:
@@ -31,26 +25,19 @@ services:
       - 8083:8081
 
   nats-main:
-    extends:
-      file: common-services.yml
-      service: nats
+    <<: *nats
     container_name: nats-main
     hostname: nats-main
 
   gatling:
-    extends:
-      file: common-services.yml
-      service: gatling
+    <<: *gatling
     links:
       - nats-main
     environment:
       - NATS_URI=nats://nats-main:4222
-    command: --no-reports -s com.logimethods.nats.demo.NatsInjection
 
   app:
-    extends:
-      file: common-services.yml
-      service: app
+    <<: *app
     container_name: main-app
     hostname: main-app
     links:
@@ -58,17 +45,13 @@ services:
       - spark-master
     environment:
       - NATS_URI=nats://nats-main:4222
-      - SPARK_MASTER_URL=local[*]
-      #spark://spark-master:7077
+      - SPARK_MASTER_URL=spark://spark-master:7077
 
-  monitor:
-    extends:
-      file: common-services.yml
-      service: monitor
+  sut:
+    <<: *monitor
     links:
       - nats-main
-    environment:
-      - NATS_URI=nats://nats-main:4222
+    command: "OUTPUT 150"
 
 # See https://github.com/docker/compose/issues/229
 networks:

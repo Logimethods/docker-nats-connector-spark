@@ -1,0 +1,142 @@
+version: '3'
+
+services:
+
+  gatling: &gatling
+    image: logimethods/nats-connector-spark:inject_0.4.0
+    environment:
+      - GATLING_TO_NATS_SUBJECT=INPUT
+
+  nats: &nats
+    image: nats
+    ports:
+      - 4222:4222
+      - 8222:8222
+      - 6222:6222
+
+  nats-streaming: &nats-streaming
+    image: logimethods/stan
+    ports:
+      - 4222:4222
+      - 8222:8222
+      - 6222:6222
+
+  app: &app
+    image: logimethods/nats-connector-spark:app_0.4.0
+    command: "INPUT OUTPUT"
+
+  monitor: &monitor
+    image: logimethods/nats-connector-spark:monitor_0.4.0
+    command: "OUTPUT"
+
+  spark-master: &spark-master
+#    container_name: spark-master
+    image: gettyimages/spark:2.0.1-hadoop-2.7
+    command: spark-class org.apache.spark.deploy.master.Master -h spark-master
+    hostname: spark-master
+    environment:
+      - "SERVICE_NAME=spark-master"
+#      - "constraint:node==swarm-master"
+      - "SPARK_CONF_DIR: /conf"
+#    expose:
+#      - 7001
+#      - 7002
+#      - 7003
+#      - 7004
+#      - 7005
+#      - 7006
+#      - 7077
+#      - 6066
+    ports:
+      - 4040:4040
+      - 6066:6066
+      - 7077:7077
+      - 8080:8080
+    volumes:
+      - ./conf/master:/conf
+      - ./data:/usr/local/spark/data
+
+  spark-slave: &spark-slave
+    image: gettyimages/spark:2.0.1-hadoop-2.7
+    command: spark-class org.apache.spark.deploy.worker.Worker spark://spark-master:7077
+    environment:
+      - "SPARK_CONF_DIR: /conf"
+      - "SPARK_WORKER_CORES: 2"
+      - "SPARK_WORKER_MEMORY: 2g"
+      - "SPARK_WORKER_PORT: 8881"
+      - "SPARK_WORKER_WEBUI_PORT: 8081"
+#    expose:
+#      - 7012
+#      - 7013
+#      - 7014
+#      - 7015
+#      - 7016
+#      - 8081
+#    ports:
+#      - 8081:8081
+    volumes:
+      - ./conf/slave:/conf
+      - ./data:/usr/local/spark/data
+
+  spark-shell: &spark-shell
+    image: logimethods/nats-connector-spark:shell_0.4.0
+
+
+
+  spark-master:
+    <<: *spark-master
+
+  spark-slave1:
+    <<: *spark-slave
+#    container_name: spark-slave1
+    hostname: spark-slave1
+    environment:
+#      - "constraint:node==swarm-node-1"
+      - "SERVICE_NAME=spark-slave1"
+    ports:
+      - 8082:8081
+
+  spark-slave2:
+    <<: *spark-slave
+#    container_name: spark-slave2
+    hostname: spark-slave2
+    environment:
+#      - "constraint:node==swarm-node-2"
+      - "SERVICE_NAME=spark-slave2"
+    ports:
+      - 8083:8081
+
+  nats-main:
+    <<: *nats
+#    container_name: nats-main
+    hostname: nats-main
+
+  gatling:
+    <<: *gatling
+#    links:
+#      - nats-main
+    environment:
+      - NATS_URI=nats://nats-main:4222
+
+  app:
+    <<: *app
+#    container_name: main-app
+    hostname: main-app
+#    links:
+#      - nats-main
+#      - spark-master
+    environment:
+      - NATS_URI=nats://nats-main:4222
+      - SPARK_MASTER_URL=spark://spark-master:7077
+
+  sut:
+    <<: *monitor
+#    links:
+#      - nats-main
+    command: "OUTPUT 150"
+
+# See https://github.com/docker/compose/issues/229
+networks:
+  default:
+    external:
+      name: spark

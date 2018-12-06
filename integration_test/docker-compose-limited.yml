@@ -1,0 +1,31 @@
+version: '3'
+
+services:
+
+  !!null spark-slave: &spark-slave
+    image: gettyimages/spark:2.0.1-hadoop-2.7
+    command: spark-class org.apache.spark.deploy.worker.Worker spark://spark-master:7077
+    environment:
+      - "SPARK_CONF_DIR: /conf"
+      - "SPARK_WORKER_CORES: 2"
+      - "SPARK_WORKER_MEMORY: 2g"
+      - "SPARK_WORKER_PORT: 8881"
+      - "SPARK_WORKER_WEBUI_PORT: 8081"
+  #    expose:
+  #      - 7012
+  #      - 7013
+  #      - 7014
+  #      - 7015
+  #      - 7016
+  #      - 8081
+  #    ports:
+  #      - 8081:8081
+    volumes:
+      - ./conf/slave:/conf
+      - ./data:/usr/local/spark/data
+
+# See https://github.com/docker/compose/issues/229
+networks:
+  default:
+    external:
+      name: spark

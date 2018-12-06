@@ -1,0 +1,7 @@
+version: '3'
+
+services:
+  image: &image
+    image: "redis:alpine"
+  redis:
+    <<: *image

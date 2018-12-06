@@ -1,34 +1,34 @@
-version: '2'
+version: '3'
 
 services:
-  gatling: 
+  gatling: &gatling
     image: logimethods/nats-connector-spark:inject_0.4.0
     environment:
       - GATLING_TO_NATS_SUBJECT=INPUT
-      
-  nats:
+
+  nats: &nats
     image: nats
     ports:
       - 4222:4222
       - 8222:8222
       - 6222:6222
-      
-  nats-streaming:
+
+  nats-streaming: &nats-streaming
     image: logimethods/stan
     ports:
       - 4222:4222
       - 8222:8222
       - 6222:6222
-      
-  app: 
+
+  app: &app
     image: logimethods/nats-connector-spark:app_0.4.0
     command: "INPUT OUTPUT"
-      
-  monitor: 
+
+  monitor: &monitor
     image: logimethods/nats-connector-spark:monitor_0.4.0
     command: "OUTPUT"
 
-  spark-master:
+  spark-master: &spark-master
     container_name: spark-master
     image: gettyimages/spark:2.0.1-hadoop-2.7
     command: spark-class org.apache.spark.deploy.master.Master -h spark-master
@@ -55,7 +55,7 @@ services:
       - ./conf/master:/conf
       - ./data:/usr/local/spark/data
 
-  spark-slave:
+  spark-slave: &spark-slave
     image: gettyimages/spark:2.0.1-hadoop-2.7
     command: spark-class org.apache.spark.deploy.worker.Worker spark://spark-master:7077
     environment:
@@ -77,5 +77,5 @@ services:
       - ./conf/slave:/conf
       - ./data:/usr/local/spark/data
 
-  spark-shell:
+  spark-shell: &spark-shell
     image: logimethods/nats-connector-spark:shell_0.4.0
