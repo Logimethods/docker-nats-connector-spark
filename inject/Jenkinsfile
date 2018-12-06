@@ -1,0 +1,31 @@
+// Jenkinsfile for Inject
+pipeline {
+  agent {
+    kubernetes {
+      cloud "openshift"
+      label 'scala-sbt'
+      inheritFrom "sbt"
+      containerTemplate {
+        name 'scala-sbt'
+        image "hseeberger/scala-sbt"
+        resourceRequestMemory '1Gi'
+        resourceLimitMemory '2Gi'
+      }
+    }
+  }
+  options { retry(3) }
+  stages {
+    stage('INJECT Build') {
+      steps {
+        container('scala-sbt') {
+          dir('inject') {
+            sh "sbt clean assembly dockerFileTask"
+            sh "rm -R ./docker"
+            sh "mv target/docker ."
+            sh "ls -als"
+          }
+        }
+      }
+    }
+  }
+}

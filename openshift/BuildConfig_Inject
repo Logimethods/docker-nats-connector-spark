@@ -1,0 +1,12 @@
+kind: "BuildConfig"
+apiVersion: "v1"
+metadata:
+  name: "inject-pipeline"
+spec:
+  source:
+    git:
+      uri: "https://github.com/Logimethods/docker-nats-connector-spark"
+      ref: "vertsion_1.0.0"
+  strategy:
+    jenkinsPipelineStrategy:
+      jenkinsfilePath: inject/Jenkinsfile
