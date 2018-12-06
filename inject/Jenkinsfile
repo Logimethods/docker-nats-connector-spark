@@ -1,16 +1,8 @@
 // Jenkinsfile for Inject
 pipeline {
   agent {
-    kubernetes {
-      cloud "openshift"
-      label 'scala-sbt'
-      inheritFrom "sbt"
-      containerTemplate {
-        name 'scala-sbt'
-        image "hseeberger/scala-sbt"
-        resourceRequestMemory '1Gi'
-        resourceLimitMemory '2Gi'
-      }
+    docker {
+        image 'hseeberger/scala-sbt'
     }
   }
   options { retry(3) }

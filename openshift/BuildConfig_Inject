@@ -6,7 +6,7 @@ spec:
   source:
     git:
       uri: "https://github.com/Logimethods/docker-nats-connector-spark"
-      ref: "vertsion_1.0.0"
+      ref: "version_1.0.0"
   strategy:
     jenkinsPipelineStrategy:
       jenkinsfilePath: inject/Jenkinsfile
