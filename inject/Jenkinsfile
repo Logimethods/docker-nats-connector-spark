@@ -2,6 +2,8 @@
 pipeline {
   agent {
     kubernetes {
+      cloud "openshift"
+      label 'scala-sbt'
       containerTemplate {
         name 'scala-sbt'
         image "hseeberger/scala-sbt"
