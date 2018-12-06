@@ -3,8 +3,9 @@ pipeline {
   agent {
     kubernetes {
       cloud "openshift"
+      label 'scala-sbt'
       containerTemplate {
-        name 'scala-sbt'
+        name 'jnlp'
         image "hseeberger/scala-sbt"
         resourceRequestMemory '1Gi'
         resourceLimitMemory '2Gi'
@@ -15,7 +16,7 @@ pipeline {
   stages {
     stage('INJECT Build') {
       steps {
-        container('scala-sbt') {
+        container('jnlp') {
           dir('inject') {
             sh "sbt clean assembly dockerFileTask"
             sh "rm -R ./docker"
