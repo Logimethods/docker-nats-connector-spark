@@ -3,6 +3,8 @@ pipeline {
   agent {
     kubernetes {
       cloud "openshift"
+      label 'skopeo-pod'
+      inheritFrom "maven"
       containerTemplate {
         name 'jnlp'
         image "hseeberger/scala-sbt"
