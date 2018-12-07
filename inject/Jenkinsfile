@@ -8,6 +8,7 @@ pipeline {
       containerTemplate {
         name 'jnlp'
         image "hseeberger/scala-sbt"
+        command ''
         resourceRequestMemory '1Gi'
         resourceLimitMemory '2Gi'
       }
