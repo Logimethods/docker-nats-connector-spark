@@ -8,7 +8,7 @@ pipeline {
         name 'sbt'
         image "hseeberger/scala-sbt"
         command 'cat'
-        ttyEnabled: true
+        ttyEnabled: 'true'
       }
     }
   }
