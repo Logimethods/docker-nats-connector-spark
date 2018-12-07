@@ -1,28 +1,24 @@
 // Jenkinsfile for Inject
+// @See https://issues.jenkins-ci.org/browse/JENKINS-48421
 pipeline {
-  agent {
-    kubernetes {
-      cloud "openshift"
-      label 'jenkins-pod'
-      containerTemplate {
+  pod {
+    containers {
+      container {
         name 'sbt'
-        image "hseeberger/scala-sbt"
-        command 'cat'
-        ttyEnabled true
+        image 'hseeberger/scala-sbt'
       }
     }
   }
+  agent none
   stages {
     stage('INJECT Build') {
-      steps {
-        container('sbt') {
-          dir('inject') {
-//            sh "sbt clean assembly dockerFileTask"
-//            sh "rm -R ./docker"
-//            sh "mv target/docker ."
-            sh "ls -als"
-          }
+      agent {
+        container {
+          name 'sbt'
         }
+      }
+      steps {
+        sh 'sbt version'
       }
     }
   }
