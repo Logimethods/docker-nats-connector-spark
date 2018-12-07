@@ -3,7 +3,7 @@
 
 def label = "jenkins-pod"
 podTemplate(label: label, cloud: "openshift", containers: [
-  containerTemplate(name: 'sbt', image: 'lhseeberger/scala-sbt', command: 'cat', ttyEnabled: true)
+  containerTemplate(name: 'sbt', image: 'hseeberger/scala-sbt', command: 'cat', ttyEnabled: true)
 ]) {
   node(label) {
     stage('Build') {
