@@ -2,7 +2,7 @@
 // @See https://akomljen.com/set-up-a-jenkins-ci-cd-pipeline-with-kubernetes/
 
 def label = "jenkins-pod"
-podTemplate(label: label, containers: [
+podTemplate(label: label, cloud: "openshift", containers: [
   containerTemplate(name: 'sbt', image: 'lhseeberger/scala-sbt', command: 'cat', ttyEnabled: true)
 ]) {
   node(label) {
