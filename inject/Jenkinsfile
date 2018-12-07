@@ -3,14 +3,9 @@ pipeline {
   agent {
     kubernetes {
       cloud "openshift"
-      label 'skopeo-pod'
-      inheritFrom "maven"
       containerTemplate {
         name 'jnlp'
         image "hseeberger/scala-sbt"
-        command ''
-        resourceRequestMemory '1Gi'
-        resourceLimitMemory '2Gi'
       }
     }
   }
