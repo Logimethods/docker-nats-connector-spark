@@ -3,9 +3,12 @@ pipeline {
   agent {
     kubernetes {
       cloud "openshift"
+      label 'jenkins-pod'
       containerTemplate {
-        name 'jnlp'
+        name 'sbt'
         image "hseeberger/scala-sbt"
+        command 'cat'
+        ttyEnabled: true
       }
     }
   }
@@ -13,7 +16,7 @@ pipeline {
   stages {
     stage('INJECT Build') {
       steps {
-        container('jnlp') {
+        container('sbt') {
           dir('inject') {
             sh "sbt clean assembly dockerFileTask"
             sh "rm -R ./docker"
