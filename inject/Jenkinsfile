@@ -12,15 +12,14 @@ pipeline {
       }
     }
   }
-  options { retry(3) }
   stages {
     stage('INJECT Build') {
       steps {
         container('sbt') {
           dir('inject') {
-            sh "sbt clean assembly dockerFileTask"
-            sh "rm -R ./docker"
-            sh "mv target/docker ."
+//            sh "sbt clean assembly dockerFileTask"
+//            sh "rm -R ./docker"
+//            sh "mv target/docker ."
             sh "ls -als"
           }
         }
