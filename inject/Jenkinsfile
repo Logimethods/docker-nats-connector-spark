@@ -1,7 +1,7 @@
 // Jenkinsfile for Inject
 // @See https://issues.jenkins-ci.org/browse/JENKINS-48421
 pipeline {
-  pod {
+  kubernetes {
     containers {
       container {
         name 'sbt'
