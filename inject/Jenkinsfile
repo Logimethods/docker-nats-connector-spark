@@ -1,24 +1,14 @@
 // Jenkinsfile for Inject
-// @See https://issues.jenkins-ci.org/browse/JENKINS-48421
-pipeline {
-  kubernetes {
-    containers {
-      container {
-        name 'sbt'
-        image 'hseeberger/scala-sbt'
-      }
-    }
-  }
-  agent none
-  stages {
-    stage('INJECT Build') {
-      agent {
-        container {
-          name 'sbt'
-        }
-      }
-      steps {
-        sh 'sbt version'
+// @See https://akomljen.com/set-up-a-jenkins-ci-cd-pipeline-with-kubernetes/
+
+def label = "jenkins-pod"
+podTemplate(label: label, containers: [
+  containerTemplate(name: 'sbt', image: 'lhseeberger/scala-sbt', command: 'cat', ttyEnabled: true)
+]) {
+  node(label) {
+    stage('Build') {
+      container('gradle') {
+        sh "sbt version"
       }
     }
   }
