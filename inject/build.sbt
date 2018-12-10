@@ -54,6 +54,9 @@ dockerFileTask := {
   val artifactTargetPath = s"/app/${artifact.name}"
 
   val classpath = (managedClasspath in Compile).value
+  
+  // https://stackoverflow.com/questions/22554612/dependson-to-instruct-sbt-to-package-dependent-projects-in-multi-project-build
+  exportJars := true
 
   val dockerFile = new Dockerfile {
     // Use a base image that contain Gatling
@@ -74,4 +77,4 @@ dockerFileTask := {
   }
 }
 
-dockerFileTask <<= dockerFileTask.dependsOn(compile in Compile, dockerfile in docker)
+// dockerFileTask <<= dockerFileTask.dependsOn(compile in Compile, dockerfile in docker)
