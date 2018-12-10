@@ -8,7 +8,7 @@ podTemplate(label: label, cloud: "openshift", containers: [
   node(label) {
     stage('Build') {
       container('jnlp') {
-        dir('Nationalparks') {
+        dir('inject') {
           sh "sbt clean assembly dockerFileTask"
         }
       }
