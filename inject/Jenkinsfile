@@ -3,7 +3,7 @@
 
 def label = "jenkins-pod"
 podTemplate(label: label, cloud: "openshift", containers: [
-  containerTemplate(name: 'jnlp', image: 'logimethods/jenkins-slave-sbt')
+  containerTemplate(name: 'jnlp', image: 'logimethods/jenkins-slave-sbt:1.2.7')
 ]) {
   node(label) {
     stage('Build') {
