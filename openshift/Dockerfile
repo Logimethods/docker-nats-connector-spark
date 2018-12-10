@@ -2,7 +2,7 @@ FROM openshift/jenkins-slave-maven-centos7
 
 ## https://github.com/dsanchor/openshift-jenkins-slave-sbt/blob/master/centos/Dockerfile
 
-ENV SBT_VERSION 0.13.15
+ENV SBT_VERSION 1.2.7
 
 USER root
 
