@@ -1,14 +1,16 @@
 // Jenkinsfile for Inject
 // @See https://akomljen.com/set-up-a-jenkins-ci-cd-pipeline-with-kubernetes/
 
-def label = "jenkins-pod6"
+def label = "jenkins-pod"
 podTemplate(label: label, cloud: "openshift", containers: [
   containerTemplate(name: 'jnlp', image: 'logimethods/jenkins-slave-sbt')
 ]) {
   node(label) {
     stage('Build') {
       container('jnlp') {
-        sh "sbt version"
+        dir('Nationalparks') {
+          sh "sbt clean assembly dockerFileTask"
+        }
       }
     }
   }
