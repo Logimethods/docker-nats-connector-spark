@@ -1,18 +1,31 @@
 // Jenkinsfile for Inject
 // @See https://akomljen.com/set-up-a-jenkins-ci-cd-pipeline-with-kubernetes/
 
-def label = "jenkins-pod"
-podTemplate(label: label, cloud: "openshift", containers: [
-  containerTemplate(name: 'jnlp', image: 'logimethods/jenkins-slave-sbt:1.2.7')
-]) {
-  node(label) {
-    stage('Build') {
-      container('jnlp') {
-        sh "ls -als"
-        sh "pwd"
-        dir('inject') {
+pipeline {
+  agent {
+    kubernetes {
+      cloud "openshift"
+      label 'jenkins-pod'
+//      inheritFrom "maven"
+      containerTemplate {
+        name 'jnlp'
+        image "logimethods/jenkins-slave-sbt:1.2.7"
+//        resourceRequestMemory '1Gi'
+//        resourceLimitMemory '2Gi'
+      }
+    }
+  }
+//  options { retry(3) }
+  stages {
+    stage('SBT Build') {
+      steps {
+        container('jnlp') {
           sh "ls -als"
-          sh "sbt clean assembly dockerFileTask"
+          sh "pwd"
+          dir('inject') {
+            sh "ls -als"
+            sh "sbt clean assembly dockerFileTask"
+          }
         }
       }
     }
