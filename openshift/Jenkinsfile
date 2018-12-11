@@ -48,18 +48,54 @@ pipeline {
         }
       }
     }
-    stage('Build and Tag Inject Image') {
-      steps {
-        container('jnlp') {
-          dir('inject/target/docker') {
-            echo "Building OpenShift container image"
-            sh "ls -als"
-            // Start Binary Build in OpenShift using the file we just published
-            // The filename is parksmap.jar in the 'target' directory of your current
-            // Jenkins workspace
-            sh "oc start-build nats-connector-inject --from-dir . --follow"
-            // Tag the image using the devTag
-            // openshiftTag alias: 'false', destStream: 'parksmap', destTag: "${devTag}", destinationNamespace: "${GUID}-parks-dev", namespace: "${GUID}-parks-dev", srcStream: 'parksmap', srcTag: 'latest', verbose: 'false'
+    stage('Build and Tag Images') {
+      parallel {
+        stage('Build and Tag Inject Image') {
+          steps {
+            container('jnlp') {
+              dir('inject/target/docker') {
+                echo "Building OpenShift container image"
+                sh "ls -als"
+                // Start Binary Build in OpenShift using the file we just published
+                // The filename is parksmap.jar in the 'target' directory of your current
+                // Jenkins workspace
+                sh "oc start-build nats-connector-inject --from-dir . --follow"
+                // Tag the image using the devTag
+                // openshiftTag alias: 'false', destStream: 'parksmap', destTag: "${devTag}", destinationNamespace: "${GUID}-parks-dev", namespace: "${GUID}-parks-dev", srcStream: 'parksmap', srcTag: 'latest', verbose: 'false'
+              }
+            }
+          }
+        }
+        stage('Build and Tag App Image') {
+          steps {
+            container('jnlp') {
+              dir('app/target/docker') {
+                echo "Building OpenShift container image"
+                sh "ls -als"
+                // Start Binary Build in OpenShift using the file we just published
+                // The filename is parksmap.jar in the 'target' directory of your current
+                // Jenkins workspace
+                sh "oc start-build nats-connector-app --from-dir . --follow"
+                // Tag the image using the devTag
+                // openshiftTag alias: 'false', destStream: 'parksmap', destTag: "${devTag}", destinationNamespace: "${GUID}-parks-dev", namespace: "${GUID}-parks-dev", srcStream: 'parksmap', srcTag: 'latest', verbose: 'false'
+              }
+            }
+          }
+        }
+        stage('Build and Tag Monitor Image') {
+          steps {
+            container('jnlp') {
+              dir('monitor/target/docker') {
+                echo "Building OpenShift container image"
+                sh "ls -als"
+                // Start Binary Build in OpenShift using the file we just published
+                // The filename is parksmap.jar in the 'target' directory of your current
+                // Jenkins workspace
+                sh "oc start-build nats-connector-monitor --from-dir . --follow"
+                // Tag the image using the devTag
+                // openshiftTag alias: 'false', destStream: 'parksmap', destTag: "${devTag}", destinationNamespace: "${GUID}-parks-dev", namespace: "${GUID}-parks-dev", srcStream: 'parksmap', srcTag: 'latest', verbose: 'false'
+              }
+            }
           }
         }
       }

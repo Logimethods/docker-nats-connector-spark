@@ -18,5 +18,7 @@ https://docs.openshift.com/container-platform/3.11/dev_guide/dev_tutorials/binar
 oc create -f openshift/BuildConfig
 
 oc new-build --strategy docker --binary --name nats-connector-inject
+oc new-build --strategy docker --binary --name nats-connector-app
+oc new-build --strategy docker --binary --name nats-connector-monitor
 
 oc policy add-role-to-user admin system:serviceaccount:test-build2:default
