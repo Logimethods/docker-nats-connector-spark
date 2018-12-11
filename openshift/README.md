@@ -17,4 +17,4 @@ https://docs.openshift.com/container-platform/3.11/dev_guide/dev_tutorials/binar
 
 oc new-build --strategy docker --binary --name nats-connector-inject
 
- --docker-image centos:centos7
+oc policy add-role-to-user admin system:serviceaccount:test-build2:default
