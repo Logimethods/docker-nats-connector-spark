@@ -40,7 +40,7 @@ dockerfile in docker := {
   new Dockerfile {
     // Use a base image that contain Scala
 	from("frolvlad/alpine-scala:2.11")
-	
+
     // Add all files on the classpath
     add(classpath.files, "/app/")
     // Add the JAR file
@@ -71,7 +71,7 @@ dockerFileTask := {
   val dockerFile = new Dockerfile {
     // Use a base image that contain Scala
 	from("frolvlad/alpine-scala:2.11")
-	
+
     // Add all files on the classpath
     add(classpath.files, "/app/")
     // Add the JAR file
@@ -87,5 +87,3 @@ dockerFileTask := {
       source.stage(destination)
   }
 }
-
-dockerFileTask <<= dockerFileTask.dependsOn(compile in Compile, dockerfile in docker)
