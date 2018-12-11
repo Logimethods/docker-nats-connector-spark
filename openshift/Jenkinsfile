@@ -17,30 +17,32 @@ pipeline {
   }
 //  options { retry(3) }
   stages {
-    parallel {
-      stage('SBT Inject Build') {
-        steps {
-          container('jnlp') {
-            dir('inject') {
-              sh "sbt clean assembly dockerFileTask"
+    stage('SBT Build') {
+      parallel {
+        stage('SBT Inject Build') {
+          steps {
+            container('jnlp') {
+              dir('inject') {
+                sh "sbt clean assembly dockerFileTask"
+              }
             }
           }
         }
-      }
-      stage('SBT App Build') {
-        steps {
-          container('jnlp') {
-            dir('app') {
-              sh "sbt clean assembly dockerFileTask"
+        stage('SBT App Build') {
+          steps {
+            container('jnlp') {
+              dir('app') {
+                sh "sbt clean assembly dockerFileTask"
+              }
             }
           }
         }
-      }
-      stage('SBT Monitor Build') {
-        steps {
-          container('jnlp') {
-            dir('monitor') {
-              sh "sbt clean assembly dockerFileTask"
+        stage('SBT Monitor Build') {
+          steps {
+            container('jnlp') {
+              dir('monitor') {
+                sh "sbt clean assembly dockerFileTask"
+              }
             }
           }
         }
