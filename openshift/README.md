@@ -13,3 +13,8 @@ wrapper script does not seem to be touching the log file in /home/jenkins/worksp
 + exec java -XX:+UseParallelGC -XX:MinHeapFreeRatio=5 -XX:MaxHeapFreeRatio=10 -XX:GCTimeRatio=4 -XX:AdaptiveSizePolicyWeight=90 -Xmx256m -Dfile.encoding=UTF8 -Djavamelody.displayed-counters=log,error -Duser.home=/var/lib/jenkins -Djavamelody.application-name=JENKINS -Dorg.jenkinsci.plugins.durabletask.BourneShellScript.HEARTBEAT_CHECK_INTERVAL=300 -jar /usr/lib/jenkins/jenkins.war
 ```
 
+https://docs.openshift.com/container-platform/3.11/dev_guide/dev_tutorials/binary_builds.html
+
+oc new-build --strategy docker --binary --name nats-connector-inject
+
+ --docker-image centos:centos7
