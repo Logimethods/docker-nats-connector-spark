@@ -20,8 +20,6 @@ pipeline {
     stage('SBT Build') {
       steps {
         container('jnlp') {
-          sh "ls -als"
-          sh "pwd"
           dir('inject') {
             sh "ls -als"
             sh "sbt clean assembly dockerFileTask"
