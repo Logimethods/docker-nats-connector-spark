@@ -15,6 +15,8 @@ wrapper script does not seem to be touching the log file in /home/jenkins/worksp
 
 https://docs.openshift.com/container-platform/3.11/dev_guide/dev_tutorials/binary_builds.html
 
+oc create -f openshift/BuildConfig
+
 oc new-build --strategy docker --binary --name nats-connector-inject
 
 oc policy add-role-to-user admin system:serviceaccount:test-build2:default

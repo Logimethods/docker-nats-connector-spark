@@ -1,7 +1,7 @@
 kind: "BuildConfig"
 apiVersion: "v1"
 metadata:
-  name: "inject-pipeline"
+  name: "docker-nats-connector-spark-pipeline"
 spec:
   source:
     git:
@@ -9,4 +9,4 @@ spec:
       ref: "version_1.0.0"
   strategy:
     jenkinsPipelineStrategy:
-      jenkinsfilePath: inject/Jenkinsfile
+      jenkinsfilePath: openshift/Jenkinsfile
