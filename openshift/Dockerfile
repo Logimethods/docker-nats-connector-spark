@@ -5,7 +5,7 @@ FROM openshift/jenkins-slave-base-centos7:v3.11
 ## https://github.com/openshift/jenkins/blob/master/agent-maven-3.5/Dockerfile
 
 # ENV SBT_VERSION 1.2.7
-ENV PATH=$PATH:/usr/lib/jvm/java-1.8.0-openjdk-1.8.0.181-3.b13.el7_5.x86_64/jre/bin/
+ENV PATH=$PATH:/usr/lib/jvm/jre/bin/
 
 # Install Scala
 ## Piping curl directly in tar
