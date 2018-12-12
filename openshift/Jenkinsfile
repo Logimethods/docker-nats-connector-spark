@@ -9,7 +9,7 @@ pipeline {
 //      inheritFrom "maven"
       containerTemplate {
         name 'jnlp'
-        image "logimethods/jenkins-slave-sbt:1.2.7"
+        image "logimethods/jenkins-slave-maven-sbt:latest"
 //        resourceRequestMemory '1Gi'
 //        resourceLimitMemory '2Gi'
       }
