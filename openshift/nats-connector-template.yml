@@ -1,0 +1,46 @@
+kind: Template
+apiVersion: v1
+template: nats-connector
+metadata:
+  name: nats-connector
+labels:
+  app: natsconnector
+objects:
+
+- kind: DeploymentConfig
+  apiVersion: v1
+  metadata:
+    name: inject
+  spec:
+    replicas: 2
+    selector:
+      name: inject
+    template:
+      metadata:
+        labels:
+          name: inject
+      spec:
+        containers:
+          - name: inject
+            image: ${INJECT_IMAGE}
+            command: [ "/bin/bash", "-c", "--" ]
+            args: [ "while true; do sleep 30; done;" ]
+            env:
+              - name: GATLING_TO_NATS_SUBJECT
+                value: INPUT
+              - name: NATS_URI
+                value: ${NATS_URI}
+#            args:
+#              - '--no-reports'
+#              - '-s'
+#              - 'com.logimethods.nats.demo.NatsInjection'
+
+parameters:
+- name: INJECT_IMAGE
+  description: Inject Docker Image
+  value: docker-registry.default.svc:5000/test-build2/nats-connector-inject:latest
+  required: true
+- name: NATS_URI
+  description: master name used as a service name and a selector
+  value: nats://nats-streaming-server:4222
+  required: true
