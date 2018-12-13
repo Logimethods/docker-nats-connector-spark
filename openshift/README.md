@@ -22,3 +22,29 @@ oc new-build --strategy docker --binary --name nats-connector-app
 oc new-build --strategy docker --binary --name nats-connector-monitor
 
 oc policy add-role-to-user admin system:serviceaccount:test-build2:default
+
+
+------ SPARK Cluster
+
+https://radanalytics.io/howdoi/install-radanalyticsio
+https://github.com/radanalyticsio/openshift-spark
+
+oc create -f https://radanalytics.io/resources.yaml
+
+-------- NATS
+
+https://github.com/nats-io/nats-operator
+
+https://medium.com/@xcoulon/fixing-a-crashed-container-on-openshift-8482a4a84bfe
+
+oc apply -f openshift/nats-streaming-deployment.yaml
+
+---------- NATS CONNECTOR
+
+oc apply -f openshift/nats-connector-template.yml
+
+
+RUN chown -R 1001:0 /opt/gatling && \
+    chmod -R g+rw /opt/gatling
+
+USER 1001
