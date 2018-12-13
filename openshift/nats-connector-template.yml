@@ -23,17 +23,17 @@ objects:
         containers:
           - name: inject
             image: ${INJECT_IMAGE}
-            command: [ "/bin/bash", "-c", "--" ]
-            args: [ "while true; do sleep 30; done;" ]
+            args:
+              - '--no-reports'
+              - '-s'
+              - 'com.logimethods.nats.demo.NatsInjection'
             env:
               - name: GATLING_TO_NATS_SUBJECT
                 value: INPUT
               - name: NATS_URI
                 value: ${NATS_URI}
-#            args:
-#              - '--no-reports'
-#              - '-s'
-#              - 'com.logimethods.nats.demo.NatsInjection'
+#            command: [ "/bin/bash", "-c", "--" ]
+#            args: [ "while true; do sleep 30; done;" ]
 
 parameters:
 - name: INJECT_IMAGE
