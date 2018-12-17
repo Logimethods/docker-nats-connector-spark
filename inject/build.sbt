@@ -37,8 +37,8 @@ dockerfile in docker := {
     // Add all files on the classpath
     add(classpath.files, "./lib/")
     // Add Gatling User Files
-    add(baseDirectory.value / "user-files", "./user-files")
-    
+///    add(baseDirectory.value / "user-files", "./user-files")
+
 //    cmd("--no-reports", "-s", "com.logimethods.nats.demo.NatsInjection")
   }
 }
@@ -54,7 +54,7 @@ dockerFileTask := {
   val artifactTargetPath = s"/app/${artifact.name}"
 
   val classpath = (managedClasspath in Compile).value
-  
+
   // https://stackoverflow.com/questions/22554612/dependson-to-instruct-sbt-to-package-dependent-projects-in-multi-project-build
   exportJars := true
 
