@@ -32,6 +32,15 @@ objects:
                 value: INPUT
               - name: NATS_URI
                 value: ${NATS_URI}
+            volumes:
+#              - name: conf
+#                mountPath: /opt/gatling/conf
+#              - name: results
+#                mountPath: /opt/gatling/results
+              - name: user-files
+                configMap:
+                  name: inject-user-files
+#                mountPath: /opt/gatling/user-files
 #            command: [ "/bin/bash", "-c", "--" ]
 #            args: [ "while true; do sleep 30; done;" ]
 
