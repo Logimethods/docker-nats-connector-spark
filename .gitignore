@@ -32,3 +32,4 @@ _steps/
 apcera/references/
 
 .DS_Store
+openshift/docker-copyedit.py
