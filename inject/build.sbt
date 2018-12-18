@@ -10,6 +10,7 @@ val rootVersion = "0.3.0"
 version := rootVersion // + "-SNAPSHOT"
 scalaVersion := "2.11.8"
 val gatlingVersion = "2.2.2"
+val gatlingImage = "logimethods/gatling:" + gatlingVersion
 val natsConnectorGatlingVersion = "0.3.0" // -SNAPSHOT
 
 name := "nats-connector-spark"
@@ -33,11 +34,11 @@ dockerfile in docker := {
 
   new Dockerfile {
     // Use a base image that contain Gatling
-	from("logimethods/gatling:" + gatlingVersion)
+	from(gatlingImage)
     // Add all files on the classpath
     add(classpath.files, "./lib/")
     // Add Gatling User Files
-///    add(baseDirectory.value / "user-files", "./user-files")
+    add(baseDirectory.value / "user-files", "./user-files")
 
 //    cmd("--no-reports", "-s", "com.logimethods.nats.demo.NatsInjection")
   }
@@ -60,7 +61,7 @@ dockerFileTask := {
 
   val dockerFile = new Dockerfile {
     // Use a base image that contain Gatling
-	from("denvazh/gatling:" + gatlingVersion)
+	from(gatlingImage)
     // Add all files on the classpath
     add(classpath.files, "./lib/")
     // Add Gatling User Files
