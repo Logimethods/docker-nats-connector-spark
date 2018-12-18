@@ -17,7 +17,7 @@ https://docs.openshift.com/container-platform/3.11/dev_guide/dev_tutorials/binar
 
 oc create -f openshift/BuildConfig
 
-oc set env dc/jenkins HEARTBEAT_CHECK_INTERVAL=300
+oc set env dc/jenkins JENKINS_JAVA_OVERRIDES="-Dorg.jenkinsci.plugins.durabletask.BourneShellScript.HEARTBEAT_CHECK_INTERVAL=300"
 
 oc new-build --strategy docker --binary --name nats-connector-inject
 oc new-build --strategy docker --binary --name nats-connector-app
