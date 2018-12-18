@@ -23,7 +23,7 @@ oc new-build --strategy docker --binary --name nats-connector-inject
 oc new-build --strategy docker --binary --name nats-connector-app
 oc new-build --strategy docker --binary --name nats-connector-monitor
 
-oc policy add-role-to-user admin system:serviceaccount:test-build2:default
+oc policy add-role-to-user admin system:serviceaccount:$(oc project -q):default
 
 
 ------ SPARK Cluster
