@@ -23,8 +23,6 @@ pipeline {
           steps {
             container('jnlp') {
               dir('inject') {
-                // See https://docs.openshift.com/container-platform/3.11/dev_guide/configmaps.html
-                sh "oc create configmap inject-user-files --from-file=user-files/"
                 sh "sbt clean assembly dockerFileTask"
               }
             }
