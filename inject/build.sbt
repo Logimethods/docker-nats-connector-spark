@@ -33,7 +33,7 @@ dockerfile in docker := {
 
   new Dockerfile {
     // Use a base image that contain Gatling
-	from("denvazh/gatling:" + gatlingVersion)
+	from("logimethods/gatling:" + gatlingVersion)
     // Add all files on the classpath
     add(classpath.files, "./lib/")
     // Add Gatling User Files

@@ -21,12 +21,12 @@ objects:
           name: inject
       spec:
         containers:
-          - name: stats
-            image: mribeiro/cloc
-            args: ['/git']
-            volumeMounts:
-            - name: user-files
-              mountPath: /git
+#          - name: stats
+#            image: mribeiro/cloc
+#            args: ['/git']
+#            volumeMounts:
+#            - name: user-files
+#              mountPath: /git
           - name: inject
             image: ${INJECT_IMAGE}
             args:
@@ -38,11 +38,11 @@ objects:
                 value: INPUT
               - name: NATS_URI
                 value: ${NATS_URI}
-            volumeMounts:
-              - name: user-files
-                mountPath: /opt/gatling/user-files
-            command: [ "/bin/bash", "-c", "--" ]
-            args: [ "while true; do sleep 30; done;" ]
+#            volumeMounts:
+#              - name: user-files
+#                mountPath: /opt/gatling/user-files
+#            command: [ "/bin/bash", "-c", "--" ]
+#            args: [ "while true; do sleep 30; done;" ]
         # These containers are run during pod initialization
         initContainers:
           ## See https://kubernetes.io/docs/tasks/configure-pod-container/configure-pod-initialization/
