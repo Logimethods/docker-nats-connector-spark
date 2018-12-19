@@ -10,7 +10,7 @@ val rootVersion = "0.3.0"
 version := rootVersion // + "-SNAPSHOT"
 scalaVersion := "2.11.8"
 val gatlingVersion = "2.2.2"
-val gatlingImage = "logimethods/gatling:" + gatlingVersion
+val gatlingImage = "denvazh/gatling:" + gatlingVersion
 val natsConnectorGatlingVersion = "0.3.0" // -SNAPSHOT
 
 name := "nats-connector-spark"
