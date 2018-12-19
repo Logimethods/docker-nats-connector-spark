@@ -21,14 +21,9 @@ objects:
           name: inject
       spec:
         containers:
-#          - name: stats
-#            image: mribeiro/cloc
-#            args: ['/git']
-#            volumeMounts:
-#            - name: user-files
-#              mountPath: /git
           - name: inject
-            image: ${INJECT_IMAGE}
+            image: nats-connector-inject:latest
+            imagePullPolicy: Always
             args:
               - '--no-reports'
               - '-s'
@@ -38,35 +33,17 @@ objects:
                 value: INPUT
               - name: NATS_URI
                 value: ${NATS_URI}
-#            volumeMounts:
-#              - name: user-files
-#                mountPath: /opt/gatling/user-files
-#            command: [ "/bin/bash", "-c", "--" ]
-#            args: [ "while true; do sleep 30; done;" ]
-        # These containers are run during pod initialization
-        initContainers:
-          ## See https://kubernetes.io/docs/tasks/configure-pod-container/configure-pod-initialization/
-          ## See https://blog.schlomo.schapiro.org/2017/06/using-kubernetes-with-multiple.html
-          ## See https://github.com/emblica/git-cloner/blob/master/k8s/example.yml
-          ## See https://blog.jessfraz.com/post/building-container-images-securely-on-kubernetes/
-          - name: install-user-files
-            image: emblica/git-cloner
-            command: [ "/bin/sh", "-c", "git clone --single-branch -- https://github.com/Logimethods/docker-nats-connector-spark /mnt/git/ ; mv /mnt/git/inject/user-files/* /mnt/git"]
-            volumeMounts:
-            - name: user-files
-              mountPath: /mnt/git
-        volumes:
-          - name: user-files
-            emptyDir: {}
-#            configMap:
-#              name: inject-user-files
-#            mountPath: /opt/gatling/user-files
+    triggers:
+      - type: "ImageChange"
+        imageChangeParams:
+          automatic: true
+          containerNames:
+          - inject
+          from:
+            kind: ImageStreamTag
+            name: nats-connector-inject:latest
 
 parameters:
-- name: INJECT_IMAGE
-  description: Inject Docker Image
-  value: docker-registry.default.svc:5000/test-build2/nats-connector-inject:latest
-  required: true
 - name: NATS_URI
   description: master name used as a service name and a selector
   value: nats://nats-streaming-server:4222
