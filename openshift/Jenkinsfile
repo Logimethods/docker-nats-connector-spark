@@ -25,7 +25,7 @@ pipeline {
               dir('inject') {
                 sh "sbt clean assembly dockerFileTask"
                 // See https://docs.openshift.com/container-platform/3.11/creating_images/guidelines.html
-                sh "echo -e '\nRUN chgrp -R 0 /opt/gatling && chmod -R g=u /opt/gatling' >> target/docker/Dockerfile"
+                sh "echo -e '\nRUN chgrp -R 0 /opt/gatling && chmod -R g=u+w /opt/gatling' >> target/docker/Dockerfile"
                 sh "cat target/docker/Dockerfile"
               }
             }

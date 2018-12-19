@@ -15,9 +15,9 @@ wrapper script does not seem to be touching the log file in /home/jenkins/worksp
 
 https://docs.openshift.com/container-platform/3.11/dev_guide/dev_tutorials/binary_builds.html
 
-oc create -f openshift/BuildConfig
-
 oc set env dc/jenkins JENKINS_JAVA_OVERRIDES="-Dorg.jenkinsci.plugins.durabletask.BourneShellScript.HEARTBEAT_CHECK_INTERVAL=300"
+
+oc create -f openshift/BuildConfig
 
 oc new-build --strategy docker --binary --name nats-connector-inject
 oc new-build --strategy docker --binary --name nats-connector-app
@@ -45,8 +45,3 @@ oc apply -f openshift/nats-streaming-deployment.yaml
 
 oc apply -f openshift/nats-connector-template.yml
 
-
-RUN chown -R 1001:0 /opt/gatling && \
-    chmod -R g+rw /opt/gatling
-
-USER 1001
