@@ -33,6 +33,12 @@ objects:
                 value: INPUT
               - name: NATS_URI
                 value: ${NATS_URI}
+            volumeMounts:
+            - name: results
+              mountPath: /opt/gatling/results
+        volumes:
+          - name: results
+            emptyDir: {}
     triggers:
       - type: "ImageChange"
         imageChangeParams:
