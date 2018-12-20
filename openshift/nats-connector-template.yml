@@ -3,6 +3,7 @@ apiVersion: v1
 template: nats-connector
 metadata:
   name: nats-connector
+  iconClass: fa-refresh
 labels:
   app: natsconnector
 objects:
