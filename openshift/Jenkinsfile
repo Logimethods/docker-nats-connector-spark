@@ -62,7 +62,7 @@ pipeline {
                 // Start Binary Build in OpenShift using the file we just published
                 // The filename is parksmap.jar in the 'target' directory of your current
                 // Jenkins workspace
-                sh "oc start-build nats-connector-inject --from-dir . --follow"
+                sh "oc start-build nats-connector-inject --from-dir . --follow --wait"
                 // Tag the image using the devTag
                 // openshiftTag alias: 'false', destStream: 'parksmap', destTag: "${devTag}", destinationNamespace: "${GUID}-parks-dev", namespace: "${GUID}-parks-dev", srcStream: 'parksmap', srcTag: 'latest', verbose: 'false'
               }
@@ -78,7 +78,7 @@ pipeline {
                 // Start Binary Build in OpenShift using the file we just published
                 // The filename is parksmap.jar in the 'target' directory of your current
                 // Jenkins workspace
-                sh "oc start-build nats-connector-app --from-dir . --follow"
+                sh "oc start-build nats-connector-app --from-dir . --follow --wait"
                 // Tag the image using the devTag
                 // openshiftTag alias: 'false', destStream: 'parksmap', destTag: "${devTag}", destinationNamespace: "${GUID}-parks-dev", namespace: "${GUID}-parks-dev", srcStream: 'parksmap', srcTag: 'latest', verbose: 'false'
               }
@@ -94,7 +94,7 @@ pipeline {
                 // Start Binary Build in OpenShift using the file we just published
                 // The filename is parksmap.jar in the 'target' directory of your current
                 // Jenkins workspace
-                sh "oc start-build nats-connector-monitor --from-dir . --follow"
+                sh "oc start-build nats-connector-monitor --from-dir . --follow --wait"
                 // Tag the image using the devTag
                 // openshiftTag alias: 'false', destStream: 'parksmap', destTag: "${devTag}", destinationNamespace: "${GUID}-parks-dev", namespace: "${GUID}-parks-dev", srcStream: 'parksmap', srcTag: 'latest', verbose: 'false'
               }
