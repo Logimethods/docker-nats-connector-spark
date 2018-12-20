@@ -4,7 +4,7 @@
 
 import sbt.Keys.{artifactPath, libraryDependencies, mainClass, managedClasspath, name, organization, packageBin, resolvers, version}
 
-logLevel := Level.Debug
+logLevel := Level.Info
 
 val rootVersion = "0.3.0"
 version := rootVersion // + "-SNAPSHOT"
