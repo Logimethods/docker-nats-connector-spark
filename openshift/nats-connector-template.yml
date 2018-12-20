@@ -85,6 +85,38 @@ objects:
             kind: ImageStreamTag
             name: nats-connector-app:latest
 
+- kind: DeploymentConfig
+  apiVersion: v1
+  metadata:
+    name: monitor
+  spec:
+    replicas: ${APP_REPLICAS}
+    selector:
+      name: monitor
+    template:
+      metadata:
+        labels:
+          name: monitor
+      spec:
+        containers:
+          - name: monitor
+            image: nats-connector-monitor:latest
+            imagePullPolicy: Always
+            args:
+              - 'OUTPUT'
+            env:
+              - name: NATS_URI
+                value: ${NATS_URI}
+    triggers:
+      - type: "ImageChange"
+        imageChangeParams:
+          automatic: true
+          containerNames:
+          - monitor
+          from:
+            kind: ImageStreamTag
+            name: nats-connector-monitor:latest
+
 parameters:
 - name: NATS_URI
   description: master name used as a service name and a selector
