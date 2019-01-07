@@ -16,7 +16,7 @@ import org.apache.spark.SparkContext
 import org.apache.spark.streaming.Duration
 import org.apache.spark.streaming.StreamingContext
 import org.apache.spark.storage.StorageLevel;
-import io.nats.client.Constants._
+import io.nats.client.Options.PROP_URL
 
 import org.apache.log4j.{Level, LogManager, PropertyConfigurator}
 
