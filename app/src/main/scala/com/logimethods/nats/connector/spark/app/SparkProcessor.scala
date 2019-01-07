@@ -26,8 +26,12 @@ import com.logimethods.scala.connector.spark.to_nats._
 import org.apache.hadoop.security.UserGroupInformation
 
 object SparkProcessor extends App {
+  val logLevel = scala.util.Properties.envOrElse("LOG_LEVEL", "INFO")
+  println("LOG_LEVEL = " + logLevel)
+
   val log = LogManager.getRootLogger
-  log.setLevel(Level.WARN)
+  // ALL, DEBUG, ERROR, FATAL, INFO, OFF, TRACE, TRACE_INT, WARN
+  log.setLevel(Level.toLevel(logLevel))
 
   Thread.sleep(5000)
 
@@ -37,16 +41,13 @@ object SparkProcessor extends App {
   val outputStreaming = outputSubject.toUpperCase.contains("STREAMING")
   println("Will process messages from " + inputSubject + " to " + outputSubject)
 
-  val logLevel = scala.util.Properties.envOrElse("LOG_LEVEL", "INFO")
-  println("LOG_LEVEL = " + logLevel)
-
   val sparkMasterUrl = System.getenv("SPARK_MASTER_URL")
   println("SPARK_MASTER_URL = " + sparkMasterUrl)
   val conf = new SparkConf().setAppName("NATS Data Processing").setMaster(sparkMasterUrl);
 
   // https://stackoverflow.com/questions/41864985/hadoop-ioexception-failure-to-login
   UserGroupInformation.setLoginUser(UserGroupInformation.createRemoteUser("sparkuser"));
-  
+
   val sc = new SparkContext(conf);
 //  val jarFilesRegex = "java-nats-streaming-(.*)jar|guava(.*)jar|protobuf-java(.*)jar|jnats-(.*)jar|nats-connector-spark-(.*)jar|docker-nats-connector-spark(.*)jar"
   val jarFilesRegex = "(.*)jar"
