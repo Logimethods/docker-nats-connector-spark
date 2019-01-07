@@ -26,12 +26,13 @@ import com.logimethods.scala.connector.spark.to_nats._
 import org.apache.hadoop.security.UserGroupInformation
 
 object SparkProcessor extends App {
-  val logLevel = scala.util.Properties.envOrElse("LOG_LEVEL", "INFO")
-  println("LOG_LEVEL = " + logLevel)
 
-  val log = LogManager.getRootLogger
   // ALL, DEBUG, ERROR, FATAL, INFO, OFF, TRACE, TRACE_INT, WARN
-  log.setLevel(Level.toLevel(logLevel))
+  val logLevel = Level.toLevel(scala.util.Properties.envOrElse("LOG_LEVEL", "INFO"))
+  println("LOG_LEVEL = " + logLevel)
+  
+  val log = LogManager.getRootLogger
+  log.setLevel(logLevel)
 
   Thread.sleep(5000)
 
@@ -80,7 +81,8 @@ object SparkProcessor extends App {
 
   val max = integers.reduce({ (int1, int2) => Math.max(int1, int2) })
 
-  if (logLevel.equals("DEBUG")) {
+  if (logLevel.isGreaterOrEqual(Level.INFO)) {
+    println("Will print all MAX values")
     max.print()
   }
 

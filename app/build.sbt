@@ -6,10 +6,10 @@ import sbt.Keys.{artifactPath, libraryDependencies, mainClass, managedClasspath,
 
 logLevel := Level.Info
 
-val rootVersion = "0.3.0"
+val rootVersion = "1.0.0-SNAPSHOT"
 version := rootVersion // + "-SNAPSHOT"
-scalaVersion := "2.11.8"
-val sparkVersion = "2.0.1"
+scalaVersion := "2.11.12"
+val sparkVersion = "2.3.2"
 
 val rootName = "nats-connector-spark"
 name := "docker-" + rootName + "-main-app"
