@@ -1,4 +1,4 @@
-box: hseeberger/scala-sbt
+box: logimethods/jenkins-slave-maven-sbt:latest
 build:
   steps:
     - install-packages:
