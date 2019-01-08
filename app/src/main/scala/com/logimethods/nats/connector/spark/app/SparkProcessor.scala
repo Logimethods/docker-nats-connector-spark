@@ -80,8 +80,9 @@ object SparkProcessor extends App {
     }
 
   val max = integers.reduce({ (int1, int2) => Math.max(int1, int2) })
+integers.print()
 
-  if (logLevel.isGreaterOrEqual(Level.INFO)) {
+  if (logLevel.isGreaterOrEqual(Level.WARN)) {
     println("Will print all MAX values")
     max.print()
   }
