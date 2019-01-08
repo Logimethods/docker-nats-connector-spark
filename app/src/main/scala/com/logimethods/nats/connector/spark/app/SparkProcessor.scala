@@ -30,7 +30,7 @@ object SparkProcessor extends App {
   // ALL, DEBUG, ERROR, FATAL, INFO, OFF, TRACE, TRACE_INT, WARN
   val logLevel = Level.toLevel(scala.util.Properties.envOrElse("LOG_LEVEL", "INFO"))
   println("LOG_LEVEL = " + logLevel)
-  
+
   val log = LogManager.getRootLogger
   log.setLevel(logLevel)
 
@@ -64,27 +64,31 @@ object SparkProcessor extends App {
 
   val clusterId = System.getenv("NATS_CLUSTER_ID")
 
-  val integers =
+  val messages =
     if (inputStreaming) {
       NatsToSparkConnector
-        .receiveFromNatsStreaming(classOf[Integer], StorageLevel.MEMORY_ONLY, clusterId)
+        .receiveFromNatsStreaming(classOf[java.lang.Float], StorageLevel.MEMORY_ONLY, clusterId)
         .withNatsURL(natsUrl)
         .withSubjects(inputSubject)
         .asStreamOf(ssc)
     } else {
       NatsToSparkConnector
-        .receiveFromNats(classOf[Integer], StorageLevel.MEMORY_ONLY)
+        .receiveFromNats(classOf[java.lang.Float], StorageLevel.MEMORY_ONLY)
         .withProperties(properties)
         .withSubjects(inputSubject)
         .asStreamOf(ssc)
     }
 
-  val max = integers.reduce({ (int1, int2) => Math.max(int1, int2) })
-integers.print()
+  if (logLevel.isGreaterOrEqual(Level.DEBUG)) {
+    println("Will print all messages")
+    messages.count.print()
+    messages.map(_.toString).print()
+  }
 
+  val max = messages.reduce(Math.max(_,_))
   if (logLevel.isGreaterOrEqual(Level.WARN)) {
     println("Will print all MAX values")
-    max.print()
+    max.map(_.toString).print()
   }
 
   if (outputStreaming) {
