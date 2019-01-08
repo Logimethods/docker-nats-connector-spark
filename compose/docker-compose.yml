@@ -30,41 +30,42 @@ services:
     ports:
       - 8083:8081
 
-  nats-main: 
+  nats-main:
     extends:
       file: common-services.yml
       service: nats
     container_name: nats-main
     hostname: nats-main
-      
+
   gatling:
     extends:
       file: common-services.yml
       service: gatling
-    links: 
+    links:
       - nats-main
     environment:
       - NATS_URI=nats://nats-main:4222
     command: --no-reports -s com.logimethods.nats.demo.NatsInjection
-      
+
   app:
     extends:
       file: common-services.yml
       service: app
     container_name: main-app
     hostname: main-app
-    links: 
+    links:
       - nats-main
       - spark-master
     environment:
       - NATS_URI=nats://nats-main:4222
-      - SPARK_MASTER_URL=spark://spark-master:7077
-      
+      - SPARK_MASTER_URL=local[*]
+#      - SPARK_MASTER_URL=spark://spark-master:7077
+
   monitor:
     extends:
       file: common-services.yml
       service: monitor
-    links: 
+    links:
       - nats-main
     environment:
       - NATS_URI=nats://nats-main:4222
