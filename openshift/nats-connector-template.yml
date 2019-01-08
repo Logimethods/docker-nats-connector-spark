@@ -75,6 +75,8 @@ objects:
                 value: ${NATS_URI}
               - name: SPARK_MASTER_URL
                 value: ${SPARK_MASTER_URL}
+              - name: LOG_LEVEL
+                value: WARN
     triggers:
       - type: "ImageChange"
         imageChangeParams:
@@ -125,7 +127,7 @@ parameters:
 - name: SPARK_MASTER_URL
   description: master name used as a service name and a selector
 #  value: spark://spark-master:7077
-  value: local[*]
+  value: local[2]
   required: true
 - name: INJECT_REPLICAS
   description: Number of replicas for the injectors
