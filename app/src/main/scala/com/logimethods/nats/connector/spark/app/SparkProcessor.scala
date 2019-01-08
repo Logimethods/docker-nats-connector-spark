@@ -28,7 +28,7 @@ import org.apache.hadoop.security.UserGroupInformation
 object SparkProcessor extends App {
 
   // ALL, DEBUG, ERROR, FATAL, INFO, OFF, TRACE, TRACE_INT, WARN
-  val logLevel = Level.toLevel(scala.util.Properties.envOrElse("LOG_LEVEL", "INFO"))
+  val logLevel = Level.toLevel(scala.util.Properties.envOrElse("LOG_LEVEL", "WARN"))
   println("LOG_LEVEL = " + logLevel)
 
   val log = LogManager.getRootLogger
