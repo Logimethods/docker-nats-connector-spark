@@ -53,7 +53,7 @@ object NatsOutputMonitor extends App {
     } else { // REGULAR mode
       conn.subscribe(inputSubject, (msg: MsgB) => {
     	val f = ByteBuffer.wrap(msg.body)  
-        println(s"Received message: ${f.getFloat()}")
+        println(s"Received message on /${msg.subject}/: ${f.getFloat()}")
       })    
     }
   }
