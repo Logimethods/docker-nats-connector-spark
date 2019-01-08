@@ -65,8 +65,8 @@ dockerfile in docker := {
     // Set the log4j.properties
     run("mkdir", "-p", "/usr/local/spark/conf")
     env("SPARK_HOME", "/usr/local/spark")
-    copyToStageDir(file("spark/conf/log4j.properties"), file("log4j.properties"))
-    copy("log4j.properties", "/usr/local/spark/conf")
+    stageFile(file("spark/conf/log4j.properties"), file("log4j.properties"))
+    copyRaw("log4j.properties", "/usr/local/spark/conf")
 
     // Add all files on the classpath
     copy(classpath.files, "/app/")
@@ -106,8 +106,8 @@ dockerFileTask := {
     // Set the log4j.properties
     run("mkdir", "-p", "/usr/local/spark/conf")
     env("SPARK_HOME", "/usr/local/spark")
-    copyToStageDir(file("spark/conf/log4j.properties"), file("log4j.properties"))
-    copy("log4j.properties", "/usr/local/spark/conf")
+    stageFile(file("spark/conf/log4j.properties"), file("log4j.properties"))
+    copyRaw("log4j.properties", "/usr/local/spark/conf")
 
     // Add all files on the classpath
     copy(classpath.files, "/app/")

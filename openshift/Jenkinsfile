@@ -36,6 +36,7 @@ pipeline {
             container('jnlp') {
               dir('app') {
                 sh "sbt clean assembly dockerFileTask"
+                sh "cat target/docker/Dockerfile"
               }
             }
           }
@@ -45,6 +46,7 @@ pipeline {
             container('jnlp') {
               dir('monitor') {
                 sh "sbt clean assembly dockerFileTask"
+                sh "cat target/docker/Dockerfile"
               }
             }
           }
