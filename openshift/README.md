@@ -37,9 +37,29 @@ oc create -f https://radanalytics.io/resources.yaml
 
 https://github.com/nats-io/nats-operator
 
+```
+oc apply -f https://raw.githubusercontent.com/nats-io/nats-operator/master/deploy/default-rbac.yaml
+oc apply -f https://raw.githubusercontent.com/nats-io/nats-operator/master/deploy/deployment.yaml
+```
+> error retrieving resource lock test-build/nats-operator: endpoints "nats-operator" is forbidden: User "system:serviceaccount:test-build:nats-operator" cannot get endpoints in the namespace "test-build": no RBAC policy matched
+
+https://github.com/nats-io/nats-operator/issues/36
+
+`oc create clusterrolebinding cluster-admin-binding --clusterrole=cluster-admin --user=$(oc whoami)`
+
 https://medium.com/@xcoulon/fixing-a-crashed-container-on-openshift-8482a4a84bfe
 
+---------- NATS Cluster
+
+## See https://github.com/nats-io/nats-operator/issues/88
 oc apply -f openshift/nats-streaming-deployment.yaml
+
+---------- Spark Cluster
+https://github.com/radanalyticsio/oshinko-webui
+
+```
+oc create -f https://radanalytics.io/resources.yaml
+```
 
 ---------- NATS CONNECTOR
 

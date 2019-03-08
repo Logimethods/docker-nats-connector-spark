@@ -75,7 +75,7 @@ objects:
       type: Rolling
     triggers:
       - type: ConfigChange
-    replicas: 3
+    replicas: ${WORKER_REPLICAS}
     selector:
       name: ${WORKER_NAME}
     template:
@@ -105,4 +105,8 @@ parameters:
   description: worker name used as a selector
   generate: expression
   from: "spark-worker-[a-z0-9]{4}"
+  required: true
+- name: WORKER_REPLICAS
+  description: worker replicas
+  value: 2
   required: true
