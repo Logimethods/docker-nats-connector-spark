@@ -194,7 +194,7 @@ monitor_1       | Received message: 150
 
 (The MIT License)
 
-Copyright (c) 2016 Logimethods.
+Copyright (c) 2016-18 Logimethods.
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to
