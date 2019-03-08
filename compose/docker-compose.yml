@@ -33,7 +33,7 @@ services:
   nats-main:
     extends:
       file: common-services.yml
-      service: nats
+      service: nats-streaming
     container_name: nats-main
     hostname: nats-main
 
@@ -58,6 +58,7 @@ services:
       - spark-master
     environment:
       - NATS_URI=nats://nats-main:4222
+      - LOG_LEVEL=WARN
       - SPARK_MASTER_URL=local[*]
 #      - SPARK_MASTER_URL=spark://spark-master:7077
 
