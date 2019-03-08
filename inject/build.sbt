@@ -8,8 +8,8 @@ logLevel := Level.Info
 
 val rootVersion = "1.0.0-SNAPSHOT"
 version := rootVersion // + "-SNAPSHOT"
-scalaVersion := "2.11.8"
-val gatlingVersion = "2.2.5"
+scalaVersion := "2.12.8"
+val gatlingVersion = "3.0.3"
 val gatlingImage = "denvazh/gatling:" + gatlingVersion
 val natsConnectorGatlingVersion = "1.0.0-SNAPSHOT" // -SNAPSHOT
 
