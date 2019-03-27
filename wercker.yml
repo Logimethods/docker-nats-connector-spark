@@ -25,6 +25,7 @@ build:
           sbt clean assembly dockerFileTask
           rm -rf ./docker
           mv target/docker .
+          rm -rf ./target
           popd
     - script:
         name: build INJECT dockerfile
@@ -33,6 +34,7 @@ build:
           sbt clean assembly dockerFileTask
           rm -rf ./docker
           mv target/docker .
+          rm -rf ./target
           popd
     - script:
         name: build MONITOR dockerfile
@@ -41,6 +43,7 @@ build:
           sbt clean assembly dockerFileTask
           rm -rf ./docker
           mv target/docker .
+          rm -rf ./target
           popd
     - script:
         name: git push
