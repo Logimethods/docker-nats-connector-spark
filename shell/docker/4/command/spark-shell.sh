@@ -1,1 +1,0 @@
-spark-shell --conf spark.streaming.stopGracefullyOnShutdown=true --jars /usr/spark-1.6.1/./lib_add/jnats-0.3.1.jar,/usr/spark-1.6.1/./lib_add/nats-connector-spark-0.1.0-SNAPSHOT.jar,$(echo ./lib_main/*.jar | tr ' ' ',') --master ${SPARK_MASTER_URL}
