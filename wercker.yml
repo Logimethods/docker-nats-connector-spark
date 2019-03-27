@@ -43,14 +43,6 @@ build:
           mv target/docker .
           popd
     - script:
-        name: build SHELL dockerfile
-        code: |
-          pushd shell
-          sbt clean assembly dockerFileTask
-          rm -rf ./docker
-          mv target/docker .
-          popd
-    - script:
         name: git push
         code: |
           git status
