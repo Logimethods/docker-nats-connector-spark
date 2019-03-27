@@ -1,0 +1,12 @@
+kind: "BuildConfig"
+apiVersion: "v1"
+metadata:
+  name: "docker-nats-connector-spark-pipeline"
+spec:
+  source:
+    git:
+      uri: "https://github.com/Logimethods/docker-nats-connector-spark"
+      ref: "version_1.0.0"
+  strategy:
+    jenkinsPipelineStrategy:
+      jenkinsfilePath: openshift/Jenkinsfile

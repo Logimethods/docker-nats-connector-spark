@@ -4,15 +4,15 @@
 
 import sbt.Keys.{artifactPath, libraryDependencies, mainClass, managedClasspath, name, organization, packageBin, resolvers, version}
 
-logLevel := Level.Debug
+logLevel := Level.Info
 
 name := "docker-nats-connector-spark"
 organization := "logimethods"
 val tag = "shell"
 
-version := "0.3.0"
+version := "1.0.0-SNAPSHOT"
 
-libraryDependencies += "com.logimethods" % "nats-connector-spark" % "0.3.0"
+libraryDependencies += "com.logimethods" % "nats-connector-spark" % "1.0.0-SNAPSHOT"
 
 resolvers += Resolver.mavenLocal
 
@@ -32,11 +32,11 @@ dockerfile in docker := {
 
   new Dockerfile {
     // Use a base image that contain Spark
-    from("gettyimages/spark:1.6.1-hadoop-2.6")
+    from("gettyimages/spark:2.3.1-hadoop-3.0")
 
     // Add all files on the classpath
     add(classpath.files, "./lib_add/")
-    
+
     // Add the JAR file
     add(jarFile, jarTarget)
 
@@ -69,11 +69,11 @@ dockerFileTask := {
 
   val dockerFile = new Dockerfile {
     // Use a base image that contain Spark
-    from("gettyimages/spark:1.6.1-hadoop-2.6")
+    from("gettyimages/spark:2.3.1-hadoop-3.0")
 
     // Add all files on the classpath
     add(classpath.files, "./lib_add/")
-    
+
     // Add the JAR file
     add(jarFile, jarTarget)
 

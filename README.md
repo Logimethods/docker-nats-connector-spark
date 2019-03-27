@@ -42,6 +42,10 @@ Those Docker Images are pushed to [dockerhub:logimethods/nats-connector-spark](h
 ![build.png](build.png "Global Build")
 
 ## Release Notes
+### Version 1.0.0
+* [nats-connector-gatling](https://github.com/Logimethods/nats-connector-gatling) version `1.0.0`
+* [nats-connector-spark-scala](https://github.com/Logimethods/nats-connector-spark-scala) version `1.0.0`
+
 ### Version 0.3.0
 * Makes use of `NATS/Spark Connectors` at version `0.3.0`
 * Based on `Spark` version `2.0.1`
@@ -140,10 +144,10 @@ monitor_1       | Will be listening to messages from OUTPUT
 main-app        | -------------------------------------------
 main-app        | Time: 1468418602000 ms
 main-app        | -------------------------------------------
-main-app        | 
+main-app        |
 gatling_1       | Simulation com.logimethods.nats.demo.NatsInjection started...
 gatling_1       | Will emit messages to INPUT
-gatling_1       | 
+gatling_1       |
 gatling_1       | ================================================================================
 gatling_1       | 2016-07-13 14:03:31                                           0s elapsed
 gatling_1       | ---- NATS call -----------------------------------------------------------------
@@ -151,22 +155,22 @@ gatling_1       | [                                                             
 gatling_1       |           waiting: 900    / active: 0      / done:0     
 gatling_1       | ---- Requests ------------------------------------------------------------------
 gatling_1       | > Global                                                   (OK=0      KO=0     )
-gatling_1       | 
+gatling_1       |
 gatling_1       | ================================================================================
-gatling_1       | 
+gatling_1       |
 main-app        | -------------------------------------------
 main-app        | Time: 1468418612000 ms
 main-app        | -------------------------------------------
 main-app        | 140
-main-app        | 
+main-app        |
 monitor_1       | Received message: 140
 main-app        | -------------------------------------------
 main-app        | Time: 1468418614000 ms
 main-app        | -------------------------------------------
 main-app        | 150
-main-app        | 
+main-app        |
 monitor_1       | Received message: 150
-gatling_1       | 
+gatling_1       |
 gatling_1       | ================================================================================
 gatling_1       | 2016-07-13 14:03:36                                           5s elapsed
 gatling_1       | ---- NATS call -----------------------------------------------------------------
@@ -174,14 +178,14 @@ gatling_1       | [######                                                       
 gatling_1       |           waiting: 825    / active: 0      / done:75    
 gatling_1       | ---- Requests ------------------------------------------------------------------
 gatling_1       | > Global                                                   (OK=0      KO=0     )
-gatling_1       | 
+gatling_1       |
 gatling_1       | ================================================================================
-gatling_1       | 
+gatling_1       |
 main-app        | -------------------------------------------
 main-app        | Time: 1468418618000 ms
 main-app        | -------------------------------------------
 main-app        | 150
-main-app        | 
+main-app        |
 monitor_1       | Received message: 150
 ...
 ```
@@ -190,7 +194,7 @@ monitor_1       | Received message: 150
 
 (The MIT License)
 
-Copyright (c) 2016 Logimethods.
+Copyright (c) 2016-18 Logimethods.
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to

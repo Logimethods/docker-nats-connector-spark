@@ -4,13 +4,14 @@
 
 import sbt.Keys.{artifactPath, libraryDependencies, mainClass, managedClasspath, name, organization, packageBin, resolvers, version}
 
-logLevel := Level.Debug
+logLevel := Level.Info
 
-val rootVersion = "0.3.0"
+val rootVersion = "1.0.0-SNAPSHOT"
 version := rootVersion // + "-SNAPSHOT"
-scalaVersion := "2.11.8"
-val gatlingVersion = "2.2.2"
-val natsConnectorGatlingVersion = "0.3.0" // -SNAPSHOT
+scalaVersion := "2.12.8"
+val gatlingVersion = "3.0.3"
+val gatlingImage = "denvazh/gatling:" + gatlingVersion
+val natsConnectorGatlingVersion = "1.0.0-SNAPSHOT" // -SNAPSHOT
 
 name := "nats-connector-spark"
 organization := "logimethods"
@@ -33,12 +34,12 @@ dockerfile in docker := {
 
   new Dockerfile {
     // Use a base image that contain Gatling
-	from("denvazh/gatling:" + gatlingVersion)
+	from(gatlingImage)
     // Add all files on the classpath
     add(classpath.files, "./lib/")
     // Add Gatling User Files
     add(baseDirectory.value / "user-files", "./user-files")
-    
+
 //    cmd("--no-reports", "-s", "com.logimethods.nats.demo.NatsInjection")
   }
 }
@@ -55,9 +56,12 @@ dockerFileTask := {
 
   val classpath = (managedClasspath in Compile).value
 
+  // https://stackoverflow.com/questions/22554612/dependson-to-instruct-sbt-to-package-dependent-projects-in-multi-project-build
+  exportJars := true
+
   val dockerFile = new Dockerfile {
     // Use a base image that contain Gatling
-	from("denvazh/gatling:" + gatlingVersion)
+	from(gatlingImage)
     // Add all files on the classpath
     add(classpath.files, "./lib/")
     // Add Gatling User Files
@@ -74,4 +78,4 @@ dockerFileTask := {
   }
 }
 
-dockerFileTask <<= dockerFileTask.dependsOn(compile in Compile, dockerfile in docker)
+// dockerFileTask <<= dockerFileTask.dependsOn(compile in Compile, dockerfile in docker)

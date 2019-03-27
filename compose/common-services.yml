@@ -1,37 +1,37 @@
 version: '2'
 
 services:
-  gatling: 
-    image: logimethods/nats-connector-spark:inject_0.4.0
+  gatling:
+    image: logimethods/nats-connector-spark:inject_1.0.0-SNAPSHOT
     environment:
       - GATLING_TO_NATS_SUBJECT=INPUT
-      
+
   nats:
     image: nats
     ports:
       - 4222:4222
       - 8222:8222
       - 6222:6222
-      
+
   nats-streaming:
-    image: logimethods/stan
+    image: nats-streaming:0.11.2
     ports:
       - 4222:4222
       - 8222:8222
       - 6222:6222
-      
-  app: 
-    image: logimethods/nats-connector-spark:app_0.4.0
+
+  app:
+    image: logimethods/nats-connector-spark:app_1.0.0-SNAPSHOT
     command: "INPUT OUTPUT"
-      
-  monitor: 
-    image: logimethods/nats-connector-spark:monitor_0.4.0
+
+  monitor:
+    image: logimethods/nats-connector-spark:monitor_1.0.0-SNAPSHOT
     command: "OUTPUT"
 
   spark-master:
     container_name: spark-master
-    image: gettyimages/spark:2.0.1-hadoop-2.7
-    command: spark-class org.apache.spark.deploy.master.Master -h spark-master
+    image: radanalyticsio/openshift-spark:2.3-latest
+##x    command: spark-class org.apache.spark.deploy.master.Master -h spark-master
     hostname: spark-master
     environment:
       - "SERVICE_NAME=spark-master"
@@ -56,8 +56,8 @@ services:
       - ./data:/usr/local/spark/data
 
   spark-slave:
-    image: gettyimages/spark:2.0.1-hadoop-2.7
-    command: spark-class org.apache.spark.deploy.worker.Worker spark://spark-master:7077
+    image: radanalyticsio/openshift-spark:2.3-latest
+##x    command: spark-class org.apache.spark.deploy.worker.Worker spark://spark-master:7077
     environment:
       - "SPARK_CONF_DIR: /conf"
       - "SPARK_WORKER_CORES: 2"
@@ -77,5 +77,5 @@ services:
       - ./conf/slave:/conf
       - ./data:/usr/local/spark/data
 
-  spark-shell:
-    image: logimethods/nats-connector-spark:shell_0.4.0
+##x  spark-shell:
+##x    image: logimethods/nats-connector-spark:shell_0.2.0

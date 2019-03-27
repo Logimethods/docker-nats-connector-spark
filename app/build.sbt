@@ -4,12 +4,12 @@
 
 import sbt.Keys.{artifactPath, libraryDependencies, mainClass, managedClasspath, name, organization, packageBin, resolvers, version}
 
-logLevel := Level.Debug
+logLevel := Level.Info
 
-val rootVersion = "0.3.0"
+val rootVersion = "1.0.0-SNAPSHOT"
 version := rootVersion // + "-SNAPSHOT"
-scalaVersion := "2.11.8"
-val sparkVersion = "2.0.1"
+scalaVersion := "2.11.12"
+val sparkVersion = "2.3.2"
 
 val rootName = "nats-connector-spark"
 name := "docker-" + rootName + "-main-app"
@@ -61,18 +61,18 @@ dockerfile in docker := {
     // Use a base image that contain Scala
 //    from("williamyeh/scala:2.10.4")
     from("frolvlad/alpine-scala:2.11")
-    
+
     // Set the log4j.properties
     run("mkdir", "-p", "/usr/local/spark/conf")
     env("SPARK_HOME", "/usr/local/spark")
-    copyToStageDir(file("spark/conf/log4j.properties"), file("log4j.properties"))
-    copy("log4j.properties", "/usr/local/spark/conf")
+    stageFile(file("spark/conf/log4j.properties"), file("log4j.properties"))
+    copyRaw("log4j.properties", "/usr/local/spark/conf")
 
     // Add all files on the classpath
     copy(classpath.files, "/app/")
     // Add the JAR file
     copy(jarFile, jarTarget)
-    
+
     // On launch run Scala with the classpath and the main class
     // @see https://mail-archives.apache.org/mod_mbox/spark-dev/201312.mbox/%3CCAPh_B=ass2NcrN41t7KTSoF1SFGce=N57YMVyukX4hPcO5YN2Q@mail.gmail.com%3E
     // @see http://apache-spark-user-list.1001560.n3.nabble.com/spark-1-6-Issue-td25893.html
@@ -102,18 +102,18 @@ dockerFileTask := {
     // Use a base image that contain Scala
 //    from("williamyeh/scala:2.10.4")
     from("frolvlad/alpine-scala:2.11")
-        
+
     // Set the log4j.properties
     run("mkdir", "-p", "/usr/local/spark/conf")
     env("SPARK_HOME", "/usr/local/spark")
-    copyToStageDir(file("spark/conf/log4j.properties"), file("log4j.properties"))
-    copy("log4j.properties", "/usr/local/spark/conf")
+    stageFile(file("spark/conf/log4j.properties"), file("log4j.properties"))
+    copyRaw("log4j.properties", "/usr/local/spark/conf")
 
     // Add all files on the classpath
     copy(classpath.files, "/app/")
     // Add the JAR file
     copy(jarFile, jarTarget)
-    
+
     // On launch run Scala with the classpath and the main class
     // @see https://mail-archives.apache.org/mod_mbox/spark-dev/201312.mbox/%3CCAPh_B=ass2NcrN41t7KTSoF1SFGce=N57YMVyukX4hPcO5YN2Q@mail.gmail.com%3E
     // @see http://apache-spark-user-list.1001560.n3.nabble.com/spark-1-6-Issue-td25893.html
@@ -127,5 +127,3 @@ dockerFileTask := {
       source.stage(destination)
   }
 }
-
-dockerFileTask <<= dockerFileTask.dependsOn(compile in Compile, dockerfile in docker)

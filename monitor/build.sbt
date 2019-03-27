@@ -4,18 +4,18 @@
 
 import sbt.Keys.{artifactPath, libraryDependencies, mainClass, managedClasspath, name, organization, packageBin, resolvers, version}
 
-logLevel := Level.Debug
+logLevel := Level.Info
 
-val rootVersion = "0.3.0"
+val rootVersion = "1.0.0-SNAPSHOT"
 version := rootVersion // + "-SNAPSHOT"
-scalaVersion := "2.11.8"
+scalaVersion := "2.11.12"
 
 val rootName = "nats-connector-spark"
 name := "docker-" + rootName + "-monitor"
 organization := "logimethods"
 val tag = "monitor_" + rootVersion
 
-libraryDependencies += "com.github.tyagihas" % "scala_nats_2.11" 			% "0.2.1"
+libraryDependencies += "com.github.tyagihas" % "scala_nats_2.11" 		% "0.2.1"
 libraryDependencies += "io.nats"     		 % "java-nats-streaming" 	% "0.4.1"
 
 resolvers += "Sonatype OSS Snapshots" at "https://oss.sonatype.org/content/repositories/snapshots"
@@ -40,7 +40,7 @@ dockerfile in docker := {
   new Dockerfile {
     // Use a base image that contain Scala
 	from("frolvlad/alpine-scala:2.11")
-	
+
     // Add all files on the classpath
     add(classpath.files, "/app/")
     // Add the JAR file
@@ -71,7 +71,7 @@ dockerFileTask := {
   val dockerFile = new Dockerfile {
     // Use a base image that contain Scala
 	from("frolvlad/alpine-scala:2.11")
-	
+
     // Add all files on the classpath
     add(classpath.files, "/app/")
     // Add the JAR file
@@ -87,5 +87,3 @@ dockerFileTask := {
       source.stage(destination)
   }
 }
-
-dockerFileTask <<= dockerFileTask.dependsOn(compile in Compile, dockerfile in docker)

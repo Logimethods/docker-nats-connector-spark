@@ -16,22 +16,22 @@ import com.logimethods.connector.gatling.to_nats._
 
 import scala.concurrent.duration._
 import java.util.Properties
-import io.nats.client.Constants.PROP_URL
+import io.nats.client.Options.PROP_URL
 
 class NatsStreamingInjection extends Simulation {
-  
+
   val natsUrl = System.getenv("NATS_URI")
   val clusterID = System.getenv("NATS_CLUSTER_ID")
-  
+
   var subject = System.getenv("GATLING_TO_NATS_SUBJECT")
   if (subject == null) {
     println("No Subject has been defined through the 'GATLING_TO_NATS_SUBJECT' Environment Variable!!!")
   } else {
     println("Will emit messages to " + subject)
     val natsProtocol = NatsStreamingProtocol(natsUrl, clusterID, subject)
-    
+
     val natsScn = scenario("NATS call").exec(NatsStreamingBuilder(new ValueProvider("")))
-   
+
     setUp(
       natsScn.inject(constantUsersPerSec(15) during (1 minute))
     ).protocols(natsProtocol)

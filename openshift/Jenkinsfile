@@ -1,0 +1,109 @@
+// Jenkinsfile for Inject
+// @See https://akomljen.com/set-up-a-jenkins-ci-cd-pipeline-with-kubernetes/
+
+pipeline {
+  agent {
+    kubernetes {
+      cloud "openshift"
+      label 'jenkins-pod'
+//      inheritFrom "maven"
+      containerTemplate {
+        name 'jnlp'
+        image "logimethods/jenkins-slave-maven-sbt:latest"
+//        resourceRequestMemory '1Gi'
+//        resourceLimitMemory '2Gi'
+      }
+    }
+  }
+//  options { retry(3) }
+  stages {
+    stage('SBT Build') {
+      parallel {
+        stage('SBT Inject Build') {
+          steps {
+            container('jnlp') {
+              dir('inject') {
+                sh "sbt clean assembly dockerFileTask"
+                // See https://docs.openshift.com/container-platform/3.11/creating_images/guidelines.html
+                sh "echo -e '\nRUN chgrp -R 0 /opt/gatling && chmod -R g=u+w /opt/gatling' >> target/docker/Dockerfile"
+                sh "cat target/docker/Dockerfile"
+              }
+            }
+          }
+        }
+        stage('SBT App Build') {
+          steps {
+            container('jnlp') {
+              dir('app') {
+                sh "sbt clean assembly dockerFileTask"
+                sh "cat target/docker/Dockerfile"
+              }
+            }
+          }
+        }
+        stage('SBT Monitor Build') {
+          steps {
+            container('jnlp') {
+              dir('monitor') {
+                sh "sbt clean assembly dockerFileTask"
+                sh "cat target/docker/Dockerfile"
+              }
+            }
+          }
+        }
+      }
+    }
+    stage('Build and Tag Images') {
+      parallel {
+        stage('Build and Tag Inject Image') {
+          steps {
+            container('jnlp') {
+              dir('inject/target/docker') {
+                echo "Building OpenShift container image"
+                sh "ls -als"
+                // Start Binary Build in OpenShift using the file we just published
+                // The filename is parksmap.jar in the 'target' directory of your current
+                // Jenkins workspace
+                sh "oc start-build nats-connector-inject --from-dir . --follow --wait"
+                // Tag the image using the devTag
+                // openshiftTag alias: 'false', destStream: 'parksmap', destTag: "${devTag}", destinationNamespace: "${GUID}-parks-dev", namespace: "${GUID}-parks-dev", srcStream: 'parksmap', srcTag: 'latest', verbose: 'false'
+              }
+            }
+          }
+        }
+        stage('Build and Tag App Image') {
+          steps {
+            container('jnlp') {
+              dir('app/target/docker') {
+                echo "Building OpenShift container image"
+                sh "ls -als"
+                // Start Binary Build in OpenShift using the file we just published
+                // The filename is parksmap.jar in the 'target' directory of your current
+                // Jenkins workspace
+                sh "oc start-build nats-connector-app --from-dir . --follow --wait"
+                // Tag the image using the devTag
+                // openshiftTag alias: 'false', destStream: 'parksmap', destTag: "${devTag}", destinationNamespace: "${GUID}-parks-dev", namespace: "${GUID}-parks-dev", srcStream: 'parksmap', srcTag: 'latest', verbose: 'false'
+              }
+            }
+          }
+        }
+        stage('Build and Tag Monitor Image') {
+          steps {
+            container('jnlp') {
+              dir('monitor/target/docker') {
+                echo "Building OpenShift container image"
+                sh "ls -als"
+                // Start Binary Build in OpenShift using the file we just published
+                // The filename is parksmap.jar in the 'target' directory of your current
+                // Jenkins workspace
+                sh "oc start-build nats-connector-monitor --from-dir . --follow --wait"
+                // Tag the image using the devTag
+                // openshiftTag alias: 'false', destStream: 'parksmap', destTag: "${devTag}", destinationNamespace: "${GUID}-parks-dev", namespace: "${GUID}-parks-dev", srcStream: 'parksmap', srcTag: 'latest', verbose: 'false'
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

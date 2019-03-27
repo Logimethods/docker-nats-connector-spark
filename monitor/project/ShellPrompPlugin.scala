@@ -1,5 +1,8 @@
+// https://www.scala-sbt.org/1.x-beta/docs/Scala-Files-Example.html
+
 import sbt._
 import Keys._
+import scala.sys.process._
 
 // Shell prompt which show the current project and git branch
 object ShellPromptPlugin extends AutoPlugin {
@@ -8,13 +11,13 @@ object ShellPromptPlugin extends AutoPlugin {
     shellPrompt := buildShellPrompt
   )
   val devnull: ProcessLogger = new ProcessLogger {
-    def info (s: => String) {}
-    def error (s: => String) { }
+    def out(s: => String) {}
+    def err(s: => String) { }
     def buffer[T] (f: => T): T = f
   }
   def currBranch =
-    ("git status -sb" lines_! devnull headOption).
-      getOrElse("-").stripPrefix("## ")
+    ("git status -sb" lineStream_! devnull headOption)
+      .getOrElse("-").stripPrefix("## ")
   val buildShellPrompt: State => String = {
     case (state: State) =>
       val currProject = Project.extract (state).currentProject.id

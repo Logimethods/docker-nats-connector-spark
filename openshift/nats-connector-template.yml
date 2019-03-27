@@ -1,0 +1,139 @@
+kind: Template
+apiVersion: v1
+template: nats-connector
+metadata:
+  name: nats-connector
+  iconClass: fa-refresh
+labels:
+  app: natsconnector
+objects:
+
+- kind: DeploymentConfig
+  apiVersion: v1
+  metadata:
+    name: inject
+  spec:
+    replicas: ${INJECT_REPLICAS}
+    selector:
+      name: inject
+    template:
+      metadata:
+        labels:
+          name: inject
+      spec:
+        containers:
+          - name: inject
+            image: nats-connector-inject:latest
+            imagePullPolicy: Always
+            args:
+              - '--no-reports'
+              - '-s'
+              - 'com.logimethods.nats.demo.NatsInjection'
+            env:
+              - name: GATLING_TO_NATS_SUBJECT
+                value: INPUT
+              - name: NATS_URI
+                value: ${NATS_URI}
+            volumeMounts:
+            - name: results
+              mountPath: /opt/gatling/results
+        volumes:
+          - name: results
+            emptyDir: {}
+    triggers:
+      - type: "ImageChange"
+        imageChangeParams:
+          automatic: true
+          containerNames:
+          - inject
+          from:
+            kind: ImageStreamTag
+            name: nats-connector-inject:latest
+
+- kind: DeploymentConfig
+  apiVersion: v1
+  metadata:
+    name: main-app
+  spec:
+    replicas: ${APP_REPLICAS}
+    selector:
+      name: main-app
+    template:
+      metadata:
+        labels:
+          name: main-app
+      spec:
+        containers:
+          - name: main-app
+            image: nats-connector-app:latest
+            imagePullPolicy: Always
+            args:
+              - 'INPUT'
+              - 'OUTPUT'
+            env:
+              - name: NATS_URI
+                value: ${NATS_URI}
+              - name: SPARK_MASTER_URL
+                value: ${SPARK_MASTER_URL}
+              - name: LOG_LEVEL
+                value: WARN
+    triggers:
+      - type: "ImageChange"
+        imageChangeParams:
+          automatic: true
+          containerNames:
+          - main-app
+          from:
+            kind: ImageStreamTag
+            name: nats-connector-app:latest
+
+- kind: DeploymentConfig
+  apiVersion: v1
+  metadata:
+    name: monitor
+  spec:
+    replicas: ${APP_REPLICAS}
+    selector:
+      name: monitor
+    template:
+      metadata:
+        labels:
+          name: monitor
+      spec:
+        containers:
+          - name: monitor
+            image: nats-connector-monitor:latest
+            imagePullPolicy: Always
+            args:
+              - 'OUTPUT'
+            env:
+              - name: NATS_URI
+                value: ${NATS_URI}
+    triggers:
+      - type: "ImageChange"
+        imageChangeParams:
+          automatic: true
+          containerNames:
+          - monitor
+          from:
+            kind: ImageStreamTag
+            name: nats-connector-monitor:latest
+
+parameters:
+- name: NATS_URI
+  description: master name used as a service name and a selector
+  value: nats://nats-streaming-server:4222
+  required: true
+- name: SPARK_MASTER_URL
+  description: master name used as a service name and a selector
+#  value: spark://spark-master:7077
+  value: local[2]
+  required: true
+- name: INJECT_REPLICAS
+  description: Number of replicas for the injectors
+  value: "1"
+  required: true
+- name: APP_REPLICAS
+  description: Number of replicas for the applications
+  value: "1"
+  required: true
