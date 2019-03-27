@@ -31,7 +31,7 @@ build:
         code: |
           pushd inject
           sbt clean assembly dockerFileTask
-          rm -R  ./docker
+          rm -rf ./docker
           mv target/docker .
           popd
     - script:
