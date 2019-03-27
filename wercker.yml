@@ -4,18 +4,17 @@ build:
     - install-packages:
         name: install git
         packages: git vim
-    - add-to-known_hosts:
-        name: add-to-known_hosts
-        hostname: github.com
-        fingerprint: 16:27:ac:a5:76:28:2d:36:63:1b:56:4d:eb:df:a6:48
     - add-ssh-key:
-        name: add-ssh-key
         keyname: GITHUB_SSH_KEY
+        host: github.com
+    - add-to-known_hosts:
+        hostname: github.com
+        fingerprint: SHA256:nThbg6kXUpJWGl7E1IGOCspRomTxdCARLviKw6E5SY8
     - script:
-        name: git setup
-        code: |
-          git config --global user.email "info@logimethods.com"
-          git config --global user.name "Logimethods Wercker"
+        name: Configure Git
+        code: |-
+          git config --global user.email "$GITHUB_EMAIL"
+          git config --global user.name "$GITHUB_USERNAME"
           git fetch origin
           git merge origin/master_docker
     - script:
