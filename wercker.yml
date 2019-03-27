@@ -45,6 +45,7 @@ build:
     - script:
         name: git push
         code: |
+          sed 's+docker/++g' .gitignore > .gitignore
           git status
           echo "GIT ADD"
           git add --all .
