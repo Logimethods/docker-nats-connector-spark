@@ -3,7 +3,7 @@ A collection of Docker Images to illustrate the use of the [nats-connector-spark
 
 [![MIT License](https://img.shields.io/npm/l/express.svg)](http://opensource.org/licenses/MIT)
 [![Issues](https://img.shields.io/github/issues/Logimethods/docker-nats-connector-spark.svg)](https://github.com/Logimethods/docker-nats-connector-spark/issues)
-[![wercker status](https://app.wercker.com/status/ae3458297bed4e5921beaba70acf173b/s/master "wercker status")](https://app.wercker.com/project/bykey/ae3458297bed4e5921beaba70acf173b)
+[![wercker status](https://app.wercker.com/status/ae3458297bed4e5921beaba70acf173b/s/version_1.0.0 "wercker status")](https://app.wercker.com/project/bykey/ae3458297bed4e5921beaba70acf173b)
 
 [![Dockerhub](http://dockeri.co/image/logimethods/nats-connector-spark)](https://hub.docker.com/r/logimethods/nats-connector-spark/)
 
